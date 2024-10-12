@@ -26,13 +26,15 @@ Team Roles and Responsibilities
 
 Roles (change as needed):
 
-Project Manager: [Name] – Ensures timelines are met, organizes meetings, and manages communications.
+Project Manager: [Shreya Vikas Kolte] – Ensures timelines are met, organizes meetings, and manages communications.
 
-Data Analyst: [Name] – Responsible for data cleaning, analysis, and exploratory visualizations.
+Data Analyst: [Issaiah Johnson and Kyle Aswege] – Responsible for data cleaning, analysis, and exploratory visualizations.
 
-Visualization Specialist: [Name] – Designs the final visualizations and makes aesthetic choices.
+Visualization Specialist: [Pouya Jalali Khalilabadi] – Designs the final visualizations and makes aesthetic choices.
 
-Documentation Lead: [Name] – Keeps detailed notes, ensures all project decisions are documented, and handles the final report.
+Documentation Lead: [Derek Rice] – Keeps detailed notes, ensures all project decisions are documented, and handles the final report.
+
+
 
 Responsibilities:
 
@@ -42,8 +44,8 @@ General Responsibilities: Each team member is responsible for:
 3. Communicating openly and promptly if issues arise.
 
 Communication Plan
-* Meeting Schedule: Weekly on [Day] at [Time] via [platform].
-* Primary Communication Platform: [Platform, e.g., Slack].
+* Meeting Schedule: Weekly on [Friday] at [7pm] via [Slack].
+* Primary Communication Platform: [Slack].
 
 Decision-Making Process: Decisions will be made by consensus; if a consensus cannot be reached, a vote will be taken.
 
@@ -51,13 +53,13 @@ Work Plan and Timeline
 
 Milestones:
 
-Data Collection and Cleaning: Completed by [Date].
+Data Collection and Cleaning: Completed by [1-NOV-2024].
 
-Exploratory Data Analysis: Completed by [Date].
+Exploratory Data Analysis: Completed by [15-NOV-2024].
 
-Design of Visualizations: Completed by [Date].
+Design of Visualizations: Completed by [30-NOV-2024].
 
-Final Presentation and Report: Completed by [Date].
+Final Presentation and Report: Completed by [9th Dec. 2024].
 
 Task Assignments: [Use a table to assign tasks to team members with due dates.]
 
