@@ -8,7 +8,7 @@ This project was developed by ChilePeppers For [INFO 511 - Fundamentals of Data 
 
 -   Shreya Kolte: Hello, I'm currently a 2nd-year Master's in Data Science student at the University of Arizona, focusing on data science and analytics.
 
--   Team member 2: One sentence description of Team member 2 (e.g., year, major, etc.).
+-   Derek Rice: Hi, I am a MS Data Science student at UofA with emphasis on machine learning and biostatistics.
 
 -   Team member 3: One sentence description of Team member 3 (e.g., year, major, etc.).
 
