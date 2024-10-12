@@ -2,7 +2,7 @@
 
 Team Project Contract
 
-Project Title: [Title of the final project]
+Project Title: (Working Title) "Assessment of Species at National Parks"
 
 Team Members:
 Derek Rice, slack and/or derekrice@arizona.edu
@@ -10,17 +10,17 @@ Shreya Kolte, slack and/or shreyakolte@arizona.edu
 [Name, Contact Information]
 [Name, Contact Information]
 
-Project Overview
+Project Overview: 
 
-Project Description: [A brief overview of the project, including the main objectives and purpose.]
+Project Description: Complete data analysis of a TBD dataset. The analysis includes data clearning and wrangling, data analysis, visualization, and documentation of results. 
 
-Expected Deliverables: [List of specific outputs, such as final visualizations, reports, presentations.]
+Expected Deliverables: A project report with (i) description of the dataset, (ii) objectives of the project and a Problem Statement, (iii) data cleaning summary, (iv) data analysis summary, and (v) a written report and supporting python code. 
 
 Team Goals
 
-Project Goals: [A few bullet points outlining what the team aims to achieve.]
+Project Goals: Learn how to collaborate as a team on the data analysis and report writng via github. 
 
-Learning Objectives: [What skills or knowledge each team member hopes to develop.]
+Learning Objectives: (i) data clearning and wrangling, (ii) data analsyis, (iii) creating visualizations to summarize results and insights, and (iv) report writing. 
 
 Team Roles and Responsibilities
 
