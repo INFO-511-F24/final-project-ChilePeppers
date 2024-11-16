@@ -13,3 +13,5 @@ This project was developed by ChilePeppers For [INFO 511 - Fundamentals of Data 
 -   Pouya Jalali Khalilabadi: Hello! I am a 4th year Ph.D. student in Transportation Engineering.
 
 -   Issaiah Johnson: Hello, I am a 2nd year Masters in Data Science student focusing on data science, analytics and data infastructure.
+
+-   Kyle Aswege: MS Data Science, UofA

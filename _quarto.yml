@@ -2,11 +2,11 @@ project:
   type: website
 
 website:
-  title: Project Title
+  title: ChilePeppers INFO511 Term Project - EV Charging Trends and Predictions 
   navbar:
     right:
       - icon: github
-        href: https://github.com/INFO-526-SU24/project-01 # Needs to be changed to your project repo
+        href: https://github.com/INFO-511-F24/final-project-ChilePeppers.git # Needs to be changed to your project repo
     left:
       - text: Project
         href: index.qmd

@@ -1,5 +1,4 @@
 ---
-sal---
 title: "INFO511 Fall 2024 Project Proposal"
 subtitle: "Exploring evoling electric vehicle charging efficiency"
 author: 
@@ -55,13 +54,13 @@ mobile_data = pd.read_csv(url)
 
 ## Dataset 1 - Electric Vehicle Charging
 
--   Source of Data: https://www.kaggle.com/datasets/valakhorasani/electric-vehicle-charging-patterns
+- **Source of Data**: https://www.kaggle.com/datasets/valakhorasani/electric-vehicle-charging-patterns
 
--   Description of Observations: This dataset provides a comprehensive analysis of electric vehicle (EV) charging patterns and user behavior. It contains 1,320 samples of charging session data, including metrics such as energy consumption, charging duration, and vehicle details. Each entry captures various aspects of EV usage, allowing for insightful analysis and predictive modeling.
+- **Description of Observations**: This dataset provides a comprehensive analysis of electric vehicle (EV) charging patterns and user behavior. It contains 1,320 samples of charging session data, including metrics such as energy consumption, charging duration, and vehicle details. Each entry captures various aspects of EV usage, allowing for insightful analysis and predictive modeling.
 
--   Ethical Concerns: The dataset has user IDs and specific charging station locations, which means there’s a chance it could reveal patterns in people’s movements and behaviors. To protect privacy, it’s important to keep user IDs anonymous and possibly generalize location data so individuals can’t be tracked. Researchers also need to handle this information carefully and follow data protection rules to use it responsibly.
+- **Ethical Concerns**: The dataset has user IDs and specific charging station locations, which means there’s a chance it could reveal patterns in people’s movements and behaviors. To protect privacy, it’s important to keep user IDs anonymous and possibly generalize location data so individuals can’t be tracked. Researchers also need to handle this information carefully and follow data protection rules to use it responsibly.
 
--   Question:
+- **Question**:
 
     1.  How do vehicle model, user type, and starting state of charge influence the cost and duration of EV charging sessions at public stations?
     2.  Exploring energy consumption and charging behaviors
@@ -99,11 +98,11 @@ ev_charging.info()
 
 The EV charging dataset comprises 20 columns, 10 object variables and 10 float64 variables. The analysis plan will be completed in three steps to answer the questions and hypothesis stated above.
 
-Step 1: A data wrangling effort to clean up the DataFrame and a graphical analysis of the dataset.
+**Step 1**: A data wrangling effort to clean up the DataFrame and a graphical analysis of the dataset.
 
-Step 2: A statistical analysis of the dataset using (i) analysis of variance and (ii) mullivariable regression to understand patterns within the data.
+**Step 2**: A statistical analysis of the dataset using (i) analysis of variance and (ii) mullivariable regression to understand patterns within the data.
 
-Step 3: Build a predictive model from the data to understand and predict user trends with respect to electric vehicle charging.
+**Step 3**: Build a predictive model from the data to understand and predict user trends with respect to electric vehicle charging.
 
 # Dataset 2 - Spotify User Data
 

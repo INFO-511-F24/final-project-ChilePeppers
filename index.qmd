@@ -1,13 +1,15 @@
 ---
-title: "Project Title"
+title: "EV Charging Trends and Predictions"
 subtitle: "INFO 511 - Fall 2024 - Final Project"
 author: 
-  - name: "Team name"
+  - name: "ChilePeppers"
     affiliations:
       - name: "School of Information, University of Arizona"
-description: "Project description"
+description: |
+  This project explores trends in electric vehicle (EV) charging efficiency 
+  and builds predictive models to understand charging behaviors.
 format:
-   html:
+  html:
     code-tools: true
     code-overflow: wrap
     embed-resources: true

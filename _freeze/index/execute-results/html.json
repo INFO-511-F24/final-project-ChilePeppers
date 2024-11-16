@@ -1,8 +1,8 @@
 {
-  "hash": "1dd179580bec6b4135d0ac10341615c0",
+  "hash": "01e166f8b2f61d7a91e73dc60995b122",
   "result": {
     "engine": "jupyter",
-    "markdown": "---\ntitle: \"Project Title\"\nsubtitle: \"INFO 511 - Fall 2024 - Final Project\"\nauthor: \n  - name: \"Team name\"\n    affiliations:\n      - name: \"School of Information, University of Arizona\"\ndescription: \"Project description\"\nformat:\n   html:\n    code-tools: true\n    code-overflow: wrap\n    embed-resources: true\neditor: visual\nexecute:\n  warning: false\n  echo: false\njupyter: python3\n---\n\n\n\n\n## Abstract\n\nAdd project abstract here.\n\n",
+    "markdown": "---\ntitle: EV Charging Trends and Predictions\nsubtitle: INFO 511 - Fall 2024 - Final Project\nauthor:\n  - name: ChilePeppers\n    affiliations:\n      - name: School of Information, University of Arizona\ndescription: |\n  This project explores trends in electric vehicle (EV) charging efficiency\n  and builds predictive models to understand charging behaviors.\nformat:\n  html:\n    code-tools: true\n    code-overflow: wrap\n    embed-resources: true\neditor: visual\nexecute:\n  warning: false\n  echo: false\n---\n\n",
     "supporting": [
       "index_files\\figure-html"
     ],

@@ -1,8 +1,7 @@
 ---
-``---
-title: "Project title"
+title: "EV Charging Trends and Predictions"
 subtitle: "INFO 511 - Fall 2024 - Final Project"
-author: "Author names"
+author: "Team: ChilePeppers"
 title-slide-attributes:
   data-background-image: images/watercolour_sys02_img34_teacup-ocean.jpg
   data-background-size: stretch
