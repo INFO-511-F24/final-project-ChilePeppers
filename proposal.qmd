@@ -1,4 +1,5 @@
 ---
+sal---
 title: "INFO511 Fall 2024 Project Proposal"
 subtitle: "Exploring evoling electric vehicle charging efficiency"
 author: 
@@ -104,7 +105,7 @@ Step 2: A statistical analysis of the dataset using (i) analysis of variance and
 
 Step 3: Build a predictive model from the data to understand and predict user trends with respect to electric vehicle charging.
 
-## Dataset 2 - Spotify User Data
+# Dataset 2 - Spotify User Data
 
 -   Source of the Data:
 
@@ -147,7 +148,7 @@ Step 2: A statistical analysis of the dataset using (i) analysis of variance and
 
 Step 3: Build a predictive model from the data to understand and predict trends.
 
-## Dataset 3 - Mobile user Behavior
+# Dataset 3 - Mobile user Behavior
 
 -   source of Data: https://www.kaggle.com/datasets/valakhorasani/mobile-device-usage-and-user-behavior-dataset
 
@@ -161,7 +162,7 @@ Step 3: Build a predictive model from the data to understand and predict trends.
 
 -   Variable Types: Categorical: Device Model,Operating System, Number of Apps Installed, Age, Gender Quantitative: App Usage Time, Screen On Time, Data Usage.
 
-# Glimpse of the Dataset: Mobile User Data
+## Glimpse of the Dataset: Mobile User Data
 
 ```{python}
 print(f'\n\nTable 5: Mobile User Dataset, Column Summary:\n\n')
@@ -174,7 +175,7 @@ print(f'Table 6: Mobile User Dataset - Data Type (Dtype) Summary:\n\n')
 mobile_data.info()
 ```
 
-# Data Analysis Approach: Mobile User DAta
+## Data Analysis Approach: Mobile User Data
 
 Step 1: Dataset cleanup and a graphical analysis of the dataset.
 
