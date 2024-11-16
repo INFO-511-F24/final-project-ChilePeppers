@@ -239,7 +239,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><p>Variable Types: Categorical Variables: Vehicle Model, User Type Quantitative Variables: Charging Cost (USD), Charging Duration (hours), State of Charge (Start %)</p></li>
 </ul>
-<div id="cell-4" class="cell" data-execution_count="29">
+<div id="cell-4" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -250,13 +250,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-5" class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>file_path <span class="op">=</span> (<span class="vs">r'data/ev_charging_patterns.csv'</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ev_charging <span class="op">=</span> pd.read_csv(file_path, encoding<span class="op">=</span><span class="st">'ISO-8859-1'</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>ev_charging.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="30">
+<div id="cell-5" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">file_path = (r'data/ev_charging_patterns.csv')</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">ev_charging = pd.read_csv(file_path, encoding='ISO-8859-1')</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">ev_charging.head()</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/ev_charging_patterns.csv"</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>ev_charging  <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>ev_charging.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
 <div>
 
 
@@ -280,7 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th data-quarto-table-cell-role="th">State of Charge (Start %)</th>
 <th data-quarto-table-cell-role="th">State of Charge (End %)</th>
 <th data-quarto-table-cell-role="th">Distance Driven (since last charge) (km)</th>
-<th data-quarto-table-cell-role="th">Temperature (Â°C)</th>
+<th data-quarto-table-cell-role="th">Temperature (°C)</th>
 <th data-quarto-table-cell-role="th">Vehicle Age (years)</th>
 <th data-quarto-table-cell-role="th">Charger Type</th>
 <th data-quarto-table-cell-role="th">User Type</th>
@@ -408,7 +415,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="cell-6" class="cell" data-execution_count="31">
+<div id="cell-6" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ev_charging.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -432,7 +439,7 @@ Data columns (total 20 columns):
  13  State of Charge (Start %)                 1320 non-null   float64
  14  State of Charge (End %)                   1320 non-null   float64
  15  Distance Driven (since last charge) (km)  1254 non-null   float64
- 16  Temperature (Â°C)                         1320 non-null   float64
+ 16  Temperature (°C)                          1320 non-null   float64
  17  Vehicle Age (years)                       1320 non-null   float64
  18  Charger Type                              1320 non-null   object 
  19  User Type                                 1320 non-null   object 
@@ -453,15 +460,22 @@ memory usage: 206.4+ KB</code></pre>
 <li><p>Hypothesis: Higher energy and danceability correlate with higher popularity metrics, as listeners may prefer upbeat and energetic tracks.</p></li>
 <li><p>Variable Types: Categorical: Key, mode, release date Quantitative: Streams, danceability, valence, energy, acousticness, instrumentalness</p></li>
 </ul>
-<div id="cell-10" class="cell" data-execution_count="32">
+<div id="cell-10" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>file_path <span class="op">=</span> <span class="st">"data\Spotify Most Streamed Songs.csv"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">file_path = "data\Spotify Most Streamed Songs.csv"</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>Spotify_db <span class="op">=</span> pd.read_csv(file_path, encoding<span class="op">=</span><span class="st">'ISO-8859-1'</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">Spotify_db = pd.read_csv(file_path, encoding='ISO-8859-1')</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>Spotify_db.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="32">
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">Spotify_db.head()</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span><span class="st">"Project Milestone 2.ipynb"</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/Spotify_Most_Streamed_Songs.csv"</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>Spotify_db <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>Spotify_db.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
 <div>
 
 
@@ -620,9 +634,9 @@ memory usage: 206.4+ KB</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-11" class="cell" data-execution_count="33">
+<div id="cell-11" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Spotify_db.info</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="33">
+<div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>&lt;bound method DataFrame.info of                               track_name      artist(s)_name  artist_count  \
 0    Seven (feat. Latto) (Explicit Ver.)    Latto, Jung Kook             2   
 1                                   LALA         Myke Towers             1   
@@ -716,11 +730,18 @@ memory usage: 206.4+ KB</code></pre>
 <li><p>Importance: Understanding and predicting battery usage is essential for improving device performance, enhancing user experience, and guiding power optimization strategies.</p></li>
 <li><p>Variable Types: Categorical: Device Model,Operating System, Number of Apps Installed, Age, Gender Quantitative: App Usage Time, Screen On Time, Data Usage</p></li>
 </ul>
-<div id="cell-15" class="cell" data-execution_count="34">
+<div id="cell-15" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'data/Mobile_user_behavior_dataset.csv'</span>, encoding<span class="op">=</span><span class="st">'ISO-8859-1'</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="34">
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#data = pd.read_csv('data/Mobile_user_behavior_dataset.csv', encoding='ISO-8859-1')</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#data.head()</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/Mobile_user_behavior_dataset.csv"</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
 <div>
 
 
@@ -818,7 +839,7 @@ memory usage: 206.4+ KB</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-16" class="cell" data-execution_count="35">
+<div id="cell-16" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;bound method DataFrame.info of      User ID        Device Model Operating System  App Usage Time (min/day)  \
@@ -876,14 +897,14 @@ memory usage: 206.4+ KB</code></pre>
 [700 rows x 11 columns]&gt;</code></pre>
 </div>
 </div>
-<div id="cell-17" class="cell" data-execution_count="36">
+<div id="cell-17" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'Device Model'</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="36">
+<div class="cell-output cell-output-display" data-execution_count="23">
 <pre><code>array(['Google Pixel 5', 'OnePlus 9', 'Xiaomi Mi 11', 'iPhone 12',
        'Samsung Galaxy S21'], dtype=object)</code></pre>
 </div>
 </div>
-<div id="cell-18" class="cell" data-execution_count="37">
+<div id="cell-18" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>sns.countplot(x<span class="op">=</span><span class="st">'Operating System'</span>, data<span class="op">=</span>data)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Device Count by Operating System'</span>)</span>
@@ -898,7 +919,7 @@ memory usage: 206.4+ KB</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-19" class="cell" data-execution_count="38">
+<div id="cell-19" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>sns.countplot(x<span class="op">=</span><span class="st">'Device Model'</span>, data<span class="op">=</span>data)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Device Count by Device Model'</span>)</span>
