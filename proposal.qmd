@@ -83,13 +83,13 @@ mobile_data = pd.read_csv(url)
 
 ```{python}
 
-print(f'Table 1: EV Charging Dataset:\n\n')
+print(f'Table 1: EV Charging Dataset, Summary of Column Headings:\n\n')
 ev_charging.head()
 
 ```
 
 ```{python}
-print(f'Table 2: EV Charging Dataset: Variables and their Type (Dtype)\n\n')
+print(f'Table 2: EV Charging Dataset, Variables and their Type (Dtype)\n\n')
 
 ev_charging.info()
 ```
@@ -98,11 +98,11 @@ ev_charging.info()
 
 The EV charging dataset comprises 20 columns, 10 object variables and 10 float64 variables. The analysis plan will be completed in three steps to answer the questions and hypothesis stated above. 
 
-Step 1: A graphical analysis of the dataset 
+Step 1: A data wrangling effort to clean up the DataFrame and a graphical analysis of the dataset. 
 
 Step 2: A statistical analysis of the dataset using (i) analysis of variance and (ii) mullivariable regression to understand patterns within the data.
 
-Step 3: Build a predictive model from the data to understand and predict trends. 
+Step 3: Build a predictive model from the data to understand and predict user trends with respect to electric vehicle charging. 
 
 ## Dataset 2 - Spotify User Data 
 
