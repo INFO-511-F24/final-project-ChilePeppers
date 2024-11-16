@@ -54,13 +54,13 @@ mobile_data = pd.read_csv(url)
 
 ## Dataset 1 - Electric Vehicle Charging
 
-- **Source of Data**: https://www.kaggle.com/datasets/valakhorasani/electric-vehicle-charging-patterns
+-   **Source of Data**: https://www.kaggle.com/datasets/valakhorasani/electric-vehicle-charging-patterns
 
-- **Description of Observations**: This dataset provides a comprehensive analysis of electric vehicle (EV) charging patterns and user behavior. It contains 1,320 samples of charging session data, including metrics such as energy consumption, charging duration, and vehicle details. Each entry captures various aspects of EV usage, allowing for insightful analysis and predictive modeling.
+-   **Description of Observations**: This dataset provides a comprehensive analysis of electric vehicle (EV) charging patterns and user behavior. It contains 1,320 samples of charging session data, including metrics such as energy consumption, charging duration, and vehicle details. Each entry captures various aspects of EV usage, allowing for insightful analysis and predictive modeling.
 
-- **Ethical Concerns**: The dataset has user IDs and specific charging station locations, which means there’s a chance it could reveal patterns in people’s movements and behaviors. To protect privacy, it’s important to keep user IDs anonymous and possibly generalize location data so individuals can’t be tracked. Researchers also need to handle this information carefully and follow data protection rules to use it responsibly.
+-   **Ethical Concerns**: The dataset has user IDs and specific charging station locations, which means there’s a chance it could reveal patterns in people’s movements and behaviors. To protect privacy, it’s important to keep user IDs anonymous and possibly generalize location data so individuals can’t be tracked. Researchers also need to handle this information carefully and follow data protection rules to use it responsibly.
 
-- **Question**:
+-   **Question**:
 
     1.  How do vehicle model, user type, and starting state of charge influence the cost and duration of EV charging sessions at public stations?
     2.  Exploring energy consumption and charging behaviors
