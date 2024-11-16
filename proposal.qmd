@@ -96,40 +96,31 @@ ev_charging.info()
 
 ## Analysis Plan EV Charting Dataset
 
-The EV charging dataset comprises 20 columns, 10 object variables and 10 float64 variables. The analysis plan will be completed in three steps to answer the questions and hypothesis stated above. 
+The EV charging dataset comprises 20 columns, 10 object variables and 10 float64 variables. The analysis plan will be completed in three steps to answer the questions and hypothesis stated above.
 
-Step 1: A data wrangling effort to clean up the DataFrame and a graphical analysis of the dataset. 
+Step 1: A data wrangling effort to clean up the DataFrame and a graphical analysis of the dataset.
 
 Step 2: A statistical analysis of the dataset using (i) analysis of variance and (ii) mullivariable regression to understand patterns within the data.
 
-Step 3: Build a predictive model from the data to understand and predict user trends with respect to electric vehicle charging. 
+Step 3: Build a predictive model from the data to understand and predict user trends with respect to electric vehicle charging.
 
-## Dataset 2 - Spotify User Data 
+## Dataset 2 - Spotify User Data
 
-* Source of the Data:
+-   Source of the Data:
 
-https://www.kaggle.com/datasets/abdulszz/spotify-most-streamed-songs
-This dataset originates from Apple's and Spotify's public API. Each track’s streaming metrics and musical attributes could have been aggregated from streaming services' API or charts, though specific documentation would be necessary to confirm.
+https://www.kaggle.com/datasets/abdulszz/spotify-most-streamed-songs This dataset originates from Apple's and Spotify's public API. Each track’s streaming metrics and musical attributes could have been aggregated from streaming services' API or charts, though specific documentation would be necessary to confirm.
 
-* Description of Observations:
-Observations include details on each song’s title, artist(s), release date, and musical attributes (e.g., tempo, key, mode, acousticness, danceability). There are also metrics related to streaming, such as chart ranks and playlist placements on various platforms.
+-   Description of Observations: Observations include details on each song’s title, artist(s), release date, and musical attributes (e.g., tempo, key, mode, acousticness, danceability). There are also metrics related to streaming, such as chart ranks and playlist placements on various platforms.
 
-* Ethical Concerns:
-The primary ethical concern is the potential for data bias. Since popular songs are more likely to be Western or English-language songs, this could lead to cultural or genre bias in the analysis. Furthermore, if the data includes rankings or metrics derived from proprietary algorithms, care should be taken to avoid misuse or misinterpretation of these rankings.
+-   Ethical Concerns: The primary ethical concern is the potential for data bias. Since popular songs are more likely to be Western or English-language songs, this could lead to cultural or genre bias in the analysis. Furthermore, if the data includes rankings or metrics derived from proprietary algorithms, care should be taken to avoid misuse or misinterpretation of these rankings.
 
-* Question: 
-How do musical attributes (such as tempo, energy, and valence) affect a song’s popularity on Spotify as measured by the number of streams and inclusion in playlists?
+-   Question: How do musical attributes (such as tempo, energy, and valence) affect a song’s popularity on Spotify as measured by the number of streams and inclusion in playlists?
 
-* Importance: 
-Understanding the relationship between musical attributes and popularity can be valuable for artists, producers, and streaming platforms to optimize song characteristics for a wider audience reach.
+-   Importance: Understanding the relationship between musical attributes and popularity can be valuable for artists, producers, and streaming platforms to optimize song characteristics for a wider audience reach.
 
-* Hypothesis: 
-Higher energy and danceability correlate with higher popularity metrics, as listeners may prefer upbeat and energetic tracks.
+-   Hypothesis: Higher energy and danceability correlate with higher popularity metrics, as listeners may prefer upbeat and energetic tracks.
 
-* Variable Types:
-Categorical: Key, mode, release date
-Quantitative: Streams, danceability, valence, energy, acousticness, instrumentalness
-
+-   Variable Types: Categorical: Key, mode, release date Quantitative: Streams, danceability, valence, energy, acousticness, instrumentalness
 
 ## Glimpse of the Data: Dataset 2: Spotify Dataset
 
@@ -144,57 +135,49 @@ print(f'\n\nTable 4: Spotify Dataset - Variables and Data Type (Dtype) Summary:\
 
 Spotify_db.info()
 
-
 ```
-
 
 ## Analysis Plan Spotify Dataset
 
-The Spotify User dataset comprises 25 columns, 8 object variables and 17 into64 variables. The analysis plan will be completed in three steps to answer the questions and hypothesis stated above. 
+The Spotify User dataset comprises 25 columns, 8 object variables and 17 into64 variables. The analysis plan will be completed in three steps to answer the questions and hypothesis stated above.
 
-Step 1: Dataset cleanup using Pandas data wranging tools and a graphical analysis of the dataset 
+Step 1: Dataset cleanup using Pandas data wranging tools and a graphical analysis of the dataset
 
 Step 2: A statistical analysis of the dataset using (i) analysis of variance and (ii) mullivariable regression to understand patterns within the data.
 
-Step 3: Build a predictive model from the data to understand and predict trends. 
-
+Step 3: Build a predictive model from the data to understand and predict trends.
 
 ## Dataset 3 - Mobile user Behavior
 
-* source of Data: https://www.kaggle.com/datasets/valakhorasani/mobile-device-usage-and-user-behavior-dataset
+-   source of Data: https://www.kaggle.com/datasets/valakhorasani/mobile-device-usage-and-user-behavior-dataset
 
-* Description of Observation: This dataset provides a comprehensive analysis of mobile device usage patterns and user behavior classification. It contains 700 samples of user data, including metrics such as app usage time, screen-on time, battery drain, and data consumption. Each entry is categorized into one of five user behavior classes, ranging from light to extreme usage, allowing for insightful analysis and modeling.
-*  Ethical Concerns: The Mobile Device Usage and User Behavior dataset raises potential privacy concerns, as it includes detailed behavioral metrics that could reveal patterns of individual users if personally identifiable information were present. Ensuring that data is anonymized and securely stored is essential to protect user privacy. Additionally, responsible analysis is important to avoid misinterpreting or stereotyping user behavior, which could lead to biased conclusions or inappropriate applications of the findings.
+-   Description of Observation: This dataset provides a comprehensive analysis of mobile device usage patterns and user behavior classification. It contains 700 samples of user data, including metrics such as app usage time, screen-on time, battery drain, and data consumption. Each entry is categorized into one of five user behavior classes, ranging from light to extreme usage, allowing for insightful analysis and modeling.
 
-* Question: 
-Predicting Battery Drain in Mobile Devices 
+-   Ethical Concerns: The Mobile Device Usage and User Behavior dataset raises potential privacy concerns, as it includes detailed behavioral metrics that could reveal patterns of individual users if personally identifiable information were present. Ensuring that data is anonymized and securely stored is essential to protect user privacy. Additionally, responsible analysis is important to avoid misinterpreting or stereotyping user behavior, which could lead to biased conclusions or inappropriate applications of the findings.
 
-* Importance: 
-Understanding and predicting battery usage is essential for improving device performance, enhancing user experience, and guiding power optimization strategies.
+-   Question: Predicting Battery Drain in Mobile Devices
 
+-   Importance: Understanding and predicting battery usage is essential for improving device performance, enhancing user experience, and guiding power optimization strategies.
 
-* Variable Types:
-Categorical: Device Model,Operating System, Number of Apps Installed, Age, Gender
-Quantitative: App Usage Time, Screen On Time, Data Usage
+-   Variable Types: Categorical: Device Model,Operating System, Number of Apps Installed, Age, Gender Quantitative: App Usage Time, Screen On Time, Data Usage.
 
+# Glimpse of the Dataset: Mobile User Data
 
 ```{python}
-
 print(f'\n\nTable 5: Mobile User Dataset, Column Summary:\n\n')
 mobile_data.head()
-
 ```
 
 ```{python}
 print(f'Table 6: Mobile User Dataset - Data Type (Dtype) Summary:\n\n')
 
 mobile_data.info()
-
 ```
 
+# Data Analysis Approach: Mobile User DAta
 
 Step 1: Dataset cleanup and a graphical analysis of the dataset.
 
 Step 2: A statistical analysis of the dataset using (i) analysis of variance and (ii) mullivariable regression to understand patterns within the data.
 
-Step 3: Build a predictive model from the data to understand and predict trends. 
+Step 3: Build a predictive model from the data to understand and predict trends.
