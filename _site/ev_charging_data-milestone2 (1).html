@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>About – Project Title</title>
+<title>ev_charging_data-milestone2-(1 – Project Title</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,10 +20,44 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -68,6 +102,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -102,7 +139,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Presentation</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -128,34 +165,205 @@ ul.task-list li input[type="checkbox"] {
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">About</h1>
+
+
+
+<div id="5be8ce78-18c6-4413-a22e-df722ef4f28e" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#file_path = "C:/Users/Shreya Kolte/Downloads/ev_charging_patterns.csv"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>file_path <span class="op">=</span> (<span class="vs">r'data/ev_charging_patterns.csv'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>ev_charging <span class="op">=</span> pd.read_csv(file_path, encoding<span class="op">=</span><span class="st">'ISO-8859-1'</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ev_charging.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">User ID</th>
+<th data-quarto-table-cell-role="th">Vehicle Model</th>
+<th data-quarto-table-cell-role="th">Battery Capacity (kWh)</th>
+<th data-quarto-table-cell-role="th">Charging Station ID</th>
+<th data-quarto-table-cell-role="th">Charging Station Location</th>
+<th data-quarto-table-cell-role="th">Charging Start Time</th>
+<th data-quarto-table-cell-role="th">Charging End Time</th>
+<th data-quarto-table-cell-role="th">Energy Consumed (kWh)</th>
+<th data-quarto-table-cell-role="th">Charging Duration (hours)</th>
+<th data-quarto-table-cell-role="th">Charging Rate (kW)</th>
+<th data-quarto-table-cell-role="th">Charging Cost (USD)</th>
+<th data-quarto-table-cell-role="th">Time of Day</th>
+<th data-quarto-table-cell-role="th">Day of Week</th>
+<th data-quarto-table-cell-role="th">State of Charge (Start %)</th>
+<th data-quarto-table-cell-role="th">State of Charge (End %)</th>
+<th data-quarto-table-cell-role="th">Distance Driven (since last charge) (km)</th>
+<th data-quarto-table-cell-role="th">Temperature (Â°C)</th>
+<th data-quarto-table-cell-role="th">Vehicle Age (years)</th>
+<th data-quarto-table-cell-role="th">Charger Type</th>
+<th data-quarto-table-cell-role="th">User Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>User_1</td>
+<td>BMW i3</td>
+<td>108.463007</td>
+<td>Station_391</td>
+<td>Houston</td>
+<td>1/1/2024 0:00</td>
+<td>1/1/2024 0:39</td>
+<td>60.712346</td>
+<td>0.591363</td>
+<td>36.389181</td>
+<td>13.087717</td>
+<td>Evening</td>
+<td>Tuesday</td>
+<td>29.371576</td>
+<td>86.119962</td>
+<td>293.602111</td>
+<td>27.947953</td>
+<td>2.0</td>
+<td>DC Fast Charger</td>
+<td>Commuter</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>User_2</td>
+<td>Hyundai Kona</td>
+<td>100.000000</td>
+<td>Station_428</td>
+<td>San Francisco</td>
+<td>1/1/2024 1:00</td>
+<td>1/1/2024 3:01</td>
+<td>12.339275</td>
+<td>3.133652</td>
+<td>30.677735</td>
+<td>21.128448</td>
+<td>Morning</td>
+<td>Monday</td>
+<td>10.115778</td>
+<td>84.664344</td>
+<td>112.112804</td>
+<td>14.311026</td>
+<td>3.0</td>
+<td>Level 1</td>
+<td>Casual Driver</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>User_3</td>
+<td>Chevy Bolt</td>
+<td>75.000000</td>
+<td>Station_181</td>
+<td>San Francisco</td>
+<td>1/1/2024 2:00</td>
+<td>1/1/2024 4:48</td>
+<td>19.128876</td>
+<td>2.452653</td>
+<td>27.513593</td>
+<td>35.667270</td>
+<td>Morning</td>
+<td>Thursday</td>
+<td>6.854604</td>
+<td>69.917615</td>
+<td>71.799253</td>
+<td>21.002002</td>
+<td>2.0</td>
+<td>Level 2</td>
+<td>Commuter</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>User_4</td>
+<td>Hyundai Kona</td>
+<td>50.000000</td>
+<td>Station_327</td>
+<td>Houston</td>
+<td>1/1/2024 3:00</td>
+<td>1/1/2024 6:42</td>
+<td>79.457824</td>
+<td>1.266431</td>
+<td>32.882870</td>
+<td>13.036239</td>
+<td>Evening</td>
+<td>Saturday</td>
+<td>83.120003</td>
+<td>99.624328</td>
+<td>199.577785</td>
+<td>38.316313</td>
+<td>1.0</td>
+<td>Level 1</td>
+<td>Long-Distance Traveler</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>User_5</td>
+<td>Hyundai Kona</td>
+<td>50.000000</td>
+<td>Station_108</td>
+<td>Los Angeles</td>
+<td>1/1/2024 4:00</td>
+<td>1/1/2024 5:46</td>
+<td>19.629104</td>
+<td>2.019765</td>
+<td>10.215712</td>
+<td>10.161471</td>
+<td>Morning</td>
+<td>Saturday</td>
+<td>54.258950</td>
+<td>63.743786</td>
+<td>203.661847</td>
+<td>-7.834199</td>
+<td>1.0</td>
+<td>Level 1</td>
+<td>Long-Distance Traveler</td>
+</tr>
+</tbody>
+</table>
+
 </div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>This project was developed by ChilePeppers For <a href="https://datasciaz.netlify.app/">INFO 511 - Fundamentals of Data Science</a> at the University of Arizona, taught by Dr.&nbsp;Greg Chism. The team is comprised of the following team members.</p>
-<ul>
-<li><p>Shreya Kolte: Hello, I’m currently a 2nd-year Master’s in Data Science student at the University of Arizona, focusing on data science and analytics.</p></li>
-<li><p>Derek Rice: Hi, I am a MS Data Science student at UofA with emphasis on machine learning and biostatistics.</p></li>
-<li><p>Pouya Jalali Khalilabadi: Hello! I am a 4th year Ph.D.&nbsp;student in Transportation Engineering.</p></li>
-<li><p>Issaiah Johnson: Hello, I am a 2nd year Masters in Data Science student focusing on data science, analytics and data infastructure.</p></li>
-</ul>
+</div>
+</div>
+<div id="44c45173-f8b6-405a-90f8-da443a52c809" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ev_charging.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 1320 entries, 0 to 1319
+Data columns (total 20 columns):
+ #   Column                                    Non-Null Count  Dtype  
+---  ------                                    --------------  -----  
+ 0   User ID                                   1320 non-null   object 
+ 1   Vehicle Model                             1320 non-null   object 
+ 2   Battery Capacity (kWh)                    1320 non-null   float64
+ 3   Charging Station ID                       1320 non-null   object 
+ 4   Charging Station Location                 1320 non-null   object 
+ 5   Charging Start Time                       1320 non-null   object 
+ 6   Charging End Time                         1320 non-null   object 
+ 7   Energy Consumed (kWh)                     1254 non-null   float64
+ 8   Charging Duration (hours)                 1320 non-null   float64
+ 9   Charging Rate (kW)                        1254 non-null   float64
+ 10  Charging Cost (USD)                       1320 non-null   float64
+ 11  Time of Day                               1320 non-null   object 
+ 12  Day of Week                               1320 non-null   object 
+ 13  State of Charge (Start %)                 1320 non-null   float64
+ 14  State of Charge (End %)                   1320 non-null   float64
+ 15  Distance Driven (since last charge) (km)  1254 non-null   float64
+ 16  Temperature (Â°C)                         1320 non-null   float64
+ 17  Vehicle Age (years)                       1320 non-null   float64
+ 18  Charger Type                              1320 non-null   object 
+ 19  User Type                                 1320 non-null   object 
+dtypes: float64(10), object(10)
+memory usage: 206.4+ KB</code></pre>
+</div>
+</div>
 
 
 
