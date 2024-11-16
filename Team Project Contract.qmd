@@ -2,7 +2,7 @@
 
 Team Project Contract
 
-Project Title: (Working Title) "Assessment of Species at National Parks"
+Project Title: (Working Title) "Assessment of Electric Vehicle Charging Trends"
 
 Team Members:
 Derek Rice, slack and/or derekrice@arizona.edu
@@ -85,7 +85,7 @@ Signatures
 By signing below, each team member agrees to the terms of this contract and commits to working together effectively and respectfully.
 [Name]: Issaiah Johnson          Date: 10/12/2024
 [Name]: Shreya Kolte             Date: 11/08/2024
-[Name]: ________________________ Date: ___________
+[Name]: _Derek Rice_____________ Date: 16-NOV-2024______
 [Name]: ________________________ Date: ___________
 
 This template ensures that everyone understands their roles, responsibilities, and the expectations for the project. It can help prevent misunderstandings and promote effective teamwork throughout the project.
