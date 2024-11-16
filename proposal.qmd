@@ -1,11 +1,12 @@
 ---
-title: "Proposal title"
-subtitle: "Proposal"
+title: "INFO511 Fall 2024 Project Proposal"
+subtitle: "Exploring evoling electric vehicle charging efficiency"
 author: 
-  - name: "Team Name"
+  - name: "ChilePepper"
     affiliations:
       - name: "School of Information, University of Arizona"
-description: "Project description"
+description: "A review of all three datasets, in Python, is provided below with descriptions of the variables studied using .head() and .info(). The three datasets considered for the project were (i) electric vehicle (EV) Charging, (ii) an analysis of Spotify Data, and (iii) an assessment of Mobile User Data. The reason and justification for why the team would like to work with these three datasets is provided herein. The team has agreed to select the EV Charging Dataset for the project out of an interest to explore that evolving technical space and build predictive models for charging efficiency."
+
 format:
   html:
     code-tools: true
@@ -22,15 +23,72 @@ jupyter: python3
 ```{python}
 #| label: load-pkgs
 #| message: false
+import warnings
+import pandas as pd
+import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 import seaborn as sns
+
+warnings.filterwarnings("ignore")
+
 ```
 
-## Introduction and data
+## Introduction to the Data
 
 ```{python}
 #| label: load-dataset
 #| message: false
+
+url = "https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/ev_charging_patterns.csv"
+ev_charging  = pd.read_csv(url)
+
+url = "https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/Spotify_Most_Streamed_Songs.csv"
+
+Spotify_db = pd.read_csv(url)
+
+url = "https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/Mobile_user_behavior_dataset.csv"
+
+data = pd.read_csv(url)
+```
+
+## Dataset 1 - Electric Vehicle Charging
+
+-   Source of Data: https://www.kaggle.com/datasets/valakhorasani/electric-vehicle-charging-patterns
+
+-   Description of Observations: This dataset provides a comprehensive analysis of electric vehicle (EV) charging patterns and user behavior. It contains 1,320 samples of charging session data, including metrics such as energy consumption, charging duration, and vehicle details. Each entry captures various aspects of EV usage, allowing for insightful analysis and predictive modeling.
+
+-   Ethical Concerns: The dataset has user IDs and specific charging station locations, which means there’s a chance it could reveal patterns in people’s movements and behaviors. To protect privacy, it’s important to keep user IDs anonymous and possibly generalize location data so individuals can’t be tracked. Researchers also need to handle this information carefully and follow data protection rules to use it responsibly.
+
+-   Question:
+
+    1.  How do vehicle model, user type, and starting state of charge influence the cost and duration of EV charging sessions at public stations?
+    2.  Exploring energy consumption and charging behaviors
+    3.  Building predictive models for charging efficiency
+
+-   Importance:Understanding the costs and durations associated with different EV types and user profiles can help:
+
+    -   Consumers make cost-effective charging decisions.
+    -   Charging service providers optimize station usage and pricing strategies by identifying patterns in energy demand and time usage.
+
+-   Hypothesis:
+
+    -   Vehicle Model: Larger battery capacity models will have longer charging times and higher costs.
+    -   User Type: Frequent users (like commuters) may incur lower costs per session due to shorter, more regular charging patterns.
+    -   Starting State of Charge: Lower starting charge levels are expected to lead to longer and more costly charging sessions.
+
+-   Variable Types: Categorical Variables: Vehicle Model, User Type Quantitative Variables: Charging Cost (USD), Charging Duration (hours), State of Charge (Start %)
+
+## Dataset 1 - EV Charging - Glimpse of the dataset
+
+```{python}
+
+print(f'Table 1: EV Charging Dataset:\n\n{ev_charging.head}()
+
+```
+
+```{python}
+print(f'Table 2: EV Charging Dataset: Variables and their Type (Dtype)\n\n'{ev_charging.info()}')
 ```
 
 For each data set:

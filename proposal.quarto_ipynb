@@ -1,0 +1,198 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"INFO511 Fall 2024 Project Proposal\"\n",
+        "subtitle: \"Exploring evoling electric vehicle charging efficiency\"\n",
+        "author: \n",
+        "  - name: \"ChilePepper\"\n",
+        "    affiliations:\n",
+        "      - name: \"School of Information, University of Arizona\"\n",
+        "description: \"A review of all three datasets, in Python, is provided below with descriptions of the variables studied using .head() and .info(). The three datasets considered for the project were (i) electric vehicle (EV) Charging, (ii) an analysis of Spotify Data, and (iii) an assessment of Mobile User Data. The reason and justification for why the team would like to work with these three datasets is provided herein. The team has agreed to select the EV Charging Dataset for the project out of an interest to explore that evolving technical space and build predictive models for charging efficiency.\"\n",
+        "\n",
+        "format:\n",
+        "  html:\n",
+        "    code-tools: true\n",
+        "    code-overflow: wrap\n",
+        "    code-line-numbers: true\n",
+        "    embed-resources: true\n",
+        "editor: visual\n",
+        "code-annotations: hover\n",
+        "execute:\n",
+        "  warning: false\n",
+        "jupyter: python3\n",
+        "---"
+      ],
+      "id": "ebb9247b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "message": false
+      },
+      "source": [
+        "#| label: load-pkgs\n",
+        "import warnings\n",
+        "import pandas as pd\n",
+        "import pandas as pd\n",
+        "import numpy as np\n",
+        "import matplotlib.pyplot as plt\n",
+        "import seaborn as sns\n",
+        "\n",
+        "warnings.filterwarnings(\"ignore\")"
+      ],
+      "id": "load-pkgs",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Introduction to the Data\n"
+      ],
+      "id": "d5246bb6"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "message": false
+      },
+      "source": [
+        "#| label: load-dataset\n",
+        "\n",
+        "url = \"https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/ev_charging_patterns.csv\"\n",
+        "ev_charging  = pd.read_csv(url)\n",
+        "\n",
+        "url = \"https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/Spotify_Most_Streamed_Songs.csv\"\n",
+        "\n",
+        "Spotify_db = pd.read_csv(url)\n",
+        "\n",
+        "url = \"https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/Mobile_user_behavior_dataset.csv\"\n",
+        "\n",
+        "data = pd.read_csv(url)"
+      ],
+      "id": "load-dataset",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Dataset 1 - Electric Vehicle Charging\n",
+        "\n",
+        "-   Source of Data: https://www.kaggle.com/datasets/valakhorasani/electric-vehicle-charging-patterns\n",
+        "\n",
+        "-   Description of Observations: This dataset provides a comprehensive analysis of electric vehicle (EV) charging patterns and user behavior. It contains 1,320 samples of charging session data, including metrics such as energy consumption, charging duration, and vehicle details. Each entry captures various aspects of EV usage, allowing for insightful analysis and predictive modeling.\n",
+        "\n",
+        "-   Ethical Concerns: The dataset has user IDs and specific charging station locations, which means there’s a chance it could reveal patterns in people’s movements and behaviors. To protect privacy, it’s important to keep user IDs anonymous and possibly generalize location data so individuals can’t be tracked. Researchers also need to handle this information carefully and follow data protection rules to use it responsibly.\n",
+        "\n",
+        "-   Question:\n",
+        "\n",
+        "    1.  How do vehicle model, user type, and starting state of charge influence the cost and duration of EV charging sessions at public stations?\n",
+        "    2.  Exploring energy consumption and charging behaviors\n",
+        "    3.  Building predictive models for charging efficiency\n",
+        "\n",
+        "-   Importance:Understanding the costs and durations associated with different EV types and user profiles can help:\n",
+        "\n",
+        "    -   Consumers make cost-effective charging decisions.\n",
+        "    -   Charging service providers optimize station usage and pricing strategies by identifying patterns in energy demand and time usage.\n",
+        "\n",
+        "-   Hypothesis:\n",
+        "\n",
+        "    -   Vehicle Model: Larger battery capacity models will have longer charging times and higher costs.\n",
+        "    -   User Type: Frequent users (like commuters) may incur lower costs per session due to shorter, more regular charging patterns.\n",
+        "    -   Starting State of Charge: Lower starting charge levels are expected to lead to longer and more costly charging sessions.\n",
+        "\n",
+        "-   Variable Types: Categorical Variables: Vehicle Model, User Type Quantitative Variables: Charging Cost (USD), Charging Duration (hours), State of Charge (Start %)\n",
+        "\n",
+        "## Dataset 1 - EV Charging - Glimpse of the dataset\n"
+      ],
+      "id": "ffb25de5"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(f'Table 1: EV Charging Dataset:\\n\\n{ev_charging.head}()"
+      ],
+      "id": "4d32338a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(f'Table 2: EV Charging Dataset: Variables and their Type (Dtype)\\n\\n'{ev_charging.info()}')"
+      ],
+      "id": "bba17406",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "For each data set:\n",
+        "\n",
+        "-   Identify the source of the data.\n",
+        "\n",
+        "-   State when and how it was originally collected (by the original data curator, not necessarily how you found the data).\n",
+        "\n",
+        "-   Write a brief description of the observations.\n",
+        "\n",
+        "-   Address ethical concerns about the data, if any.\n",
+        "\n",
+        "Make sure to load the data and use inline code for some of this information.\n",
+        "\n",
+        "## Research Question\n",
+        "\n",
+        "Your research question should contain at least three variables, and should be a mix of categorical and quantitative variables. When writing a research question, please think about the following:\n",
+        "\n",
+        "-   What is your target population?\n",
+        "\n",
+        "-   Is the question original?\n",
+        "\n",
+        "-   Can the question be answered?\n",
+        "\n",
+        "For each data set, include the following:\n",
+        "\n",
+        "-   A well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)\n",
+        "\n",
+        "-   Statement on why this question is important.\n",
+        "\n",
+        "-   A description of the research topic along with a concise statement of your hypotheses on this topic.\n",
+        "\n",
+        "-   Identify the types of variables in your research question. Categorical? Quantitative?\n",
+        "\n",
+        "## Glimpse of data\n",
+        "\n",
+        "For each data set:\n",
+        "\n",
+        "-   Place the file containing your data in the data folder of the project repo.\n",
+        "\n",
+        "-   Use the `.head()` and `.info()` functions to provide a glimpse of the data set.\n",
+        "\n",
+        "## Analysis plan\n",
+        "\n",
+        "-   A plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any)."
+      ],
+      "id": "39b93c81"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "C:\\Users\\derek\\anaconda3\\share\\jupyter\\kernels\\python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}
