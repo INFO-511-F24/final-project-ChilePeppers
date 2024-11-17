@@ -1,0 +1,278 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"INFO511 Fall 2024 Project Proposal\"\n",
+        "subtitle: \"Exploring evoling electric vehicle charging efficiency\"\n",
+        "author: \n",
+        "  - name: \"ChilePepper\"\n",
+        "    affiliations:\n",
+        "      - name: \"School of Information, University of Arizona\"\n",
+        "description: \"A review of all three datasets, in Python, is provided below with descriptions of the variables studied using .head() and .info(). The three datasets considered for the project were (i) electric vehicle (EV) Charging, (ii) an analysis of Spotify Data, and (iii) an assessment of Mobile User Data. The reason and justification for why the team would like to work with these three datasets is provided herein. The team has agreed to select the EV Charging Dataset for the project out of an interest to explore that evolving technical space and build predictive models for charging efficiency.\"\n",
+        "\n",
+        "format:\n",
+        "  html:\n",
+        "    code-tools: true\n",
+        "    code-overflow: wrap\n",
+        "    code-line-numbers: true\n",
+        "    embed-resources: true\n",
+        "editor: visual\n",
+        "code-annotations: hover\n",
+        "execute:\n",
+        "  warning: false\n",
+        "jupyter: python3\n",
+        "---"
+      ],
+      "id": "9ba1c93c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "message": false
+      },
+      "source": [
+        "#| label: load-pkgs\n",
+        "import warnings\n",
+        "import pandas as pd\n",
+        "import pandas as pd\n",
+        "import numpy as np\n",
+        "import matplotlib.pyplot as plt\n",
+        "import seaborn as sns\n",
+        "\n",
+        "warnings.filterwarnings(\"ignore\")"
+      ],
+      "id": "load-pkgs",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Introduction to the Data\n"
+      ],
+      "id": "e51c196a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "message": false
+      },
+      "source": [
+        "#| label: load-dataset\n",
+        "\n",
+        "url = \"https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/ev_charging_patterns.csv\"\n",
+        "ev_charging  = pd.read_csv(url)\n",
+        "\n",
+        "url = \"https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/Spotify_Most_Streamed_Songs.csv\"\n",
+        "\n",
+        "Spotify_db = pd.read_csv(url)\n",
+        "\n",
+        "url = \"https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/Mobile_user_behavior_dataset.csv\"\n",
+        "\n",
+        "mobile_data = pd.read_csv(url)"
+      ],
+      "id": "load-dataset",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Dataset 1 - Electric Vehicle Charging\n",
+        "\n",
+        "-   **Source of Data**: https://www.kaggle.com/datasets/valakhorasani/electric-vehicle-charging-patterns\n",
+        "\n",
+        "-   **Description of Observations**: This dataset provides a comprehensive analysis of electric vehicle (EV) charging patterns and user behavior. It contains 1,320 samples of charging session data, including metrics such as energy consumption, charging duration, and vehicle details. Each entry captures various aspects of EV usage, allowing for insightful analysis and predictive modeling.\n",
+        "\n",
+        "-   **Ethical Concerns**: The dataset has user IDs and specific charging station locations, which means there’s a chance it could reveal patterns in people’s movements and behaviors. To protect privacy, it’s important to keep user IDs anonymous and possibly generalize location data so individuals can’t be tracked. Researchers also need to handle this information carefully and follow data protection rules to use it responsibly.\n",
+        "\n",
+        "-   **Question**:\n",
+        "\n",
+        "    1.  How do vehicle model, user type, and starting state of charge influence the cost and duration of EV charging sessions at public stations?\n",
+        "    2.  Exploring energy consumption and charging behaviors\n",
+        "    3.  Building predictive models for charging efficiency\n",
+        "\n",
+        "-   Importance:Understanding the costs and durations associated with different EV types and user profiles can help:\n",
+        "\n",
+        "    -   Consumers make cost-effective charging decisions.\n",
+        "    -   Charging service providers optimize station usage and pricing strategies by identifying patterns in energy demand and time usage.\n",
+        "\n",
+        "-   Hypothesis:\n",
+        "\n",
+        "    -   Vehicle Model: Larger battery capacity models will have longer charging times and higher costs.\n",
+        "    -   User Type: Frequent users (like commuters) may incur lower costs per session due to shorter, more regular charging patterns.\n",
+        "    -   Starting State of Charge: Lower starting charge levels are expected to lead to longer and more costly charging sessions.\n",
+        "\n",
+        "-   Variable Types: Categorical Variables: Vehicle Model, User Type Quantitative Variables: Charging Cost (USD), Charging Duration (hours), State of Charge (Start %)\n",
+        "\n",
+        "## Glimpse of the Data: Dataset 1 - EV Charging\n"
+      ],
+      "id": "a0fc1c8f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(f'Table 1: EV Charging Dataset, Summary of Column Headings:\\n\\n')\n",
+        "ev_charging.head()"
+      ],
+      "id": "bc9d746a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(f'Table 2: EV Charging Dataset, Variables and their Type (Dtype)\\n\\n')\n",
+        "\n",
+        "ev_charging.info()"
+      ],
+      "id": "c9764605",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Analysis Plan EV Charting Dataset\n",
+        "\n",
+        "The EV charging dataset comprises 20 columns, 10 object variables and 10 float64 variables. The analysis plan will be completed in three steps to answer the questions and hypothesis stated above.\n",
+        "\n",
+        "**Step 1**: A data wrangling effort to clean up the DataFrame and a graphical analysis of the dataset.\n",
+        "\n",
+        "**Step 2**: A statistical analysis of the dataset using (i) analysis of variance and (ii) mullivariable regression to understand patterns within the data.\n",
+        "\n",
+        "**Step 3**: Build a predictive model from the data to understand and predict user trends with respect to electric vehicle charging.\n",
+        "\n",
+        "# Dataset 2 - Spotify User Data\n",
+        "\n",
+        "-   Source of the Data:\n",
+        "\n",
+        "https://www.kaggle.com/datasets/abdulszz/spotify-most-streamed-songs This dataset originates from Apple's and Spotify's public API. Each track’s streaming metrics and musical attributes could have been aggregated from streaming services' API or charts, though specific documentation would be necessary to confirm.\n",
+        "\n",
+        "-   Description of Observations: Observations include details on each song’s title, artist(s), release date, and musical attributes (e.g., tempo, key, mode, acousticness, danceability). There are also metrics related to streaming, such as chart ranks and playlist placements on various platforms.\n",
+        "\n",
+        "-   Ethical Concerns: The primary ethical concern is the potential for data bias. Since popular songs are more likely to be Western or English-language songs, this could lead to cultural or genre bias in the analysis. Furthermore, if the data includes rankings or metrics derived from proprietary algorithms, care should be taken to avoid misuse or misinterpretation of these rankings.\n",
+        "\n",
+        "-   Question: How do musical attributes (such as tempo, energy, and valence) affect a song’s popularity on Spotify as measured by the number of streams and inclusion in playlists?\n",
+        "\n",
+        "-   Importance: Understanding the relationship between musical attributes and popularity can be valuable for artists, producers, and streaming platforms to optimize song characteristics for a wider audience reach.\n",
+        "\n",
+        "-   Hypothesis: Higher energy and danceability correlate with higher popularity metrics, as listeners may prefer upbeat and energetic tracks.\n",
+        "\n",
+        "-   Variable Types: Categorical: Key, mode, release date Quantitative: Streams, danceability, valence, energy, acousticness, instrumentalness\n",
+        "\n",
+        "## Glimpse of the Data: Dataset 2: Spotify Dataset\n"
+      ],
+      "id": "9a576dfd"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(f'\\n\\nTable 3: Spotify Dataset - Column Summary:\\n\\n')\n",
+        "Spotify_db.head()"
+      ],
+      "id": "c418ab38",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(f'\\n\\nTable 4: Spotify Dataset - Variables and Data Type (Dtype) Summary:\\n\\n')\n",
+        "\n",
+        "Spotify_db.info()"
+      ],
+      "id": "652880c1",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Analysis Plan Spotify Dataset\n",
+        "\n",
+        "The Spotify User dataset comprises 25 columns, 8 object variables and 17 into64 variables. The analysis plan will be completed in three steps to answer the questions and hypothesis stated above.\n",
+        "\n",
+        "Step 1: Dataset cleanup using Pandas data wranging tools and a graphical analysis of the dataset\n",
+        "\n",
+        "Step 2: A statistical analysis of the dataset using (i) analysis of variance and (ii) mullivariable regression to understand patterns within the data.\n",
+        "\n",
+        "Step 3: Build a predictive model from the data to understand and predict trends.\n",
+        "\n",
+        "# Dataset 3 - Mobile user Behavior\n",
+        "\n",
+        "-   source of Data: https://www.kaggle.com/datasets/valakhorasani/mobile-device-usage-and-user-behavior-dataset\n",
+        "\n",
+        "-   Description of Observation: This dataset provides a comprehensive analysis of mobile device usage patterns and user behavior classification. It contains 700 samples of user data, including metrics such as app usage time, screen-on time, battery drain, and data consumption. Each entry is categorized into one of five user behavior classes, ranging from light to extreme usage, allowing for insightful analysis and modeling.\n",
+        "\n",
+        "-   Ethical Concerns: The Mobile Device Usage and User Behavior dataset raises potential privacy concerns, as it includes detailed behavioral metrics that could reveal patterns of individual users if personally identifiable information were present. Ensuring that data is anonymized and securely stored is essential to protect user privacy. Additionally, responsible analysis is important to avoid misinterpreting or stereotyping user behavior, which could lead to biased conclusions or inappropriate applications of the findings.\n",
+        "\n",
+        "-   Question: Predicting Battery Drain in Mobile Devices\n",
+        "\n",
+        "-   Importance: Understanding and predicting battery usage is essential for improving device performance, enhancing user experience, and guiding power optimization strategies.\n",
+        "\n",
+        "-   Variable Types: Categorical: Device Model,Operating System, Number of Apps Installed, Age, Gender Quantitative: App Usage Time, Screen On Time, Data Usage.\n",
+        "\n",
+        "## Glimpse of the Dataset: Mobile User Data\n"
+      ],
+      "id": "aa0aa742"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(f'\\n\\nTable 5: Mobile User Dataset, Column Summary:\\n\\n')\n",
+        "mobile_data.head()"
+      ],
+      "id": "ebc41a44",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(f'Table 6: Mobile User Dataset - Data Type (Dtype) Summary:\\n\\n')\n",
+        "\n",
+        "mobile_data.info()"
+      ],
+      "id": "737dbbb4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Data Analysis Approach: Mobile User Data\n",
+        "\n",
+        "Step 1: Dataset cleanup and a graphical analysis of the dataset.\n",
+        "\n",
+        "Step 2: A statistical analysis of the dataset using (i) analysis of variance and (ii) mullivariable regression to understand patterns within the data.\n",
+        "\n",
+        "Step 3: Build a predictive model from the data to understand and predict trends."
+      ],
+      "id": "c2d6c01a"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Python 3",
+      "language": "python",
+      "name": "python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}
