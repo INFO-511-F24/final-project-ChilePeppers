@@ -6,4 +6,4 @@
 /.quarto/
 
 _site/*
-_notebooks/
+_notebooks/*
