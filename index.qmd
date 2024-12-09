@@ -32,6 +32,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import scipy.stats as stats 
+import statsmodels.api as sm
 
 warnings.filterwarnings("ignore")
 
@@ -39,7 +40,13 @@ warnings.filterwarnings("ignore")
 # Team ChilePeppers INFO511 Term Project
 ## Electric Vehicle (EV) Charging Dataset Assessment
  
+
 ## Introduction and Data
+
+```{python}
+
+
+```
 
 The ChilePeppers team completed an assessment of the electric vehicle (EV) charging dataset for the INFO511 term project. The dataset was selected out of an interest to explore the evolving EV technical space and build a predictive model for charging efficiency improvements.
 
@@ -93,7 +100,7 @@ plt.show()
 
 ```{python}
 #| label: Figure3
-#| fig-cap: "Charging Rate (kW) vs Charging Cost (USD)\"
+#| fig-cap: "Charging Rate (kW) vs Charging Cost (USD)"
 plt.figure(figsize=(8,6))
 sns.scatterplot(data=ev_charging,x='Charging Rate (kW)',y='Charging Cost (USD)',hue='Time of Day')
 plt.title('\nFigure 3 - Charging Rate (kW) vs Charging Cost (USD) as a function of Time of Day\n')
@@ -182,12 +189,256 @@ plt.show()
 
 ### Statistical Review of the Data
 
+```{python}
+# ANOVA - does vehicle model influence charging cost? 
+# Ho: model does not effect charing cost
+# Ha: at least one model has a different charging cost 
+
+model = ev_charging['Vehicle Model'].unique()
+print(model)
+
+ev_charging = ev_charging.dropna()
+
+BMW = ev_charging[ev_charging['Vehicle Model'] == model[0]]['Charging Cost (USD)']
+Hyundai = ev_charging[ev_charging['Vehicle Model'] == model[1]]['Charging Cost (USD)']
+Chevy = ev_charging[ev_charging['Vehicle Model'] == model[2]]['Charging Cost (USD)']
+Nissan = ev_charging[ev_charging['Vehicle Model'] == model[3]]['Charging Cost (USD)']
+Tesla = ev_charging[ev_charging['Vehicle Model'] == model[4]]['Charging Cost (USD)']
+
+f_statistic, p_value = stats.f_oneway(BMW, Hyundai, Chevy, Nissan, Tesla)
+
+```
 
 
+```{python}
+#| label: Figure11
+#| fig-cap: "ANOVA vehicle model vs charging cost"
+plt.figure()
+sns.boxplot(data=ev_charging,x='Vehicle Model',y='Charging Cost (USD)')
+plt.title(f'Figure 11 - Analysis of Variance: Charging Cost (USD) vs. Vehicle Model\n(P-value = {p_value:3.3f})')
+plt.show()
+
+```
+
+```{python}
+# ANOVA - does charging location influence charging cost? 
+# Ho: charging location does not effect charing cost
+# Ha: at least one location  has a different charging cost 
+
+model = ev_charging['Charging Station Location'].unique()
+print(model)
+
+ev_charging = ev_charging.dropna()
+
+Houston = ev_charging[ev_charging['Charging Station Location'] == model[0]]['Charging Cost (USD)']
+SF = ev_charging[ev_charging['Charging Station Location'] == model[1]]['Charging Cost (USD)']
+LA = ev_charging[ev_charging['Charging Station Location'] == model[2]]['Charging Cost (USD)']
+Chicago = ev_charging[ev_charging['Charging Station Location'] == model[3]]['Charging Cost (USD)']
+NY = ev_charging[ev_charging['Charging Station Location'] == model[4]]['Charging Cost (USD)']
+
+f_statistic, p_value = stats.f_oneway(Houston, SF, LA, Chicago, NY)
+
+print('P-value:',p_value)
+
+```
+
+```{python}
+#| label: Figure12
+#| fig-cap: "ANOVA: Charging Location vs Charging Cost"
+plt.figure()
+sns.boxplot(data=ev_charging,x='Charging Station Location',y='Charging Cost (USD)')
+plt.title(f'Figure 12 - Analysis of Variance: Charging Cost (USD) vs. Charging Location\n(P-value = {p_value:3.3f})')
+plt.show()
+
+```
+
+
+```{python}
+# ANOVA - does the type of charger influence charging cost? 
+# Ho: type of charger does not effect charing cost
+# Ha: at least one charger type has a uniqeu or different mean charging cost 
+
+model = ev_charging['Charger Type'].unique()
+print(model)
+
+ev_charging = ev_charging.dropna()
+
+FAST = ev_charging[ev_charging['Charger Type'] == model[0]]['Charging Cost (USD)']
+Level_1 = ev_charging[ev_charging['Charger Type'] == model[1]]['Charging Cost (USD)']
+Level_2 = ev_charging[ev_charging['Charger Type'] == model[2]]['Charging Cost (USD)']
+
+
+f_statistic, p_value = stats.f_oneway(FAST, Level_1,Level_2)
+
+print('P-value:',p_value)
+
+```
+
+```{python}
+#| label: Figure13
+#| fig-cap: "ANOVA: Charger Type vs Charging Cost"
+plt.figure()
+sns.boxplot(data=ev_charging,x='Charger Type',y='Charging Cost (USD)')
+plt.title(f'Figure 13: ANOVA - Charger Type vs. Charging Cost (USD)\n(p-value = {p_value:3.2f})')
+plt.show()
+```
+
+```{python}
+# linear regression - does charging temperature have an effect on charging cost? 
+# Ho: linear regression coefficient = 0
+# Ha: linear regression coefficient is not equal to 0
+
+X = ev_charging[['Temperature (°C)']]
+
+y = ev_charging['Charging Cost (USD)']
+
+X = sm.add_constant(X)
+
+model = sm.OLS(y,X).fit()
+
+print(model.summary())
+
+p_value_temp = model.pvalues['Temperature (°C)']
+print(f"\nP-value for Temperature (°C): {p_value_temp:.5f}")
+
+```
+
+```{python}
+#| label: Figure14
+#| fig-cap: "Linear Regression: Temperature vs Charging Cost"
+plt.figure(figsize=(10,6))
+sns.regplot(
+    data=ev_charging, 
+    x='Temperature (°C)', 
+    y='Charging Cost (USD)', 
+    ci=None,      
+    line_kws={"color": "red"},  
+    scatter_kws={"alpha": 0.6} 
+)
+plt.title("Figure 14: Linear Regression - Charging Cost vs Temperature (C)\nregression equation: Charging Cost (USD) = 21.7858 + 0.0459* Temperature (C)\nRegressor Coefficient P-value = 0.035",fontsize=10)
+plt.xlabel("Temperature (°C)")
+plt.ylabel("Charging Cost (USD)")
+plt.show()
+```
 
 
 
 ### Empirical Model Building 
+```{python}
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.preprocessing import PolynomialFeatures
+
+```
+
+```{python}
+ev_charging = ev_charging.dropna()
+```
+
+```{python}
+
+X = ev_charging[['Vehicle Model','Battery Capacity (kWh)','Charging Station Location','Energy Consumed (kWh)','Charging Duration (hours)','Charging Rate (kW)','Time of Day','Day of Week','State of Charge (Start %)','State of Charge (End %)','Distance Driven (since last charge) (km)','Temperature (°C)','Vehicle Age (years)','Charger Type','User Type']]
+
+y = ev_charging['Charging Cost (USD)']
+
+
+num_variables = ['Battery Capacity (kWh)','Energy Consumed (kWh)','Charging Duration (hours)','Charging Rate (kW)','State of Charge (Start %)','State of Charge (End %)','Distance Driven (since last charge) (km)','Temperature (°C)','Vehicle Age (years)']
+
+cat_variables = ['Vehicle Model','Charging Station Location','Time of Day','Day of Week','Charger Type','User Type']
+
+# Preprocessing for numerical and categorical features
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', StandardScaler(), num_variables),
+        ('cat', OneHotEncoder(handle_unknown='ignore'), cat_variables)
+    ]
+)
+
+# Define a model pipeline
+model = Pipeline(steps=[
+    ('preprocessor', preprocessor),
+    ('regressor', LinearRegression())
+])
+
+# Split the data into train and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+
+
+# Train the model
+model.fit(X_train, y_train)
+
+
+# Predict on the test set
+y_pred = model.predict(X_test)
+
+# Evaluate the model
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+
+print(f"Mean Squared Error: {mse:.2f}")
+print(f"R-squared: {r2:.2f}")
+```
+
+```{python}
+
+X = ev_charging[['Vehicle Model','Battery Capacity (kWh)','Charging Station Location','Energy Consumed (kWh)','Charging Duration (hours)','Charging Rate (kW)','Time of Day','Day of Week','State of Charge (Start %)','State of Charge (End %)','Distance Driven (since last charge) (km)','Temperature (°C)','Vehicle Age (years)','Charger Type','User Type']]
+
+y = ev_charging['Charging Cost (USD)']
+
+X = pd.get_dummies(X, drop_first=True, dtype=float)
+X = sm.add_constant(X)
+
+model = sm.OLS(y,X).fit()
+
+print(model.summary())
+
+
+```
+
+
+
+
+
+```{python}
+## removing non-significant terms to improve R2_adj
+
+X = ev_charging[['Vehicle Model','Charging Station Location','Time of Day','Day of Week','State of Charge (End %)','Temperature (°C)','Charger Type','User Type']]
+
+y = ev_charging['Charging Cost (USD)']
+
+X = pd.get_dummies(X, drop_first=True, dtype=float)
+X = sm.add_constant(X)
+
+model = sm.OLS(y,X).fit()
+
+print(model.summary())
+
+```
+
+```{python}
+## removing additonal non-significant terms to improve R2_adj
+
+X = ev_charging[['Vehicle Model','Charging Station Location','State of Charge (End %)','Temperature (°C)','Charger Type','User Type']]
+
+y = ev_charging['Charging Cost (USD)']
+
+X = pd.get_dummies(X, drop_first=True, dtype=float)
+X = sm.add_constant(X)
+
+model = sm.OLS(y,X).fit()
+
+print(model.summary())
+
+```
+
+
+
+
 
 ## Results 
 
