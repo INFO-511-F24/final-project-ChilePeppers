@@ -13,9 +13,190 @@ format:
     code-tools: true
     code-overflow: wrap
     embed-resources: true
+    fig-width: 6
+    fig-height: 4  
 editor: visual
 execute:
-  warning: false
-  echo: false
+  warning: true
+  echo: true
 jupyter: python3
 ---
+
+```{python}
+#| label: load-pkgs
+#| message: false
+import warnings
+import pandas as pd
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import scipy.stats as stats 
+
+warnings.filterwarnings("ignore")
+
+```
+# Team ChilePeppers INFO511 Term Project
+## Electric Vehicle (EV) Charging Dataset Assessment
+ 
+## Introduction and Data
+
+The ChilePeppers team completed an assessment of the electric vehicle (EV) charging dataset for the INFO511 term project. The dataset was selected out of an interest to explore the evolving EV technical space and build a predictive model for charging efficiency improvements.
+
+### Table 1 - Electric Vehicle (EV) Charging Dataset: Column Headings
+
+```{python}
+
+url = "https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/ev_charging_patterns.csv"
+ev_charging  = pd.read_csv(url)
+
+ev_charging.head()
+```
+
+
+
+### Table 2 - EV Charging Dataset: Column Data Types
+```{python}
+ev_charging.info()
+
+```
+
+## Methodology
+
+### Graphical Review of the Data
+
+### Figure 1 - XXX
+```{python}
+#| label: Figure1
+#| fig-cap: "Battery Capacity (KWh) for Five Models of EV Studied"
+plt.figure(figsize=(8,6))
+sns.boxplot(data=ev_charging,x='Vehicle Model',y='Battery Capacity (kWh)')
+plt.title('\nFigure 1 - Battery Capacity (KWh) for Five Models of EV Studied\n')
+plt.xlabel('Vehicle Model Studied')
+plt.ylabel('Battery Capacity (kWh)')
+plt.show()
+```
+
+
+### Figure 2 - XXX
+```{python}
+#| label: Figure2
+#| fig-cap: "Charging Station Location vs. Charging Duration (hours)"
+plt.figure(figsize=(8,6))
+sns.boxplot(data=ev_charging,x='Charging Station Location',y='Charging Duration (hours)')
+plt.title('\nFigure 2 - Charging Station Location vs. Charging Duration (hours)\n')
+plt.xlabel('Charging Station Location')
+plt.ylabel('Charge Duration (hours)')
+plt.show()
+```
+
+
+```{python}
+#| label: Figure3
+#| fig-cap: "Charging Rate (kW) vs Charging Cost (USD)\"
+plt.figure(figsize=(8,6))
+sns.scatterplot(data=ev_charging,x='Charging Rate (kW)',y='Charging Cost (USD)',hue='Time of Day')
+plt.title('\nFigure 3 - Charging Rate (kW) vs Charging Cost (USD) as a function of Time of Day\n')
+plt.xlabel('Charging Rate (kW)')
+plt.ylabel('Charging Cost (USD)')
+plt.show()
+
+```
+
+```{python}
+#| label: Figure4
+#| fig-cap: "Charging Station Location vs. Charging Duration (hours)"
+plt.figure(figsize=(8,6))
+sns.scatterplot(data=ev_charging,x='Charging Rate (kW)',y='Charging Cost (USD)',hue='Charging Station Location')
+plt.title('\nFigure 4 - Charging Rate (kW) vs. Charging Cost (USD) as a function of Location \n')
+plt.xlabel('Charging Rate (kW)')
+plt.ylabel('Chraging Cost (USD)')
+plt.show()
+
+```
+
+```{python}
+#| label: Figure5
+#| fig-cap: "Histogram of Battery Capacity (kWh)"
+plt.figure()
+sns.histplot(data=ev_charging,x='Battery Capacity (kWh)')
+plt.title('\nFigure 5 - Histogram of Battery Capacity (kWh)\n')
+plt.xlabel('Battery Capacity (kWh)')
+plt.ylabel('Count')
+plt.show()
+```
+
+```{python}
+#| label: Figure6
+#| fig-cap: "Histogram of Energy Consumed during Charging (kWh)"
+plt.figure()
+sns.histplot(data=ev_charging,x='Energy Consumed (kWh)')
+plt.title('\nFigure 6 - Histogram of Energy Consumed during Charging (kWh)\n')
+plt.xlabel('Energy Consumed')
+plt.ylabel('Count')
+plt.show()
+```
+
+
+```{python}
+#| label: Figure7
+#| fig-cap: "Figure 7 - Histogram of Charging Rate (kw)"
+plt.figure()
+sns.histplot(data=ev_charging,x='Charging Rate (kW)')
+plt.title('\nFigure 7 - Histogram of Charging Rate (kw)\n')
+plt.show()
+```
+
+
+```{python}
+#| label: Figure8
+#| fig-cap: "Charging Station Location vs. Charging Duration (hours)"
+plt.figure(figsize=(8,6))
+sns.boxplot(data=ev_charging,x='Time of Day',y='Charging Cost (USD)',hue='Charger Type')
+plt.title('\nFigure 8 - Charging Cost (USD) vs. Time of Day for Three Charger Types\n')
+plt.show()
+
+```
+
+```{python}
+#| label: Figure9
+#| fig-cap: "Charging Station Location vs. Charging Duration (hours)"
+plt.figure(figsize=(8,6))
+sns.scatterplot(data=ev_charging,x='Temperature (°C)',y='Charging Rate (kW)',hue='Vehicle Age (years)')
+plt.title('\nFigure 9 - Charging RAte (kW) as a function of Temperature (C) for Vehicles between 0 and 10 years old\n')
+plt.show()
+
+```
+
+
+```{python}
+#| label: Figure10
+#| fig-cap: "Seaborn Pair Plot for EV Charging Dataset Variables"
+plt.figure()
+sns.pairplot(ev_charging,diag_kind='hist',hue='Vehicle Model')
+plt.title('\nFigure 10 - Seaborn Pair Plot for EV Charging Dataset Variables\n')
+plt.show()
+
+```
+
+
+### Statistical Review of the Data
+
+
+
+
+
+
+### Empirical Model Building 
+
+## Results 
+
+
+## Discussion
+
+
+
+
+
+## Conclusions
+
