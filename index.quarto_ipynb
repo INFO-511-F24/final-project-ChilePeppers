@@ -1,0 +1,642 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"EV Charging Trends and Predictions\"\n",
+        "subtitle: \"INFO 511 - Fall 2024 - Final Project\"\n",
+        "author: \n",
+        "  - name: \"ChilePeppers\"\n",
+        "    affiliations:\n",
+        "      - name: \"School of Information, University of Arizona\"\n",
+        "description: |\n",
+        "  This project explores trends in electric vehicle (EV) charging efficiency \n",
+        "  and builds predictive models to understand charging behaviors.\n",
+        "format:\n",
+        "  html:\n",
+        "    code-tools: true\n",
+        "    code-overflow: wrap\n",
+        "    embed-resources: true\n",
+        "    fig-width: 6\n",
+        "    fig-height: 4  \n",
+        "editor: visual\n",
+        "execute:\n",
+        "  warning: true\n",
+        "  echo: true\n",
+        "jupyter: python3\n",
+        "---"
+      ],
+      "id": "84af42f9"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "message": false
+      },
+      "source": [
+        "#| label: load-pkgs\n",
+        "import warnings\n",
+        "import pandas as pd\n",
+        "import pandas as pd\n",
+        "import numpy as np\n",
+        "import matplotlib.pyplot as plt\n",
+        "import seaborn as sns\n",
+        "import scipy.stats as stats \n",
+        "import statsmodels.api as sm\n",
+        "\n",
+        "warnings.filterwarnings(\"ignore\")"
+      ],
+      "id": "load-pkgs",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Team ChilePeppers INFO511 Term Project\n",
+        "## Electric Vehicle (EV) Charging Dataset Assessment\n",
+        " \n",
+        "\n",
+        "## Introduction and Data\n"
+      ],
+      "id": "7addac88"
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "The ChilePeppers team completed an assessment of the electric vehicle (EV) charging dataset for the INFO511 term project. The dataset was selected out of an interest to explore the evolving EV technical space and build a predictive model for charging efficiency improvements.\n",
+        "\n",
+        "### Table 1 - Electric Vehicle (EV) Charging Dataset: Column Headings\n"
+      ],
+      "id": "b4402183"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "url = \"https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/ev_charging_patterns.csv\"\n",
+        "ev_charging  = pd.read_csv(url)\n",
+        "\n",
+        "ev_charging.head()"
+      ],
+      "id": "8c7f1bf5",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Table 2 - EV Charging Dataset: Column Data Types"
+      ],
+      "id": "4566e7b8"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "ev_charging.info()"
+      ],
+      "id": "ed410091",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Methodology\n",
+        "\n",
+        "### Graphical Review of the Data\n",
+        "\n",
+        "### Figure 1 - XXX"
+      ],
+      "id": "55a2055d"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure1\n",
+        "#| fig-cap: Battery Capacity (KWh) for Five Models of EV Studied\n",
+        "plt.figure(figsize=(8,6))\n",
+        "sns.boxplot(data=ev_charging,x='Vehicle Model',y='Battery Capacity (kWh)')\n",
+        "plt.title('\\nFigure 1 - Battery Capacity (KWh) for Five Models of EV Studied\\n')\n",
+        "plt.xlabel('Vehicle Model Studied')\n",
+        "plt.ylabel('Battery Capacity (kWh)')\n",
+        "plt.show()"
+      ],
+      "id": "Figure1",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Figure 2 - XXX"
+      ],
+      "id": "6ef0c73f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure2\n",
+        "#| fig-cap: Charging Station Location vs. Charging Duration (hours)\n",
+        "plt.figure(figsize=(8,6))\n",
+        "sns.boxplot(data=ev_charging,x='Charging Station Location',y='Charging Duration (hours)')\n",
+        "plt.title('\\nFigure 2 - Charging Station Location vs. Charging Duration (hours)\\n')\n",
+        "plt.xlabel('Charging Station Location')\n",
+        "plt.ylabel('Charge Duration (hours)')\n",
+        "plt.show()"
+      ],
+      "id": "Figure2",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure3\n",
+        "#| fig-cap: Charging Rate (kW) vs Charging Cost (USD)\n",
+        "plt.figure(figsize=(8,6))\n",
+        "sns.scatterplot(data=ev_charging,x='Charging Rate (kW)',y='Charging Cost (USD)',hue='Time of Day')\n",
+        "plt.title('\\nFigure 3 - Charging Rate (kW) vs Charging Cost (USD) as a function of Time of Day\\n')\n",
+        "plt.xlabel('Charging Rate (kW)')\n",
+        "plt.ylabel('Charging Cost (USD)')\n",
+        "plt.show()"
+      ],
+      "id": "Figure3",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure4\n",
+        "#| fig-cap: Charging Station Location vs. Charging Duration (hours)\n",
+        "plt.figure(figsize=(8,6))\n",
+        "sns.scatterplot(data=ev_charging,x='Charging Rate (kW)',y='Charging Cost (USD)',hue='Charging Station Location')\n",
+        "plt.title('\\nFigure 4 - Charging Rate (kW) vs. Charging Cost (USD) as a function of Location \\n')\n",
+        "plt.xlabel('Charging Rate (kW)')\n",
+        "plt.ylabel('Chraging Cost (USD)')\n",
+        "plt.show()"
+      ],
+      "id": "Figure4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure5\n",
+        "#| fig-cap: Histogram of Battery Capacity (kWh)\n",
+        "plt.figure()\n",
+        "sns.histplot(data=ev_charging,x='Battery Capacity (kWh)')\n",
+        "plt.title('\\nFigure 5 - Histogram of Battery Capacity (kWh)\\n')\n",
+        "plt.xlabel('Battery Capacity (kWh)')\n",
+        "plt.ylabel('Count')\n",
+        "plt.show()"
+      ],
+      "id": "Figure5",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure6\n",
+        "#| fig-cap: Histogram of Energy Consumed during Charging (kWh)\n",
+        "plt.figure()\n",
+        "sns.histplot(data=ev_charging,x='Energy Consumed (kWh)')\n",
+        "plt.title('\\nFigure 6 - Histogram of Energy Consumed during Charging (kWh)\\n')\n",
+        "plt.xlabel('Energy Consumed')\n",
+        "plt.ylabel('Count')\n",
+        "plt.show()"
+      ],
+      "id": "Figure6",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure7\n",
+        "#| fig-cap: Figure 7 - Histogram of Charging Rate (kw)\n",
+        "plt.figure()\n",
+        "sns.histplot(data=ev_charging,x='Charging Rate (kW)')\n",
+        "plt.title('\\nFigure 7 - Histogram of Charging Rate (kw)\\n')\n",
+        "plt.show()"
+      ],
+      "id": "Figure7",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure8\n",
+        "#| fig-cap: Charging Station Location vs. Charging Duration (hours)\n",
+        "plt.figure(figsize=(8,6))\n",
+        "sns.boxplot(data=ev_charging,x='Time of Day',y='Charging Cost (USD)',hue='Charger Type')\n",
+        "plt.title('\\nFigure 8 - Charging Cost (USD) vs. Time of Day for Three Charger Types\\n')\n",
+        "plt.show()"
+      ],
+      "id": "Figure8",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure9\n",
+        "#| fig-cap: Charging Station Location vs. Charging Duration (hours)\n",
+        "plt.figure(figsize=(8,6))\n",
+        "sns.scatterplot(data=ev_charging,x='Temperature (°C)',y='Charging Rate (kW)',hue='Vehicle Age (years)')\n",
+        "plt.title('\\nFigure 9 - Charging RAte (kW) as a function of Temperature (C) for Vehicles between 0 and 10 years old\\n')\n",
+        "plt.show()"
+      ],
+      "id": "Figure9",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure10\n",
+        "#| fig-cap: Seaborn Pair Plot for EV Charging Dataset Variables\n",
+        "plt.figure()\n",
+        "sns.pairplot(ev_charging,diag_kind='hist',hue='Vehicle Model')\n",
+        "plt.title('\\nFigure 10 - Seaborn Pair Plot for EV Charging Dataset Variables\\n')\n",
+        "plt.show()"
+      ],
+      "id": "Figure10",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Statistical Review of the Data\n"
+      ],
+      "id": "b3583403"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# ANOVA - does vehicle model influence charging cost? \n",
+        "# Ho: model does not effect charing cost\n",
+        "# Ha: at least one model has a different charging cost \n",
+        "\n",
+        "model = ev_charging['Vehicle Model'].unique()\n",
+        "print(model)\n",
+        "\n",
+        "ev_charging = ev_charging.dropna()\n",
+        "\n",
+        "BMW = ev_charging[ev_charging['Vehicle Model'] == model[0]]['Charging Cost (USD)']\n",
+        "Hyundai = ev_charging[ev_charging['Vehicle Model'] == model[1]]['Charging Cost (USD)']\n",
+        "Chevy = ev_charging[ev_charging['Vehicle Model'] == model[2]]['Charging Cost (USD)']\n",
+        "Nissan = ev_charging[ev_charging['Vehicle Model'] == model[3]]['Charging Cost (USD)']\n",
+        "Tesla = ev_charging[ev_charging['Vehicle Model'] == model[4]]['Charging Cost (USD)']\n",
+        "\n",
+        "f_statistic, p_value = stats.f_oneway(BMW, Hyundai, Chevy, Nissan, Tesla)"
+      ],
+      "id": "0f12d489",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure11\n",
+        "#| fig-cap: ANOVA vehicle model vs charging cost\n",
+        "plt.figure()\n",
+        "sns.boxplot(data=ev_charging,x='Vehicle Model',y='Charging Cost (USD)')\n",
+        "plt.title(f'Figure 11 - Analysis of Variance: Charging Cost (USD) vs. Vehicle Model\\n(P-value = {p_value:3.3f})')\n",
+        "plt.show()"
+      ],
+      "id": "Figure11",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# ANOVA - does charging location influence charging cost? \n",
+        "# Ho: charging location does not effect charing cost\n",
+        "# Ha: at least one location  has a different charging cost \n",
+        "\n",
+        "model = ev_charging['Charging Station Location'].unique()\n",
+        "print(model)\n",
+        "\n",
+        "ev_charging = ev_charging.dropna()\n",
+        "\n",
+        "Houston = ev_charging[ev_charging['Charging Station Location'] == model[0]]['Charging Cost (USD)']\n",
+        "SF = ev_charging[ev_charging['Charging Station Location'] == model[1]]['Charging Cost (USD)']\n",
+        "LA = ev_charging[ev_charging['Charging Station Location'] == model[2]]['Charging Cost (USD)']\n",
+        "Chicago = ev_charging[ev_charging['Charging Station Location'] == model[3]]['Charging Cost (USD)']\n",
+        "NY = ev_charging[ev_charging['Charging Station Location'] == model[4]]['Charging Cost (USD)']\n",
+        "\n",
+        "f_statistic, p_value = stats.f_oneway(Houston, SF, LA, Chicago, NY)\n",
+        "\n",
+        "print('P-value:',p_value)"
+      ],
+      "id": "f4b2df60",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure12\n",
+        "#| fig-cap: 'ANOVA: Charging Location vs Charging Cost'\n",
+        "plt.figure()\n",
+        "sns.boxplot(data=ev_charging,x='Charging Station Location',y='Charging Cost (USD)')\n",
+        "plt.title(f'Figure 12 - Analysis of Variance: Charging Cost (USD) vs. Charging Location\\n(P-value = {p_value:3.3f})')\n",
+        "plt.show()"
+      ],
+      "id": "Figure12",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# ANOVA - does the type of charger influence charging cost? \n",
+        "# Ho: type of charger does not effect charing cost\n",
+        "# Ha: at least one charger type has a uniqeu or different mean charging cost \n",
+        "\n",
+        "model = ev_charging['Charger Type'].unique()\n",
+        "print(model)\n",
+        "\n",
+        "ev_charging = ev_charging.dropna()\n",
+        "\n",
+        "FAST = ev_charging[ev_charging['Charger Type'] == model[0]]['Charging Cost (USD)']\n",
+        "Level_1 = ev_charging[ev_charging['Charger Type'] == model[1]]['Charging Cost (USD)']\n",
+        "Level_2 = ev_charging[ev_charging['Charger Type'] == model[2]]['Charging Cost (USD)']\n",
+        "\n",
+        "\n",
+        "f_statistic, p_value = stats.f_oneway(FAST, Level_1,Level_2)\n",
+        "\n",
+        "print('P-value:',p_value)"
+      ],
+      "id": "ce990319",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure13\n",
+        "#| fig-cap: 'ANOVA: Charger Type vs Charging Cost'\n",
+        "plt.figure()\n",
+        "sns.boxplot(data=ev_charging,x='Charger Type',y='Charging Cost (USD)')\n",
+        "plt.title(f'Figure 13: ANOVA - Charger Type vs. Charging Cost (USD)\\n(p-value = {p_value:3.2f})')\n",
+        "plt.show()"
+      ],
+      "id": "Figure13",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# linear regression - does charging temperature have an effect on charging cost? \n",
+        "# Ho: linear regression coefficient = 0\n",
+        "# Ha: linear regression coefficient is not equal to 0\n",
+        "\n",
+        "X = ev_charging[['Temperature (°C)']]\n",
+        "\n",
+        "y = ev_charging['Charging Cost (USD)']\n",
+        "\n",
+        "X = sm.add_constant(X)\n",
+        "\n",
+        "model = sm.OLS(y,X).fit()\n",
+        "\n",
+        "print(model.summary())\n",
+        "\n",
+        "p_value_temp = model.pvalues['Temperature (°C)']\n",
+        "print(f\"\\nP-value for Temperature (°C): {p_value_temp:.5f}\")"
+      ],
+      "id": "a60908b3",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure14\n",
+        "#| fig-cap: 'Linear Regression: Temperature vs Charging Cost'\n",
+        "plt.figure(figsize=(10,6))\n",
+        "sns.regplot(\n",
+        "    data=ev_charging, \n",
+        "    x='Temperature (°C)', \n",
+        "    y='Charging Cost (USD)', \n",
+        "    ci=None,      \n",
+        "    line_kws={\"color\": \"red\"},  \n",
+        "    scatter_kws={\"alpha\": 0.6} \n",
+        ")\n",
+        "plt.title(\"Figure 14: Linear Regression - Charging Cost vs Temperature (C)\\nregression equation: Charging Cost (USD) = 21.7858 + 0.0459* Temperature (C)\\nRegressor Coefficient P-value = 0.035\",fontsize=10)\n",
+        "plt.xlabel(\"Temperature (°C)\")\n",
+        "plt.ylabel(\"Charging Cost (USD)\")\n",
+        "plt.show()"
+      ],
+      "id": "Figure14",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Empirical Model Building "
+      ],
+      "id": "5328afce"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from sklearn.model_selection import train_test_split\n",
+        "from sklearn.linear_model import LinearRegression\n",
+        "from sklearn.preprocessing import OneHotEncoder, StandardScaler\n",
+        "from sklearn.compose import ColumnTransformer\n",
+        "from sklearn.pipeline import Pipeline\n",
+        "from sklearn.metrics import mean_squared_error, r2_score\n",
+        "from sklearn.preprocessing import PolynomialFeatures"
+      ],
+      "id": "9020c140",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "ev_charging = ev_charging.dropna()"
+      ],
+      "id": "ab87889e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "X = ev_charging[['Vehicle Model','Battery Capacity (kWh)','Charging Station Location','Energy Consumed (kWh)','Charging Duration (hours)','Charging Rate (kW)','Time of Day','Day of Week','State of Charge (Start %)','State of Charge (End %)','Distance Driven (since last charge) (km)','Temperature (°C)','Vehicle Age (years)','Charger Type','User Type']]\n",
+        "\n",
+        "y = ev_charging['Charging Cost (USD)']\n",
+        "\n",
+        "\n",
+        "num_variables = ['Battery Capacity (kWh)','Energy Consumed (kWh)','Charging Duration (hours)','Charging Rate (kW)','State of Charge (Start %)','State of Charge (End %)','Distance Driven (since last charge) (km)','Temperature (°C)','Vehicle Age (years)']\n",
+        "\n",
+        "cat_variables = ['Vehicle Model','Charging Station Location','Time of Day','Day of Week','Charger Type','User Type']\n",
+        "\n",
+        "# Preprocessing for numerical and categorical features\n",
+        "preprocessor = ColumnTransformer(\n",
+        "    transformers=[\n",
+        "        ('num', StandardScaler(), num_variables),\n",
+        "        ('cat', OneHotEncoder(handle_unknown='ignore'), cat_variables)\n",
+        "    ]\n",
+        ")\n",
+        "\n",
+        "# Define a model pipeline\n",
+        "model = Pipeline(steps=[\n",
+        "    ('preprocessor', preprocessor),\n",
+        "    ('regressor', LinearRegression())\n",
+        "])\n",
+        "\n",
+        "# Split the data into train and test sets\n",
+        "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n",
+        "\n",
+        "\n",
+        "\n",
+        "# Train the model\n",
+        "model.fit(X_train, y_train)\n",
+        "\n",
+        "\n",
+        "# Predict on the test set\n",
+        "y_pred = model.predict(X_test)\n",
+        "\n",
+        "# Evaluate the model\n",
+        "mse = mean_squared_error(y_test, y_pred)\n",
+        "r2 = r2_score(y_test, y_pred)\n",
+        "\n",
+        "print(f\"Mean Squared Error: {mse:.2f}\")\n",
+        "print(f\"R-squared: {r2:.2f}\")"
+      ],
+      "id": "c3e288f7",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "X = ev_charging[['Vehicle Model','Battery Capacity (kWh)','Charging Station Location','Energy Consumed (kWh)','Charging Duration (hours)','Charging Rate (kW)','Time of Day','Day of Week','State of Charge (Start %)','State of Charge (End %)','Distance Driven (since last charge) (km)','Temperature (°C)','Vehicle Age (years)','Charger Type','User Type']]\n",
+        "\n",
+        "y = ev_charging['Charging Cost (USD)']\n",
+        "\n",
+        "X = pd.get_dummies(X, drop_first=True, dtype=float)\n",
+        "X = sm.add_constant(X)\n",
+        "\n",
+        "model = sm.OLS(y,X).fit()\n",
+        "\n",
+        "print(model.summary())\n"
+      ],
+      "id": "cccea3f3",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "## removing non-significant terms to improve R2_adj\n",
+        "\n",
+        "X = ev_charging[['Vehicle Model','Charging Station Location','Time of Day','Day of Week','State of Charge (End %)','Temperature (°C)','Charger Type','User Type']]\n",
+        "\n",
+        "y = ev_charging['Charging Cost (USD)']\n",
+        "\n",
+        "X = pd.get_dummies(X, drop_first=True, dtype=float)\n",
+        "X = sm.add_constant(X)\n",
+        "\n",
+        "model = sm.OLS(y,X).fit()\n",
+        "\n",
+        "print(model.summary())"
+      ],
+      "id": "53019b63",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "## removing additonal non-significant terms to improve R2_adj\n",
+        "\n",
+        "X = ev_charging[['Vehicle Model','Charging Station Location','State of Charge (End %)','Temperature (°C)','Charger Type','User Type']]\n",
+        "\n",
+        "y = ev_charging['Charging Cost (USD)']\n",
+        "\n",
+        "X = pd.get_dummies(X, drop_first=True, dtype=float)\n",
+        "X = sm.add_constant(X)\n",
+        "\n",
+        "model = sm.OLS(y,X).fit()\n",
+        "\n",
+        "print(model.summary())"
+      ],
+      "id": "f23d5b75",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Results \n",
+        "\n",
+        "\n",
+        "## Discussion\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "## Conclusions\n"
+      ],
+      "id": "06ed9843"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Python 3",
+      "language": "python",
+      "name": "python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

@@ -37,9 +37,10 @@ import statsmodels.api as sm
 warnings.filterwarnings("ignore")
 
 ```
+
 # Team ChilePeppers INFO511 Term Project
+
 ## Electric Vehicle (EV) Charging Dataset Assessment
- 
 
 ## Introduction and Data
 
@@ -60,9 +61,8 @@ ev_charging  = pd.read_csv(url)
 ev_charging.head()
 ```
 
-
-
 ### Table 2 - EV Charging Dataset: Column Data Types
+
 ```{python}
 ev_charging.info()
 
@@ -73,6 +73,7 @@ ev_charging.info()
 ### Graphical Review of the Data
 
 ### Figure 1 - XXX
+
 ```{python}
 #| label: Figure1
 #| fig-cap: "Battery Capacity (KWh) for Five Models of EV Studied"
@@ -84,8 +85,8 @@ plt.ylabel('Battery Capacity (kWh)')
 plt.show()
 ```
 
-
 ### Figure 2 - XXX
+
 ```{python}
 #| label: Figure2
 #| fig-cap: "Charging Station Location vs. Charging Duration (hours)"
@@ -96,7 +97,6 @@ plt.xlabel('Charging Station Location')
 plt.ylabel('Charge Duration (hours)')
 plt.show()
 ```
-
 
 ```{python}
 #| label: Figure3
@@ -144,7 +144,6 @@ plt.ylabel('Count')
 plt.show()
 ```
 
-
 ```{python}
 #| label: Figure7
 #| fig-cap: "Figure 7 - Histogram of Charging Rate (kw)"
@@ -153,7 +152,6 @@ sns.histplot(data=ev_charging,x='Charging Rate (kW)')
 plt.title('\nFigure 7 - Histogram of Charging Rate (kw)\n')
 plt.show()
 ```
-
 
 ```{python}
 #| label: Figure8
@@ -175,7 +173,6 @@ plt.show()
 
 ```
 
-
 ```{python}
 #| label: Figure10
 #| fig-cap: "Seaborn Pair Plot for EV Charging Dataset Variables"
@@ -185,7 +182,6 @@ plt.title('\nFigure 10 - Seaborn Pair Plot for EV Charging Dataset Variables\n')
 plt.show()
 
 ```
-
 
 ### Statistical Review of the Data
 
@@ -208,7 +204,6 @@ Tesla = ev_charging[ev_charging['Vehicle Model'] == model[4]]['Charging Cost (US
 f_statistic, p_value = stats.f_oneway(BMW, Hyundai, Chevy, Nissan, Tesla)
 
 ```
-
 
 ```{python}
 #| label: Figure11
@@ -251,7 +246,6 @@ plt.title(f'Figure 12 - Analysis of Variance: Charging Cost (USD) vs. Charging L
 plt.show()
 
 ```
-
 
 ```{python}
 # ANOVA - does the type of charger influence charging cost? 
@@ -321,9 +315,8 @@ plt.ylabel("Charging Cost (USD)")
 plt.show()
 ```
 
+### Empirical Model Building
 
-
-### Empirical Model Building 
 ```{python}
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
@@ -400,10 +393,6 @@ print(model.summary())
 
 ```
 
-
-
-
-
 ```{python}
 ## removing non-significant terms to improve R2_adj
 
@@ -436,18 +425,8 @@ print(model.summary())
 
 ```
 
-
-
-
-
-## Results 
-
+## Results
 
 ## Discussion
 
-
-
-
-
 ## Conclusions
-
