@@ -2,37 +2,39 @@
 
 Team Project Contract
 
-Project Title: [Title of the final project]
+Project Title: (Working Title) "Assessment of Electric Vehicle Charging Trends"
 
 Team Members:
 Derek Rice, slack and/or derekrice@arizona.edu
 Shreya Kolte, slack and/or shreyakolte@arizona.edu
-[Name, Contact Information]
-[Name, Contact Information]
+Pouya Jalali Khalilabadi, slack and/or pouyaj@arizona.edu
+Issaiah Johnson, Slack and/or Issaiahj@arizona.edu
 
-Project Overview
+Project Overview: 
 
-Project Description: [A brief overview of the project, including the main objectives and purpose.]
+Project Description: Complete data analysis of a TBD dataset. The analysis includes data clearning and wrangling, data analysis, visualization, and documentation of results. 
 
-Expected Deliverables: [List of specific outputs, such as final visualizations, reports, presentations.]
+Expected Deliverables: A project report with (i) description of the dataset, (ii) objectives of the project and a Problem Statement, (iii) data cleaning summary, (iv) data analysis summary, and (v) a written report and supporting python code. 
 
 Team Goals
 
-Project Goals: [A few bullet points outlining what the team aims to achieve.]
+Project Goals: Learn how to collaborate as a team on the data analysis and report writng via github. 
 
-Learning Objectives: [What skills or knowledge each team member hopes to develop.]
+Learning Objectives: (i) data clearning and wrangling, (ii) data analsyis, (iii) creating visualizations to summarize results and insights, and (iv) report writing. 
 
 Team Roles and Responsibilities
 
 Roles (change as needed):
 
-Project Manager: [Name] – Ensures timelines are met, organizes meetings, and manages communications.
+Project Manager: [Shreya Vikas Kolte] – Ensures timelines are met, organizes meetings, and manages communications.
 
-Data Analyst: [Name] – Responsible for data cleaning, analysis, and exploratory visualizations.
+Data Analyst: [Issaiah Johnson and Kyle Aswege] – Responsible for data cleaning, analysis, and exploratory visualizations.
 
-Visualization Specialist: [Name] – Designs the final visualizations and makes aesthetic choices.
+Visualization Specialist: [Pouya Jalali Khalilabadi] – Designs the final visualizations and makes aesthetic choices.
 
-Documentation Lead: [Name] – Keeps detailed notes, ensures all project decisions are documented, and handles the final report.
+Documentation Lead: [Derek Rice] – Keeps detailed notes, ensures all project decisions are documented, and handles the final report.
+
+
 
 Responsibilities:
 
@@ -42,8 +44,8 @@ General Responsibilities: Each team member is responsible for:
 3. Communicating openly and promptly if issues arise.
 
 Communication Plan
-* Meeting Schedule: Weekly on [Day] at [Time] via [platform].
-* Primary Communication Platform: [Platform, e.g., Slack].
+* Meeting Schedule: Weekly on [Friday] at [7pm] via [Slack].
+* Primary Communication Platform: [Slack].
 
 Decision-Making Process: Decisions will be made by consensus; if a consensus cannot be reached, a vote will be taken.
 
@@ -51,13 +53,13 @@ Work Plan and Timeline
 
 Milestones:
 
-Data Collection and Cleaning: Completed by [Date].
+Data Collection and Cleaning: Completed by [1-NOV-2024].
 
-Exploratory Data Analysis: Completed by [Date].
+Exploratory Data Analysis: Completed by [15-NOV-2024].
 
-Design of Visualizations: Completed by [Date].
+Design of Visualizations: Completed by [30-NOV-2024].
 
-Final Presentation and Report: Completed by [Date].
+Final Presentation and Report: Completed by [9th Dec. 2024].
 
 Task Assignments: [Use a table to assign tasks to team members with due dates.]
 
@@ -81,9 +83,9 @@ If the conflict persists, consult the project supervisor for guidance.
 
 Signatures
 By signing below, each team member agrees to the terms of this contract and commits to working together effectively and respectfully.
-[Name]: ________________________ Date: ___________
-[Name]: ________________________ Date: ___________
-[Name]: ________________________ Date: ___________
+[Name]: Issaiah Johnson          Date: 10/12/2024
+[Name]: Shreya Kolte             Date: 11/08/2024
+[Name]: _Derek Rice_____________ Date: 16-NOV-2024______
 [Name]: ________________________ Date: ___________
 
 This template ensures that everyone understands their roles, responsibilities, and the expectations for the project. It can help prevent misunderstandings and promote effective teamwork throughout the project.
