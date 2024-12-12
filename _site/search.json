@@ -52,22 +52,22 @@
     "objectID": "presentation.html#quarto",
     "href": "presentation.html#quarto",
     "title": "Project title",
-    "section": "Quarto",
-    "text": "Quarto\n\nThe presentation is created using the Quarto CLI\n## sets the start of a new slide"
+    "section": "",
+    "text": "The presentation is created using the Quarto CLI\n## sets the start of a new slide"
   },
   {
     "objectID": "presentation.html#layouts",
     "href": "presentation.html#layouts",
     "title": "Project title",
-    "section": "Layouts",
-    "text": "Layouts\nYou can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis\n\nAnd add footnotes"
+    "section": "",
+    "text": "You can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis"
   },
   {
     "objectID": "presentation.html#code",
     "href": "presentation.html#code",
     "title": "Project title",
-    "section": "Code",
-    "text": "Code\n\n\n                            OLS Regression Results                            \n==============================================================================\nDep. Variable:                    mpg   R-squared:                       0.073\nModel:                            OLS   Adj. R-squared:                  0.070\nMethod:                 Least Squares   F-statistic:                     30.59\nDate:                Mon, 08 Jul 2024   Prob (F-statistic):           5.84e-08\nTime:                        11:38:07   Log-Likelihood:                -1346.4\nNo. Observations:                 392   AIC:                             2697.\nDf Residuals:                     390   BIC:                             2705.\nDf Model:                           1                                         \nCovariance Type:            nonrobust                                         \n==============================================================================\n                 coef    std err          t      P&gt;|t|      [0.025      0.975]\n------------------------------------------------------------------------------\nconst         35.8015      2.266     15.800      0.000      31.347      40.257\nspeed       -354.7055     64.129     -5.531      0.000    -480.788    -228.623\n==============================================================================\nOmnibus:                       27.687   Durbin-Watson:                   0.589\nProb(Omnibus):                  0.000   Jarque-Bera (JB):               18.976\nSkew:                           0.420   Prob(JB):                     7.57e-05\nKurtosis:                       2.323   Cond. No.                         169.\n==============================================================================\n\nNotes:\n[1] Standard Errors assume that the covariance matrix of the errors is correctly specified."
+    "section": "",
+    "text": "OLS Regression Results                            \n==============================================================================\nDep. Variable:                    mpg   R-squared:                       0.073\nModel:                            OLS   Adj. R-squared:                  0.070\nMethod:                 Least Squares   F-statistic:                     30.59\nDate:                Mon, 08 Jul 2024   Prob (F-statistic):           5.84e-08\nTime:                        11:38:07   Log-Likelihood:                -1346.4\nNo. Observations:                 392   AIC:                             2697.\nDf Residuals:                     390   BIC:                             2705.\nDf Model:                           1                                         \nCovariance Type:            nonrobust                                         \n==============================================================================\n                 coef    std err          t      P&gt;|t|      [0.025      0.975]\n------------------------------------------------------------------------------\nconst         35.8015      2.266     15.800      0.000      31.347      40.257\nspeed       -354.7055     64.129     -5.531      0.000    -480.788    -228.623\n==============================================================================\nOmnibus:                       27.687   Durbin-Watson:                   0.589\nProb(Omnibus):                  0.000   Jarque-Bera (JB):               18.976\nSkew:                           0.420   Prob(JB):                     7.57e-05\nKurtosis:                       2.323   Cond. No.                         169.\n==============================================================================\n\nNotes:\n[1] Standard Errors assume that the covariance matrix of the errors is correctly specified."
   },
   {
     "objectID": "presentation.html#plots",
@@ -80,8 +80,8 @@
     "objectID": "presentation.html#plot-and-text",
     "href": "presentation.html#plot-and-text",
     "title": "Project title",
-    "section": "Plot and text",
-    "text": "Plot and text\n\n\n\nSome text\ngoes here"
+    "section": "",
+    "text": "Some text\ngoes here"
   },
   {
     "objectID": "presentation.html#tables",
@@ -95,7 +95,7 @@
     "href": "presentation.html#images",
     "title": "Project title",
     "section": "Images",
-    "text": "Images\n\nImage credit: Danielle Navarro, Percolate."
+    "text": "Images\n\n\n\nImage credit: Danielle Navarro, Percolate."
   },
   {
     "objectID": "presentation.html#math-expressions",
@@ -116,6 +116,27 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "This project was developed by [Team Name] For INFO 511 - Fundamentals of Data Science at the University of Arizona, taught by Dr. Greg Chism. The team is comprised of the following team members.\n\nTeam member 1: One sentence description of Team member 1 (e.g., year, major, etc.).\nTeam member 2: One sentence description of Team member 2 (e.g., year, major, etc.).\nTeam member 3: One sentence description of Team member 3 (e.g., year, major, etc.).\nTeam member 4: One sentence description of Team member 4 (e.g., year, major, etc.)."
+    "text": "This project was developed by ChilePeppers For INFO 511 - Fundamentals of Data Science at the University of Arizona, taught by Dr. Greg Chism. The team is comprised of the following team members.\n\nShreya Kolte: Hello, I’m currently a 2nd-year Master’s in Data Science student at the University of Arizona, focusing on data science and analytics.\nTeam member 2: One sentence description of Team member 2 (e.g., year, major, etc.).\nTeam member 3: One sentence description of Team member 3 (e.g., year, major, etc.).\nTeam member 4: One sentence description of Team member 4 (e.g., year, major, etc.)."
+  },
+  {
+    "objectID": "Team Project Contract.html",
+    "href": "Team Project Contract.html",
+    "title": "Project Title",
+    "section": "",
+    "text": "Team Project Contract\nProject Title: [Title of the final project]\nTeam Members: Derek Rice, slack and/or derekrice@arizona.edu Shreya Kolte, slack and/or shreyakolte@arizona.edu [Name, Contact Information] [Name, Contact Information]\nProject Overview\nProject Description: [A brief overview of the project, including the main objectives and purpose.]\nExpected Deliverables: [List of specific outputs, such as final visualizations, reports, presentations.]\nTeam Goals\nProject Goals: [A few bullet points outlining what the team aims to achieve.]\nLearning Objectives: [What skills or knowledge each team member hopes to develop.]\nTeam Roles and Responsibilities\nRoles (change as needed):\nProject Manager: [Name] – Ensures timelines are met, organizes meetings, and manages communications.\nData Analyst: [Name] – Responsible for data cleaning, analysis, and exploratory visualizations.\nVisualization Specialist: [Name] – Designs the final visualizations and makes aesthetic choices.\nDocumentation Lead: [Name] – Keeps detailed notes, ensures all project decisions are documented, and handles the final report.\nResponsibilities:\nGeneral Responsibilities: Each team member is responsible for: 1. Participating actively in all meetings. 2. Completing their assigned tasks on time. 3. Communicating openly and promptly if issues arise.\nCommunication Plan * Meeting Schedule: Weekly on [Day] at [Time] via [platform]. * Primary Communication Platform: [Platform, e.g., Slack].\nDecision-Making Process: Decisions will be made by consensus; if a consensus cannot be reached, a vote will be taken.\nWork Plan and Timeline\nMilestones:\nData Collection and Cleaning: Completed by [Date].\nExploratory Data Analysis: Completed by [Date].\nDesign of Visualizations: Completed by [Date].\nFinal Presentation and Report: Completed by [Date].\nTask Assignments: [Use a table to assign tasks to team members with due dates.]\nAccountability and Expectations\nAttendance Policy: All team members are expected to attend scheduled meetings unless previously discussed.\nQuality of Work: All deliverables should be completed to a professional standard.\nDeadlines: All members are responsible for meeting deadlines. If someone cannot meet a deadline, they must notify the team in advance.\nConflict Resolution Plan\nConflict Management: If a conflict arises, team members will:\nDiscuss the issue openly during a team meeting.\nAttempt to resolve the issue through compromise.\nIf the conflict persists, consult the project supervisor for guidance.\nSignatures By signing below, each team member agrees to the terms of this contract and commits to working together effectively and respectfully. [Name]: ________________________ Date: ___________ [Name]: ________________________ Date: ___________ [Name]: ________________________ Date: ___________ [Name]: ________________________ Date: ___________\nThis template ensures that everyone understands their roles, responsibilities, and the expectations for the project. It can help prevent misunderstandings and promote effective teamwork throughout the project."
+  },
+  {
+    "objectID": "presentation.html",
+    "href": "presentation.html",
+    "title": "Project title",
+    "section": "",
+    "text": "The presentation is created using the Quarto CLI\n## sets the start of a new slide\n\n\n\n\nYou can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis\n\n\n\n\n\n\n                            OLS Regression Results                            \n==============================================================================\nDep. Variable:                    mpg   R-squared:                       0.073\nModel:                            OLS   Adj. R-squared:                  0.070\nMethod:                 Least Squares   F-statistic:                     30.59\nDate:                Mon, 08 Jul 2024   Prob (F-statistic):           5.84e-08\nTime:                        11:38:07   Log-Likelihood:                -1346.4\nNo. Observations:                 392   AIC:                             2697.\nDf Residuals:                     390   BIC:                             2705.\nDf Model:                           1                                         \nCovariance Type:            nonrobust                                         \n==============================================================================\n                 coef    std err          t      P&gt;|t|      [0.025      0.975]\n------------------------------------------------------------------------------\nconst         35.8015      2.266     15.800      0.000      31.347      40.257\nspeed       -354.7055     64.129     -5.531      0.000    -480.788    -228.623\n==============================================================================\nOmnibus:                       27.687   Durbin-Watson:                   0.589\nProb(Omnibus):                  0.000   Jarque-Bera (JB):               18.976\nSkew:                           0.420   Prob(JB):                     7.57e-05\nKurtosis:                       2.323   Cond. No.                         169.\n==============================================================================\n\nNotes:\n[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSome text\ngoes here"
+  },
+  {
+    "objectID": "presentation.html#footnotes",
+    "href": "presentation.html#footnotes",
+    "title": "Project title",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nAnd add footnotes↩︎"
   }
 ]
