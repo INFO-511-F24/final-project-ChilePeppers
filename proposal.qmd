@@ -52,7 +52,7 @@ warnings.filterwarnings("ignore")
 #mobile_data = pd.read_csv(url)
 ```
 
-## Dataset  - Electric Vehicle Charging
+## Dataset - Electric Vehicle Charging
 
 -   **Source of Data**: https://www.kaggle.com/datasets/valakhorasani/electric-vehicle-charging-patterns
 
@@ -103,4 +103,3 @@ The EV charging dataset comprises 20 columns, 10 object variables and 10 float64
 **Step 2**: A statistical analysis of the dataset using (i) analysis of variance and (ii) mullivariable regression to understand patterns within the data.
 
 **Step 3**: Build a predictive model from the data to understand and predict user trends with respect to electric vehicle charging.
-

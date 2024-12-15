@@ -44,7 +44,7 @@ warnings.filterwarnings("ignore")
 
 ## Introduction and Data
 
-The ChilePeppers team completed an assessment of the electric vehicle (EV) charging dataset for the INFO511 term project. The dataset was selected out of an interest to explore the evolving EV technical space and build a predictive model for charging efficiency improvements. The dataset consisted of 1320 rows and 20 columns, see Tables 1 and 2. The dataset provided charging history and profile for five electric vehicles; BMW i3, Hyundai Kona, Chevy Bolt, Nissan Leaf, and the Tesla Model 3, see Table 1. Each row in the dataset is a vehicle type with a record of a charge including location, energy consumed, charge duration, charging cost, temperature, vehicle age, charger type, and user type, see Table 2. 
+The ChilePeppers team completed an assessment of the electric vehicle (EV) charging dataset for the INFO511 term project. The dataset was selected out of an interest to explore the evolving EV technical space and build a predictive model for charging efficiency improvements. The dataset consisted of 1320 rows and 20 columns, see Tables 1 and 2. The dataset provided charging history and profile for five electric vehicles; BMW i3, Hyundai Kona, Chevy Bolt, Nissan Leaf, and the Tesla Model 3, see Table 1. Each row in the dataset is a vehicle type with a record of a charge including location, energy consumed, charge duration, charging cost, temperature, vehicle age, charger type, and user type, see Table 2.
 
 ### Table 1 - Electric Vehicle (EV) Charging Dataset: Column Headings
 
@@ -62,27 +62,31 @@ ev_charging.head()
 ev_charging.info()
 ```
 
-
+```{python}
+pd.set_option('display.max_columns', None) 
+pd.set_option('display.width', 1000)    
+pd.set_option('display.float_format', '{:.2f}'.format) 
+summary_stats = ev_charging.describe()
+print(summary_stats)
+```
 
 ## Methodology
 
-The methodology employed to access the ev charging dataset comprised three steps. First, a graphical review of the dataset was completed, see Figure 1 to 10. Second, a statical analysis of the data was completed using analysis of variance (ANOVA) to complete hypothesis testing to help understanding any relationships between the factors studied, see Figure 11 to 14. Third, regression analysis was completed to build a predictive model of charging cost (USD) as a function of the factors studied and reported within the dataset, see Tables 1 to 8.  
+The methodology employed to access the ev charging dataset comprised three steps. First, a graphical review of the dataset was completed, see Figure 1 to 10. Second, a statical analysis of the data was completed using analysis of variance (ANOVA) to complete hypothesis testing to help understanding any relationships between the factors studied, see Figure 11 to 14. Third, regression analysis was completed to build a predictive model of charging cost (USD) as a function of the factors studied and reported within the dataset, see Tables 1 to 9.
 
 ### Graphical Review of the Data
 
-Various types of plots were used to graphically review the dataset including boxplots, scatterplots, and correlations plots. To understand the difference or similarities between vehicle models a boxplot of vehicle model vs. battery capacity was created, see Figure 1.  The plot indicates all car models appear to have similar battery capacity, see Figure 1. Charge duration as a function of location was also plotted, see Figure 2. Graphically there does not appear to be a significant difference in charge duration across locations, see Figure 2.
+Various types of plots were used to graphically review the dataset including boxplots, scatterplots, and correlations plots. To understand the difference or similarities between vehicle models a boxplot of vehicle model vs. battery capacity was created, see Figure 1. The plot indicates all car models appear to have similar battery capacity, see Figure 1. Charge duration as a function of location was also plotted, see Figure 2. Graphically there does not appear to be a significant difference in charge duration across locations, see Figure 2.
 
-Scatterplots were used to understand the relationship between various factors and charging rate, see Figures 3 and 4 Charging rate vs. charging cost was plotted on a scatterplot with hue defining the time of day, see Figure 3. Charging rate vs charging cost was plotted with hue defining charging station location, see Figures 3 and 4 respectively. Neither plot displays any visually apparent relationships between the variables studied. 
+Scatterplots were used to understand the relationship between various factors and charging rate, see Figures 3 and 4 Charging rate vs. charging cost was plotted on a scatterplot with hue defining the time of day, see Figure 3. Charging rate vs charging cost was plotted with hue defining charging station location, see Figures 3 and 4 respectively. Neither plot displays any visually apparent relationships between the variables studied.
 
-Histograms were leveraged to help display the distribution of the variables (i) battery capacity, (ii) energy consumed, and (iii) charging rate, see Figures 5, 6, and 7. Battery capacity appears to be three specific categories, 59, 75, and 100 kWh, see Figure 5. Energy consumed (kWh) during charging may be normally distributed with a mean of 40 kWh and a standard deviation of 13 (80/6 = 30 (spread / 6 std. dev.)) with several outliers greater than 80 kWh, see Figure 6. Charging rate may also be normally distributed with a mean of 30 kW and standard deviation of 10 kW (approximately) with several outliers greater than 60 kW, see Figure 7. 
+Histograms were leveraged to help display the distribution of the variables (i) battery capacity, (ii) energy consumed, and (iii) charging rate, see Figures 5, 6, and 7. Battery capacity appears to be three specific categories, 59, 75, and 100 kWh, see Figure 5. Energy consumed (kWh) during charging may be normally distributed with a mean of 40 kWh and a standard deviation of 13 (80/6 = 30 (spread / 6 std. dev.)) with several outliers greater than 80 kWh, see Figure 6. Charging rate may also be normally distributed with a mean of 30 kW and standard deviation of 10 kW (approximately) with several outliers greater than 60 kW, see Figure 7.
 
-A boxplot was used to help understand the relationship between charging cost and time of charge and charger type, see Figure 8. Graphically is appears that charging cost is not influence by time of day or charger type as there appears to be a high variance within each subgroup vs. between subgroups, see Figure 8. 
+A boxplot was used to help understand the relationship between charging cost and time of charge and charger type, see Figure 8. Graphically is appears that charging cost is not influence by time of day or charger type as there appears to be a high variance within each subgroup vs. between subgroups, see Figure 8.
 
-A scatterplot of charging temperature, the outside temperature during charge, and its effect on charging rate is provided in Figure 9. Here hue was defined as the age of the vehicle in years, see Figure 9. The scatterplot, like the previous scatterplots visually did not clearly display a relationship between the variables studied, see Figure 9. 
+A scatterplot of charging temperature, the outside temperature during charge, and its effect on charging rate is provided in Figure 9. Here hue was defined as the age of the vehicle in years, see Figure 9. The scatterplot, like the previous scatterplots visually did not clearly display a relationship between the variables studied, see Figure 9.
 
-A seaborn pairwise plot is presented in Figure 10. The pairwise plot provides a graphical summary of the entire dataset for ease of attempting to visually determine if there is a relationship or correlation between factors studied. Within the pairwise plot the hue was defined as the vehicle type, see Figure 10. Visually the pairwise plot did not identify any obvious correlations within the dataset, see Figure 10. 
-
-
+A seaborn pairwise plot is presented in Figure 10. The pairwise plot provides a graphical summary of the entire dataset for ease of attempting to visually determine if there is a relationship or correlation between factors studied. Within the pairwise plot the hue was defined as the vehicle type, see Figure 10. Visually the pairwise plot did not identify any obvious correlations within the dataset, see Figure 10.
 
 ```{python}
 #| label: Figure1
@@ -181,8 +185,8 @@ plt.show()
 
 ```
 
-
 #### Figure 10 - Seaborn Pair Plot for EV Charging Dataset Variables
+
 ```{python}
 #| label: Figure10
 #| fig-cap: "Seaborn Pair Plot for EV Charging Dataset Variables"
@@ -197,21 +201,19 @@ plt.show()
 
 ### Statistical Review of the Data
 
-A statistical review of the dataset was completed using analysis of variance (ANOVA). ANOVA was selected to complete hypothesis testing where the test is an expansion of the two-sample t-test but allows for the mean of many subgroups to be compared and for differing sample size within each subgroup. The ANOVA assesses variance sum of squares within a subgroup vs. between subgroups. 
+A statistical review of the dataset was completed using analysis of variance (ANOVA). ANOVA was selected to complete hypothesis testing where the test is an expansion of the two-sample t-test but allows for the mean of many subgroups to be compared and for differing sample size within each subgroup. The ANOVA assesses variance sum of squares within a subgroup vs. between subgroups.
 
-Each ANOVA includes a boxplot of the subgroups studied and a p-value. The ANOVA null hypothesis (Ho) is that all subgroups have a common mean value (p-value > alpha). The ANOVA alternative hypothesis (Ha) is that at least one subgroup has a unique mean (p-value < alpha). Alpha, the level of significance is typically 0.05 i.e. there is a 5% change of a Type I error - reject Ho when Ho is true - conclude there is a difference in mean when in fact there is no difference.
+Each ANOVA includes a boxplot of the subgroups studied and a p-value. The ANOVA null hypothesis (Ho) is that all subgroups have a common mean value (p-value \> alpha). The ANOVA alternative hypothesis (Ha) is that at least one subgroup has a unique mean (p-value \< alpha). Alpha, the level of significance is typically 0.05 i.e. there is a 5% change of a Type I error - reject Ho when Ho is true - conclude there is a difference in mean when in fact there is no difference.
 
-The first hypothesis test completed was (i) Ho: all vehicle models have the same charging cost vs. Ha: at least one vehicle model has a unique charging cost, see Figure 11. The ANOVA for this hypothesis test yielded a p-value = 0.032, see Figure 11. As a result, Ho is rejected in favor of Ha and we conclude at least one vehicle has a unique charging cost. The ANOVA does not identify which subgroup, vehicle model, has the unique mean and graphically it is not visually apparent what vehicle model is unique, see Figure 11. 
+The first hypothesis test completed was (i) Ho: all vehicle models have the same charging cost vs. Ha: at least one vehicle model has a unique charging cost, see Figure 11. The ANOVA for this hypothesis test yielded a p-value = 0.032, see Figure 11. As a result, Ho is rejected in favor of Ha and we conclude at least one vehicle has a unique charging cost. The ANOVA does not identify which subgroup, vehicle model, has the unique mean and graphically it is not visually apparent what vehicle model is unique, see Figure 11.
 
-The second hypothesis test completed was (ii) Ho: all charging station locations have the same mean charging cost vs. Ha: at least one charging station location has a unique mean charging cost, see Figure 12. The ANOVA yielded a p-value = 0.245 indicating no difference in mean charging cost between charging station locations, see Figure 12. 
+The second hypothesis test completed was (ii) Ho: all charging station locations have the same mean charging cost vs. Ha: at least one charging station location has a unique mean charging cost, see Figure 12. The ANOVA yielded a p-value = 0.245 indicating no difference in mean charging cost between charging station locations, see Figure 12.
 
-The third hypothesis test completed examined (iii) Ho: all charger types have the same mean charging cost vs. Ha: at least one charger type has a unique mean charging cost, see Figure 13. The ANOVA yielded a p-value = 0.02 indicating at least one charger type has a unique mean charging cost. Reviewing the boxplot it is not visually apparent what charger type is unique, see Figure 13. 
+The third hypothesis test completed examined (iii) Ho: all charger types have the same mean charging cost vs. Ha: at least one charger type has a unique mean charging cost, see Figure 13. The ANOVA yielded a p-value = 0.02 indicating at least one charger type has a unique mean charging cost. Reviewing the boxplot it is not visually apparent what charger type is unique, see Figure 13.
 
-To understand the relationship between charging temperature and charging cost a simple linear regression was completed, see Table 3. The linear regression completes the hypothesis test (iv) Ho: coefficient = 0 vs. Ha: coefficient is not equal to zero. The regression provided an equation for charging cost as a function of temperature, (cost (USD) = 21.7858 + 0.0459 * Temperature(C)), see Table 3. A scatterplot of temperature and charging cost with the linear regression line is provided in Figure 14. The p-value for the regressor coefficient was less than alpha indicating there exists a statistically significant relationship and increasing temperature results in increased charging cost, see Table 3 and Figure 14. 
+To understand the relationship between charging temperature and charging cost a simple linear regression was completed, see Table 3. The linear regression completes the hypothesis test (iv) Ho: coefficient = 0 vs. Ha: coefficient is not equal to zero. The regression provided an equation for charging cost as a function of temperature, (cost (USD) = 21.7858 + 0.0459 \* Temperature(C)), see Table 3. A scatterplot of temperature and charging cost with the linear regression line is provided in Figure 14. The p-value for the regressor coefficient was less than alpha indicating there exists a statistically significant relationship and increasing temperature results in increased charging cost, see Table 3 and Figure 14.
 
-ANOVA was used to understand how (i) vehicle model, (ii) charging station locations, and (iii) charger type had an effect on charging cost. Charging cost appears to be influenced by vehicle model and charger type, see Figures 11 and 13 respectively. The simple linear regression highlighted the relationship between temperature and charging cost. The results of the statistical analysis helped inform the multivariable regression predictive model building efforts.  
-
-
+ANOVA was used to understand how (i) vehicle model, (ii) charging station locations, and (iii) charger type had an effect on charging cost. Charging cost appears to be influenced by vehicle model and charger type, see Figures 11 and 13 respectively. The simple linear regression highlighted the relationship between temperature and charging cost. The results of the statistical analysis helped inform the multivariable regression predictive model building efforts.
 
 ```{python}
 # ANOVA - does vehicle model influence charging cost? 
@@ -305,9 +307,7 @@ plt.title(f'Figure 13: ANOVA - Charger Type vs. Charging Cost (USD)\n(p-value = 
 plt.show()
 ```
 
-
-
-#### Table 3 - Linear Regression: Charging Cost (USD) as a function of Temperature (C) 
+#### Table 3 - Linear Regression: Charging Cost (USD) as a function of Temperature (C)
 
 ```{python}
 # linear regression - does charging temperature have an effect on charging cost? 
@@ -347,20 +347,19 @@ plt.ylabel("Charging Cost (USD)")
 plt.show()
 ```
 
-### Empirical Predictive Model Building
+### Predictive Model Building
 
-An attempt was made to build a predictive model of charging cost as a function of the factors studied within the dataset using multivariable regression analysis. The multivariable regression analysis was completed in three iterations. The first iteration included all factors in the dataset, see Table 4a and 4b. The second iteration included only those terms that appear to be statistically significant, to improve the R-sq-adjusted value by removing non-significant parameters from the model, see Table 5. The third iteration was a refinement of the regression model, again reducing the number of terms to attempt a model with a high value for R-sq-adjusted, see Table 6. 
+An attempt was made to build a predictive model of charging cost as a function of the factors studied within the dataset using multivariable regression analysis. The multivariable regression analysis was completed in three iterations. The first iteration included all factors in the dataset, see Table 4a and 4b. The second iteration included only those terms that appear to be statistically significant, to improve the R-sq-adjusted value by removing non-significant parameters from the model, see Table 5. The third iteration was a refinement of the regression model, again reducing the number of terms to attempt a model with a high value for R-sq-adjusted, see Table 6.
 
 The initial regression model included all the terms within the EV charging dataset, see Table 4b. The categorical variables were transformed to numerical values using one-hot-encoding, see Table 4b. That first model provided an empirical model of charging cost as a function of all variables studied with an R-sq-adjusted of 0.017 meaning the model explained 1.7% of the variance within the dataset.
 
-To improve the R-sq-adjusted value a majority of the non-significant factors were removed from the model, see Table 5. This second model provided an R-sq-adjusted value of 0.021, that is the model explained 2.1% of the variance within the dataset. 
+To improve the R-sq-adjusted value a majority of the non-significant factors were removed from the model, see Table 5. This second model provided an R-sq-adjusted value of 0.021, that is the model explained 2.1% of the variance within the dataset.
 
-A third multivariance regression model was attempted, again removing non-significant (p-value > 0.05) terms from the model in an attempt to improve R-sq-adjusted by including only statistically significant terms in the model, see Table 6. The third model yielding an R-sq-adjusted = 0.018 - typically an R-sq-adj value greater than 0.7 or 70% is desired. 
+A third multivariance regression model was attempted, again removing non-significant (p-value \> 0.05) terms from the model in an attempt to improve R-sq-adjusted by including only statistically significant terms in the model, see Table 6. The third model yielding an R-sq-adjusted = 0.018 - typically an R-sq-adj value greater than 0.7 or 70% is desired.
 
-The results of the multivariable regression analysis were disappointing, none of the model attempts yielded an R-sq-adjusted above 50%. As a result, the support vector machine (SVM) algorithm was attempted to predict charging cost as a function of the other variables or columns in the dataset, see Tables 7 and 8. The initial SVM model included only numerical factors and provided an R-sq-adjusted of -0.25, see Table 7. The second SVM attempt included all factors, numerical and categorical, one-hot-encoding was used to transform categorical factors to numerical. In both SVM's the data was scaled to ensure a uniform range for each variable studied. However, the second model, even with grid search, yielded a low value for R-sq-adjusted of -0.39 indicating the model was no better than a simple linear regression. 
+The results of the multivariable regression analysis were disappointing, none of the model attempts yielded an R-sq-adjusted above 50%. As a result, the support vector machine (SVM) algorithm was attempted to predict charging cost as a function of the other variables or columns in the dataset, see Tables 7, 8 and 9.The initial SVM model included only numerical factors and provided an R-sq-adjusted of -0.25, see Table 7. The second SVM attempt included all factors, numerical and categorical, one-hot-encoding was used to transform categorical factors to numerical, and grid search employed to optimize the RBF kernal hyperparameters, see Table 8. A third SVM attempt also included all factors and grid search employed to optimize the polynomial kernal, see Table 9. In both SVM's the data was scaled to ensure a uniform range for each variable studied. However, the second model, even with grid search, yielded a low value for R-sq-adjusted of -0.39 indicating the model was no better than a simple linear regression.
 
-The empirical modeling effort included multivariable regression and support vector machine analysis. The best performing model was a multivariable regression analysis that included only statistically significant terms and provided an R-sq = 0.041 and R-sq-adjusted = 0.021. The results of the predictive model building were disappointing and may need an expert review to ensure no technical errors in the code were made. 
-
+The empirical modeling effort included multivariable regression and support vector machine analysis. The best performing model was a multivariable regression analysis that included only statistically significant terms and provided an R-sq = 0.041 and R-sq-adjusted = 0.021. The results of the predictive model building were disappointing and may need an expert review to ensure no technical errors in the code were made.
 
 ```{python}
 from sklearn.model_selection import train_test_split
@@ -377,8 +376,8 @@ from sklearn.preprocessing import PolynomialFeatures
 ev_charging = ev_charging.dropna()
 ```
 
-
 #### Table 4a - Initial Multivariable Regression Analysis: Charging Cost (USD) MSE and R-squared
+
 ```{python}
 
 X = ev_charging[['Vehicle Model','Battery Capacity (kWh)','Charging Station Location','Energy Consumed (kWh)','Charging Duration (hours)','Charging Rate (kW)','Time of Day','Day of Week','State of Charge (Start %)','State of Charge (End %)','Distance Driven (since last charge) (km)','Temperature (°C)','Vehicle Age (years)','Charger Type','User Type']]
@@ -407,11 +406,12 @@ model = Pipeline(steps=[
 # Split the data into train and test sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Train the model
-model.fit(X_train, y_train)
 
-# Predict on the test set
+# Update pipeline with scaled target
+model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
+
+
 
 # Evaluate the model
 mse = mean_squared_error(y_test, y_pred)
@@ -421,8 +421,8 @@ print(f"Mean Squared Error: {mse:.2f}")
 print(f"R-squared: {r2:.2f}")
 ```
 
-
 #### Table 4b - Initial Multivariable Regression Analysis: Charging Cost (USD) Model Summary
+
 ```{python}
 
 X = ev_charging[['Vehicle Model','Battery Capacity (kWh)','Charging Station Location','Energy Consumed (kWh)','Charging Duration (hours)','Charging Rate (kW)','Time of Day','Day of Week','State of Charge (Start %)','State of Charge (End %)','Distance Driven (since last charge) (km)','Temperature (°C)','Vehicle Age (years)','Charger Type','User Type']]
@@ -462,10 +462,8 @@ print(model.summary())
 
 ```
 
-
-
-
 #### Table 6 - Third Iteration, Statistically Significant Factors, Multivariable Regression Analysis
+
 ```{python}
 ## removing additonal non-significant terms to improve R2_adj
 
@@ -482,24 +480,34 @@ print(model.summary())
 
 ```
 
-#### Table 7 - Support Vector Machine Predictive Model, Numerical Factors 
+
+#### Table 7 - Support Vector Machine: All Factors with One-Hot-Encoding and Grid Search Linear, RBF, and Polynomial Kernels
 
 ```{python}
+# initial attempt at a SVM model to improve the model performance vs. multivariable regression 
 
-# using SVM to try and develop an improved predictive model 
-# applying grid search to try and improve model performance
-# using only numerical factors in the model to simplify things 
-
+import pandas as pd
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.svm import SVR
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import mean_squared_error, r2_score
 
-X = ev_charging[['Battery Capacity (kWh)','Energy Consumed (kWh)','Charging Duration (hours)','Charging Rate (kW)','State of Charge (Start %)','State of Charge (End %)','Distance Driven (since last charge) (km)','Temperature (°C)','Vehicle Age (years)']]
+# Features and target
+X = ev_charging[['Vehicle Model', 'Battery Capacity (kWh)', 'Charging Station Location',
+                 'Energy Consumed (kWh)', 'Charging Duration (hours)', 'Charging Rate (kW)',
+                 'Time of Day', 'Day of Week', 'State of Charge (Start %)',
+                 'State of Charge (End %)', 'Distance Driven (since last charge) (km)',
+                 'Temperature (°C)', 'Vehicle Age (years)', 'Charger Type', 'User Type']]
 
 y = ev_charging['Charging Cost (USD)']
 
-# splitting data in to training and test datasets 
+# One-hot encoding of categorical variables
+X = pd.get_dummies(X, drop_first=True, dtype=float)
+
+# Splitting data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# scaling the data to have a common range over all variables 
+# Scaling the data
 scaler_X = StandardScaler()
 scaler_y = StandardScaler()
 
@@ -508,40 +516,54 @@ X_test_scaled = scaler_X.transform(X_test)
 
 y_train_scaled = scaler_y.fit_transform(y_train.values.reshape(-1, 1)).ravel()
 
-# training the SVM 
-svr_model = SVR(kernel='rbf', C=1.0, epsilon=0.1)  # 'rbf' is a common kernel for regression
-svr_model.fit(X_train_scaled, y_train_scaled)
+# SVR with Grid Search parameters
+svr = SVR()
+param_grid = {
+    'kernel': ['linear', 'rbf', 'poly'],
+    'C': [0.1, 1, 10],
+    'epsilon': [0.01, 0.1, 1],
+    'gamma': ['scale', 'auto']
+}
 
-# using the SVM model to predict values from the X test dataset 
-y_pred_scaled = svr_model.predict(X_test_scaled)
+# Grid Search
+grid_search = GridSearchCV(svr, param_grid, cv=5, scoring='r2', verbose=1)
+grid_search.fit(X_train_scaled, y_train_scaled)
 
-# converting the y_predicted using the scaled data back to un-scaled values to enable MSE calc. 
-y_pred = scaler_y.inverse_transform(y_pred_scaled.reshape(-1, 1))
+# Best estimator
+best_model = grid_search.best_estimator_
 
-# calculating model metrics 
-mse = mean_squared_error(y_test, y_pred)
-r2 = r2_score(y_test, y_pred)
+# Predict on test data
+y_pred_scaled = best_model.predict(X_test_scaled)
 
-# interested in calculating R-sq-adjusted 
+# Inverse transform predictions and target
+y_pred = scaler_y.inverse_transform(y_pred_scaled.reshape(-1, 1)).ravel()
+y_test_inv = y_test.values  # Original y_test for evaluation
+
+# Calculate metrics
+mse = mean_squared_error(y_test_inv, y_pred)
+r2 = r2_score(y_test_inv, y_pred)
+
+# Calculate Adjusted R-squared
 n = X_test.shape[0]  # Number of test samples
 k = X_test.shape[1]  # Number of predictor variables
-
 r2_adjusted = 1 - ((1 - r2) * (n - 1) / (n - k - 1))
 
-# results 
+# Print Results
+print("===== Kernel: linear, rbf, poly: Model Summary =====")
+print("Best Hyperparameters:", grid_search.best_params_)
+print("\nPerformance Metrics:")
 print(f"Mean Squared Error (MSE): {mse:.2f}")
-print(f"R^2 Score: {r2:.2f}")
-print(f"R^2-adjusted Score: {r2_adjusted:.2f}")
-
-
+print(f"R² Score: {r2:.2f}")
+print(f"Adjusted R² Score: {r2_adjusted:.2f}")
+print("\nBest Estimator:")
+print(best_model)
 
 ```
 
-#### Table 8 - Support Vector Machine: All Factors with One-Hot-Encoding and Grid Search 
+#### Table 8 - Support Vector Machine: All Factors with One-Hot-Encoding and Grid Search RBF Kernel Hyperparameters
 
 ```{python}
-# above SVM did not perform well
-# here completing a grid search to refine SVM model parameters 
+# trying to optimize the SVM RBF kernal to achieve a half decent model 
 
 from sklearn.model_selection import GridSearchCV
 
@@ -559,29 +581,130 @@ X = pd.get_dummies(X, drop_first=True, dtype=float)
 # splitting data in to training and test datasets 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
+# Scaling the data
+scaler_X = StandardScaler()
+scaler_y = StandardScaler()
+
+X_train_scaled = scaler_X.fit_transform(X_train)
+X_test_scaled = scaler_X.transform(X_test)
+
+y_train_scaled = scaler_y.fit_transform(y_train.values.reshape(-1, 1)).ravel()
+
 # SVM grid search parameters 
 svr = SVR()
 param_grid = {
-    'kernel': ['linear', 'rbf', 'poly'],
-    'C': [0.1, 1, 10],
-    'epsilon': [0.01, 0.1, 1],
-    'gamma': ['scale', 'auto']
+    'kernel': ['rbf'],
+    'C': [0.1, 1, 10, 100, 1000],
+    'gamma': ['scale', 'auto', 0.01, 0.1, 1]
 }
 
-# Grid search
-grid_search = GridSearchCV(svr, param_grid, cv=5, scoring='r2')
+# Grid Search
+grid_search = GridSearchCV(svr, param_grid, cv=5, scoring='r2', verbose=1)
 grid_search.fit(X_train_scaled, y_train_scaled)
+
+# Best estimator
+best_model = grid_search.best_estimator_
+
+# Predict on test data
+y_pred_scaled = best_model.predict(X_test_scaled)
+
+# Inverse transform predictions and target
+y_pred = scaler_y.inverse_transform(y_pred_scaled.reshape(-1, 1)).ravel()
+y_test_inv = y_test.values  # Original y_test for evaluation
+
+# Calculate metrics
+mse = mean_squared_error(y_test_inv, y_pred)
+r2 = r2_score(y_test_inv, y_pred)
 
 # Calculate Adjusted R-squared
 n = X_test.shape[0]  # Number of test samples
 k = X_test.shape[1]  # Number of predictor variables
-
 r2_adjusted = 1 - ((1 - r2) * (n - 1) / (n - k - 1))
 
 # Print Results
+print("===== RBF Kernel: Model Summary =====")
+print("Best Hyperparameters:", grid_search.best_params_)
+print("\nPerformance Metrics:")
 print(f"Mean Squared Error (MSE): {mse:.2f}")
-print(f"R^2 Score: {r2:.2f}")
-print(f"R^2-adjusted Score: {r2_adjusted:.2f}")
+print(f"R² Score: {r2:.2f}")
+print(f"Adjusted R² Score: {r2_adjusted:.2f}")
+print("\nBest Estimator:")
+print(best_model)
+
+```
+
+
+#### Table 9 - Support Vector Machine: All Factors with One-Hot-Encoding and Grid Search Polynomial Kernel Hyperparameters
+
+```{python}
+# trying to optimize the SVM poly kernal to improve model performance
+
+from sklearn.model_selection import GridSearchCV
+
+X = ev_charging[['Vehicle Model','Battery Capacity (kWh)','Charging Station Location',
+                 'Energy Consumed (kWh)','Charging Duration (hours)','Charging Rate (kW)',
+                 'Time of Day','Day of Week','State of Charge (Start %)',
+                 'State of Charge (End %)','Distance Driven (since last charge) (km)',
+                 'Temperature (°C)','Vehicle Age (years)','Charger Type','User Type']]
+
+y = ev_charging['Charging Cost (USD)']
+
+# one-hot-encoding of categorical variables 
+X = pd.get_dummies(X, drop_first=True, dtype=float)
+
+# splitting data in to training and test datasets 
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Scaling the data
+scaler_X = StandardScaler()
+scaler_y = StandardScaler()
+
+X_train_scaled = scaler_X.fit_transform(X_train)
+X_test_scaled = scaler_X.transform(X_test)
+
+y_train_scaled = scaler_y.fit_transform(y_train.values.reshape(-1, 1)).ravel()
+
+# SVM grid search parameters 
+svr = SVR()
+param_grid = {
+    'kernel': ['poly'],         
+    'C': [0.1, 1, 10, 100],       
+    'degree': [2, 3, 4, 5],      
+    'gamma': ['scale', 'auto']
+}
+
+# Grid Search
+grid_search = GridSearchCV(svr, param_grid, cv=5, scoring='r2', verbose=1)
+grid_search.fit(X_train_scaled, y_train_scaled)
+
+# Best estimator
+best_model = grid_search.best_estimator_
+
+# Predict on test data
+y_pred_scaled = best_model.predict(X_test_scaled)
+
+# Inverse transform predictions and target
+y_pred = scaler_y.inverse_transform(y_pred_scaled.reshape(-1, 1)).ravel()
+y_test_inv = y_test.values  # Original y_test for evaluation
+
+# Calculate metrics
+mse = mean_squared_error(y_test_inv, y_pred)
+r2 = r2_score(y_test_inv, y_pred)
+
+# Calculate Adjusted R-squared
+n = X_test.shape[0]  # Number of test samples
+k = X_test.shape[1]  # Number of predictor variables
+r2_adjusted = 1 - ((1 - r2) * (n - 1) / (n - k - 1))
+
+print("===== Kernel = Poly: Model Summary =====")
+print("Best Hyperparameters:")
+print(grid_search.best_params_)
+print("\nPerformance Metrics:")
+print(f"Mean Squared Error (MSE): {mse:.2f}")
+print(f"R² Score: {r2:.2f}")
+print(f"Adjusted R² Score: {r2_adjusted:.2f}")
+print("\nBest Estimator:")
+print(best_model)
 
 ```
 
@@ -590,16 +713,14 @@ print(f"R^2-adjusted Score: {r2_adjusted:.2f}")
 
 The term project comprised an analysis of an electric vehicle charging dataset, see Tables 1 and 2. The analysis of the dataset, to understand what variables influenced charging cost was completed in stages. First, a graphical assessment of the data was completed, see Figures 1 to 10. Second, a statistical review leveraging analysis of variance (ANOVA) was completed to try and understand or isolated variables that might have an effect on charging cost, see Figures 11 to 14. Next empirical models were created and refined to predict charging cost as a function of the other variables in the dataset, see Tables 1 and 2. The modeling effort included both multivariable regression analysis and support vector machine algorithms. The results of the regression analysis is provided in Tables 4, 5 and 6. The results of the support vector machine algorithms are presented in Tables 7 and 8.
 
-The electric vehicle charging dataset comprised 1320 rows of data and 20 columns. Each row was a charging event with various data documented in the columns, see Tables 1 and 2. The graphical assessment of the dataset did not reveal any obvious trends with respect to charging cost, see Figures 1 to 10. 
+The electric vehicle charging dataset comprised 1320 rows of data and 20 columns. Each row was a charging event with various data documented in the columns, see Tables 1 and 2. The graphical assessment of the dataset did not reveal any obvious trends with respect to charging cost, see Figures 1 to 10.
 
-The statistical analysis of the data was completed using analysis of variance to compare the means across multiple subgroups, see Figures 11, 12, and 13. That work indicated that vehicle type and charger type had an effect on charging cost, or at least one subgroup in each analysis had an unique mean, see Figures 11 and 13 respectively. Temperature was a continuous variable; as a result, simple linear regression was used to determine the relationship between temperature and charging cost, see Table 3. That work indicated temperature did influence charging cost, increasing temperature increased the cost of charging, see Table 3 and Figure 14. 
+The statistical analysis of the data was completed using analysis of variance to compare the means across multiple subgroups, see Figures 11, 12, and 13. That work indicated that vehicle type and charger type had an effect on charging cost, or at least one subgroup in each analysis had an unique mean, see Figures 11 and 13 respectively. Temperature was a continuous variable; as a result, simple linear regression was used to determine the relationship between temperature and charging cost, see Table 3. That work indicated temperature did influence charging cost, increasing temperature increased the cost of charging, see Table 3 and Figure 14.
 
-Multivariable regression analysis was used to create predictive models of charging cost as a function of the other variables in the dataset, see Tables 4, 6, and 6. The regression analysis included both continuous numerical variables and categorical variables, the categorical variables were transformed to numerical values using one-hot-encoding. The regression analysis approach was iterative. The first model included all the factors in the dataset and yielded an R-sq-adjusted of 0.017 indicating the model explained 1.7% of the variance in the dataset, see Tables 4a and 4b. Ideally, an R-sq-adjusted > 70% would be preferred for a well performing predictive model. The performance of regression model was improved by removing non-significant terms, see Tables 5 and 6. However, the best performing model had an R-sq-adjusted value of 0.021 or 2.1%.
+Multivariable regression analysis was used to create predictive models of charging cost as a function of the other variables in the dataset, see Tables 4, 6, and 6. The regression analysis included both continuous numerical variables and categorical variables, the categorical variables were transformed to numerical values using one-hot-encoding. The regression analysis approach was iterative. The first model included all the factors in the dataset and yielded an R-sq-adjusted of 0.017 indicating the model explained 1.7% of the variance in the dataset, see Tables 4a and 4b. Ideally, an R-sq-adjusted \> 70% would be preferred for a well performing predictive model. The performance of regression model was improved by removing non-significant terms, see Tables 5 and 6. However, the best performing model had an R-sq-adjusted value of 0.021 or 2.1%.
 
-In an effort to create an improved predictive model the support vector machine (SVM) algorithm was attempted, see Tables 7 and 8. The initial SVM model included only numerical factors to create a predictive model of charging cost; however, that model also yielded a low R-sq-adjusted value of -0.25, see Table 7. To improve the SVM algorithm performance a second attempt was made. That second attempt included both numerical and categorical factors, one-hot-encoding was used to transform categorical factors to numerical. The data was scaled using the standard scaler to ensure a uniform range across all factors. To find optimum SVM parameters a grid search was included. Here too the model performed poorly providing an R-sq-adjusted of -0.39 indicating the SVM was no better than linear regression, see Table 8. 
-
-
+In an effort to create an improved predictive model the support vector machine (SVM) algorithm was attempted, see Tables 7, 8 and 9. The initial SVM model included only numerical factors to create a predictive model of charging cost; however, that model also yielded a low R-sq-adjusted value of -0.25, see Table 7. To improve the SVM algorithm performance a second attempt was made. That second attempt included both numerical and categorical factors, one-hot-encoding was used to transform categorical factors to numerical, and the RBF kernal implement, see Table 8. The data was scaled using the standard scaler to ensure a uniform range across all factors. To find optimum SVM parameters a grid search was included. Here too the model performed poorly providing an R-sq-adjusted of -0.39 indicating the SVM was no better than linear regression, see Table 8. A third attempt using the polynomial kernal and grid search to optimizes hyperparameters did not yield improved results, see Table 9.
 
 ## Conclusions
 
-The ChilePeppers team completed an assessment of an electric vehicle charging dataset. The dataset provided a record of 1320 charging events and recording 20 parameters for each event. The analysis was completed in stages. First a graphical review of the dataset was completed. Then a statistical review was leveraged to complete hypothesis testing using both ANOVA and regression analysis to understand or identify charging factors that influence the charging cost. Next predictive models were attempted to estimate the charging cost as a function of the other parameters in the dataset using both multivariable regression and support vector machine algorithms. The statistical analysis identified vehicle type and charger type as influencing charging cost. The predictive models while yielding empirical models or equations provided algorithms with very low values for R-sq and R-sq-adjusted. 
+The ChilePeppers team completed an assessment of an electric vehicle charging dataset. The dataset provided a record of 1320 charging events and recording 20 parameters for each event. The analysis was completed in stages. First a graphical review of the dataset was completed. Then a statistical review was leveraged to complete hypothesis testing using both ANOVA and regression analysis to understand or identify charging factors that influence the charging cost. Next predictive models were attempted to estimate the charging cost as a function of the other parameters in the dataset using both multivariable regression and support vector machine algorithms. The statistical analysis identified vehicle type and charger type as influencing charging cost. The predictive models while yielding empirical models or equations provided algorithms with very low values for R-sq and R-sq-adjusted.
