@@ -1,0 +1,848 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"EV Charging Trends and Predictions\"\n",
+        "subtitle: \"INFO 511 - Fall 2024 - Final Project\"\n",
+        "author: \n",
+        "  - name: \"ChilePeppers\"\n",
+        "    affiliations:\n",
+        "      - name: \"School of Information, University of Arizona\"\n",
+        "description: |\n",
+        "  This project explores trends in electric vehicle (EV) charging efficiency \n",
+        "  and builds predictive models to understand charging behaviors.\n",
+        "format:\n",
+        "  html:\n",
+        "    code-tools: true\n",
+        "    code-overflow: wrap\n",
+        "    embed-resources: true\n",
+        "    fig-width: 6\n",
+        "    fig-height: 4  \n",
+        "editor: visual\n",
+        "execute:\n",
+        "  warning: False\n",
+        "  echo: False\n",
+        "jupyter: python3\n",
+        "---"
+      ],
+      "id": "eb89d5e2"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "message": false
+      },
+      "source": [
+        "#| label: load-pkgs\n",
+        "import warnings\n",
+        "import pandas as pd\n",
+        "import pandas as pd\n",
+        "import numpy as np\n",
+        "import matplotlib.pyplot as plt\n",
+        "import seaborn as sns\n",
+        "import scipy.stats as stats \n",
+        "import statsmodels.api as sm\n",
+        "\n",
+        "warnings.filterwarnings(\"ignore\")"
+      ],
+      "id": "load-pkgs",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Team ChilePeppers INFO511 Term Project\n",
+        "\n",
+        "## Electric Vehicle (EV) Charging Dataset Assessment\n",
+        "\n",
+        "## Introduction and Data\n",
+        "\n",
+        "The ChilePeppers team completed an assessment of the electric vehicle (EV) charging dataset for the INFO511 term project. The dataset was selected out of an interest to explore the evolving EV technical space and build a predictive model for charging efficiency improvements. The dataset consisted of 1320 rows and 20 columns, see Tables 1 and 2. The dataset provided charging history and profile for five electric vehicles; BMW i3, Hyundai Kona, Chevy Bolt, Nissan Leaf, and the Tesla Model 3, see Table 1. Each row in the dataset is a vehicle type with a record of a charge including location, energy consumed, charge duration, charging cost, temperature, vehicle age, charger type, and user type, see Table 2. \n",
+        "\n",
+        "### Table 1 - Electric Vehicle (EV) Charging Dataset: Column Headings\n"
+      ],
+      "id": "a3ef9190"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "url = \"https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/ev_charging_patterns.csv\"\n",
+        "ev_charging  = pd.read_csv(url)\n",
+        "\n",
+        "ev_charging.head()"
+      ],
+      "id": "5ed006a4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Table 2 - EV Charging Dataset: Column Data Types\n"
+      ],
+      "id": "01f5b175"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "ev_charging.info()"
+      ],
+      "id": "dbe7f385",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Methodology\n",
+        "\n",
+        "The methodology employed to access the ev charging dataset comprised three steps. First, a graphical review of the dataset was completed, see Figure 1 to 10. Second, a statical analysis of the data was completed using analysis of variance (ANOVA) to complete hypothesis testing to help understanding any relationships between the factors studied, see Figure 11 to 14. Third, regression analysis was completed to build a predictive model of charging cost (USD) as a function of the factors studied and reported within the dataset, see Tables 1 to 8.  \n",
+        "\n",
+        "### Graphical Review of the Data\n",
+        "\n",
+        "Various types of plots were used to graphically review the dataset including boxplots, scatterplots, and correlations plots. To understand the difference or similarities between vehicle models a boxplot of vehicle model vs. battery capacity was created, see Figure 1.  The plot indicates all car models appear to have similar battery capacity, see Figure 1. Charge duration as a function of location was also plotted, see Figure 2. Graphically there does not appear to be a significant difference in charge duration across locations, see Figure 2.\n",
+        "\n",
+        "Scatterplots were used to understand the relationship between various factors and charging rate, see Figures 3 and 4 Charging rate vs. charging cost was plotted on a scatterplot with hue defining the time of day, see Figure 3. Charging rate vs charging cost was plotted with hue defining charging station location, see Figures 3 and 4 respectively. Neither plot displays any visually apparent relationships between the variables studied. \n",
+        "\n",
+        "Histograms were leveraged to help display the distribution of the variables (i) battery capacity, (ii) energy consumed, and (iii) charging rate, see Figures 5, 6, and 7. Battery capacity appears to be three specific categories, 59, 75, and 100 kWh, see Figure 5. Energy consumed (kWh) during charging may be normally distributed with a mean of 40 kWh and a standard deviation of 13 (80/6 = 30 (spread / 6 std. dev.)) with several outliers greater than 80 kWh, see Figure 6. Charging rate may also be normally distributed with a mean of 30 kW and standard deviation of 10 kW (approximately) with several outliers greater than 60 kW, see Figure 7. \n",
+        "\n",
+        "A boxplot was used to help understand the relationship between charging cost and time of charge and charger type, see Figure 8. Graphically is appears that charging cost is not influence by time of day or charger type as there appears to be a high variance within each subgroup vs. between subgroups, see Figure 8. \n",
+        "\n",
+        "A scatterplot of charging temperature, the outside temperature during charge, and its effect on charging rate is provided in Figure 9. Here hue was defined as the age of the vehicle in years, see Figure 9. The scatterplot, like the previous scatterplots visually did not clearly display a relationship between the variables studied, see Figure 9. \n",
+        "\n",
+        "A seaborn pairwise plot is presented in Figure 10. The pairwise plot provides a graphical summary of the entire dataset for ease of attempting to visually determine if there is a relationship or correlation between factors studied. Within the pairwise plot the hue was defined as the vehicle type, see Figure 10. Visually the pairwise plot did not identify any obvious correlations within the dataset, see Figure 10. \n"
+      ],
+      "id": "3a1a06d6"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure1\n",
+        "#| fig-cap: Battery Capacity (KWh) for Five Models of EV Studied\n",
+        "plt.figure(figsize=(8,6))\n",
+        "sns.boxplot(data=ev_charging,x='Vehicle Model',y='Battery Capacity (kWh)')\n",
+        "plt.title('\\nFigure 1 - Battery Capacity (KWh) for Five Models of EV Studied\\n')\n",
+        "plt.xlabel('Vehicle Model Studied')\n",
+        "plt.ylabel('Battery Capacity (kWh)')\n",
+        "plt.show()"
+      ],
+      "id": "Figure1",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure2\n",
+        "#| fig-cap: Charging Station Location vs. Charging Duration (hours)\n",
+        "plt.figure(figsize=(8,6))\n",
+        "sns.boxplot(data=ev_charging,x='Charging Station Location',y='Charging Duration (hours)')\n",
+        "plt.title('\\nFigure 2 - Charging Station Location vs. Charging Duration (hours)\\n')\n",
+        "plt.xlabel('Charging Station Location')\n",
+        "plt.ylabel('Charge Duration (hours)')\n",
+        "plt.show()"
+      ],
+      "id": "Figure2",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure3\n",
+        "#| fig-cap: Charging Rate (kW) vs Charging Cost (USD)\n",
+        "plt.figure(figsize=(8,6))\n",
+        "sns.scatterplot(data=ev_charging,x='Charging Rate (kW)',y='Charging Cost (USD)',hue='Time of Day')\n",
+        "plt.title('\\nFigure 3 - Charging Rate (kW) vs Charging Cost (USD) as a function of Time of Day\\n')\n",
+        "plt.xlabel('Charging Rate (kW)')\n",
+        "plt.ylabel('Charging Cost (USD)')\n",
+        "plt.show()"
+      ],
+      "id": "Figure3",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure4\n",
+        "#| fig-cap: Charging Station Location vs. Charging Duration (hours)\n",
+        "plt.figure(figsize=(8,6))\n",
+        "sns.scatterplot(data=ev_charging,x='Charging Rate (kW)',y='Charging Cost (USD)',hue='Charging Station Location')\n",
+        "plt.title('\\nFigure 4 - Charging Rate (kW) vs. Charging Cost (USD) as a function of Location \\n')\n",
+        "plt.xlabel('Charging Rate (kW)')\n",
+        "plt.ylabel('Chraging Cost (USD)')\n",
+        "plt.show()"
+      ],
+      "id": "Figure4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure5\n",
+        "#| fig-cap: Histogram of Battery Capacity (kWh)\n",
+        "plt.figure()\n",
+        "sns.histplot(data=ev_charging,x='Battery Capacity (kWh)')\n",
+        "plt.title('\\nFigure 5 - Histogram of Battery Capacity (kWh)\\n')\n",
+        "plt.xlabel('Battery Capacity (kWh)')\n",
+        "plt.ylabel('Count')\n",
+        "plt.show()"
+      ],
+      "id": "Figure5",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure6\n",
+        "#| fig-cap: Histogram of Energy Consumed during Charging (kWh)\n",
+        "plt.figure()\n",
+        "sns.histplot(data=ev_charging,x='Energy Consumed (kWh)')\n",
+        "plt.title('\\nFigure 6 - Histogram of Energy Consumed during Charging (kWh)\\n')\n",
+        "plt.xlabel('Energy Consumed')\n",
+        "plt.ylabel('Count')\n",
+        "plt.show()"
+      ],
+      "id": "Figure6",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure7\n",
+        "#| fig-cap: Figure 7 - Histogram of Charging Rate (kw)\n",
+        "plt.figure()\n",
+        "sns.histplot(data=ev_charging,x='Charging Rate (kW)')\n",
+        "plt.title('\\nFigure 7 - Histogram of Charging Rate (kw)\\n')\n",
+        "plt.show()"
+      ],
+      "id": "Figure7",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure8\n",
+        "#| fig-cap: Charging Station Location vs. Charging Duration (hours)\n",
+        "plt.figure(figsize=(8,6))\n",
+        "sns.boxplot(data=ev_charging,x='Time of Day',y='Charging Cost (USD)',hue='Charger Type')\n",
+        "plt.title('\\nFigure 8 - Charging Cost (USD) vs. Time of Day for Three Charger Types\\n')\n",
+        "plt.show()"
+      ],
+      "id": "Figure8",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure9\n",
+        "#| fig-cap: Charging Station Location vs. Charging Duration (hours)\n",
+        "plt.figure(figsize=(8,6))\n",
+        "sns.scatterplot(data=ev_charging,x='Temperature (°C)',y='Charging Rate (kW)',hue='Vehicle Age (years)')\n",
+        "plt.title('\\nFigure 9 - Charging RAte (kW) as a function of Temperature (C) for Vehicles between 0 and 10 years old\\n')\n",
+        "plt.show()"
+      ],
+      "id": "Figure9",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "#### Figure 10 - Seaborn Pair Plot for EV Charging Dataset Variables"
+      ],
+      "id": "8c854dc6"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure10\n",
+        "#| fig-cap: Seaborn Pair Plot for EV Charging Dataset Variables\n",
+        "plt.figure()\n",
+        "sns.pairplot(ev_charging,diag_kind='hist',hue='Vehicle Model')\n",
+        "plt.title('\\nFigure 10 - Seaborn Pair Plot for EV Charging Dataset Variables\\n')\n",
+        "plt.show()"
+      ],
+      "id": "Figure10",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Results\n",
+        "\n",
+        "### Statistical Review of the Data\n",
+        "\n",
+        "A statistical review of the dataset was completed using analysis of variance (ANOVA). ANOVA was selected to complete hypothesis testing where the test is an expansion of the two-sample t-test but allows for the mean of many subgroups to be compared and for differing sample size within each subgroup. The ANOVA assesses variance sum of squares within a subgroup vs. between subgroups. \n",
+        "\n",
+        "Each ANOVA includes a boxplot of the subgroups studied and a p-value. The ANOVA null hypothesis (Ho) is that all subgroups have a common mean value (p-value > alpha). The ANOVA alternative hypothesis (Ha) is that at least one subgroup has a unique mean (p-value < alpha). Alpha, the level of significance is typically 0.05 i.e. there is a 5% change of a Type I error - reject Ho when Ho is true - conclude there is a difference in mean when in fact there is no difference.\n",
+        "\n",
+        "The first hypothesis test completed was (i) Ho: all vehicle models have the same charging cost vs. Ha: at least one vehicle model has a unique charging cost, see Figure 11. The ANOVA for this hypothesis test yielded a p-value = 0.032, see Figure 11. As a result, Ho is rejected in favor of Ha and we conclude at least one vehicle has a unique charging cost. The ANOVA does not identify which subgroup, vehicle model, has the unique mean and graphically it is not visually apparent what vehicle model is unique, see Figure 11. \n",
+        "\n",
+        "The second hypothesis test completed was (ii) Ho: all charging station locations have the same mean charging cost vs. Ha: at least one charging station location has a unique mean charging cost, see Figure 12. The ANOVA yielded a p-value = 0.245 indicating no difference in mean charging cost between charging station locations, see Figure 12. \n",
+        "\n",
+        "The third hypothesis test completed examined (iii) Ho: all charger types have the same mean charging cost vs. Ha: at least one charger type has a unique mean charging cost, see Figure 13. The ANOVA yielded a p-value = 0.02 indicating at least one charger type has a unique mean charging cost. Reviewing the boxplot it is not visually apparent what charger type is unique, see Figure 13. \n",
+        "\n",
+        "To understand the relationship between charging temperature and charging cost a simple linear regression was completed, see Table 3. The linear regression completes the hypothesis test (iv) Ho: coefficient = 0 vs. Ha: coefficient is not equal to zero. The regression provided an equation for charging cost as a function of temperature, (cost (USD) = 21.7858 + 0.0459 * Temperature(C)), see Table 3. A scatterplot of temperature and charging cost with the linear regression line is provided in Figure 14. The p-value for the regressor coefficient was less than alpha indicating there exists a statistically significant relationship and increasing temperature results in increased charging cost, see Table 3 and Figure 14. \n",
+        "\n",
+        "ANOVA was used to understand how (i) vehicle model, (ii) charging station locations, and (iii) charger type had an effect on charging cost. Charging cost appears to be influenced by vehicle model and charger type, see Figures 11 and 13 respectively. The simple linear regression highlighted the relationship between temperature and charging cost. The results of the statistical analysis helped inform the multivariable regression predictive model building efforts.  \n"
+      ],
+      "id": "60699513"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# ANOVA - does vehicle model influence charging cost? \n",
+        "# Ho: model does not effect charing cost\n",
+        "# Ha: at least one model has a different charging cost \n",
+        "\n",
+        "model = ev_charging['Vehicle Model'].unique()\n",
+        "print(model)\n",
+        "\n",
+        "ev_charging = ev_charging.dropna()\n",
+        "\n",
+        "BMW = ev_charging[ev_charging['Vehicle Model'] == model[0]]['Charging Cost (USD)']\n",
+        "Hyundai = ev_charging[ev_charging['Vehicle Model'] == model[1]]['Charging Cost (USD)']\n",
+        "Chevy = ev_charging[ev_charging['Vehicle Model'] == model[2]]['Charging Cost (USD)']\n",
+        "Nissan = ev_charging[ev_charging['Vehicle Model'] == model[3]]['Charging Cost (USD)']\n",
+        "Tesla = ev_charging[ev_charging['Vehicle Model'] == model[4]]['Charging Cost (USD)']\n",
+        "\n",
+        "f_statistic, p_value = stats.f_oneway(BMW, Hyundai, Chevy, Nissan, Tesla)"
+      ],
+      "id": "76e1c387",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure11\n",
+        "#| fig-cap: ANOVA vehicle model vs charging cost\n",
+        "plt.figure()\n",
+        "sns.boxplot(data=ev_charging,x='Vehicle Model',y='Charging Cost (USD)')\n",
+        "plt.title(f'Figure 11 - Analysis of Variance: Charging Cost (USD) vs. Vehicle Model\\n(P-value = {p_value:3.3f})')\n",
+        "plt.show()"
+      ],
+      "id": "Figure11",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# ANOVA - does charging location influence charging cost? \n",
+        "# Ho: charging location does not effect charing cost\n",
+        "# Ha: at least one location  has a different charging cost \n",
+        "\n",
+        "model = ev_charging['Charging Station Location'].unique()\n",
+        "print(model)\n",
+        "\n",
+        "ev_charging = ev_charging.dropna()\n",
+        "\n",
+        "Houston = ev_charging[ev_charging['Charging Station Location'] == model[0]]['Charging Cost (USD)']\n",
+        "SF = ev_charging[ev_charging['Charging Station Location'] == model[1]]['Charging Cost (USD)']\n",
+        "LA = ev_charging[ev_charging['Charging Station Location'] == model[2]]['Charging Cost (USD)']\n",
+        "Chicago = ev_charging[ev_charging['Charging Station Location'] == model[3]]['Charging Cost (USD)']\n",
+        "NY = ev_charging[ev_charging['Charging Station Location'] == model[4]]['Charging Cost (USD)']\n",
+        "\n",
+        "f_statistic, p_value = stats.f_oneway(Houston, SF, LA, Chicago, NY)\n",
+        "\n",
+        "print('P-value:',p_value)"
+      ],
+      "id": "39090267",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure12\n",
+        "#| fig-cap: 'ANOVA: Charging Location vs Charging Cost'\n",
+        "plt.figure()\n",
+        "sns.boxplot(data=ev_charging,x='Charging Station Location',y='Charging Cost (USD)')\n",
+        "plt.title(f'Figure 12 - Analysis of Variance: Charging Cost (USD) vs. Charging Location\\n(P-value = {p_value:3.3f})')\n",
+        "plt.show()"
+      ],
+      "id": "Figure12",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# ANOVA - does the type of charger influence charging cost? \n",
+        "# Ho: type of charger does not effect charing cost\n",
+        "# Ha: at least one charger type has a uniqeu or different mean charging cost \n",
+        "\n",
+        "model = ev_charging['Charger Type'].unique()\n",
+        "print(model)\n",
+        "\n",
+        "ev_charging = ev_charging.dropna()\n",
+        "\n",
+        "FAST = ev_charging[ev_charging['Charger Type'] == model[0]]['Charging Cost (USD)']\n",
+        "Level_1 = ev_charging[ev_charging['Charger Type'] == model[1]]['Charging Cost (USD)']\n",
+        "Level_2 = ev_charging[ev_charging['Charger Type'] == model[2]]['Charging Cost (USD)']\n",
+        "\n",
+        "\n",
+        "f_statistic, p_value = stats.f_oneway(FAST, Level_1,Level_2)\n",
+        "\n",
+        "print('P-value:',p_value)"
+      ],
+      "id": "20622760",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure13\n",
+        "#| fig-cap: 'ANOVA: Charger Type vs Charging Cost'\n",
+        "plt.figure()\n",
+        "sns.boxplot(data=ev_charging,x='Charger Type',y='Charging Cost (USD)')\n",
+        "plt.title(f'Figure 13: ANOVA - Charger Type vs. Charging Cost (USD)\\n(p-value = {p_value:3.2f})')\n",
+        "plt.show()"
+      ],
+      "id": "Figure13",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "#### Table 3 - Linear Regression: Charging Cost (USD) as a function of Temperature (C) \n"
+      ],
+      "id": "bb5c9036"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# linear regression - does charging temperature have an effect on charging cost? \n",
+        "# Ho: linear regression coefficient = 0\n",
+        "# Ha: linear regression coefficient is not equal to 0\n",
+        "\n",
+        "X = ev_charging[['Temperature (°C)']]\n",
+        "\n",
+        "y = ev_charging['Charging Cost (USD)']\n",
+        "\n",
+        "X = sm.add_constant(X)\n",
+        "\n",
+        "model = sm.OLS(y,X).fit()\n",
+        "\n",
+        "print(model.summary())\n",
+        "\n",
+        "p_value_temp = model.pvalues['Temperature (°C)']\n",
+        "print(f\"\\nP-value for Temperature (°C): {p_value_temp:.5f}\")"
+      ],
+      "id": "fbe4c53f",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: Figure14\n",
+        "#| fig-cap: 'Linear Regression: Temperature vs Charging Cost'\n",
+        "plt.figure(figsize=(10,6))\n",
+        "sns.regplot(\n",
+        "    data=ev_charging, \n",
+        "    x='Temperature (°C)', \n",
+        "    y='Charging Cost (USD)', \n",
+        "    ci=None,      \n",
+        "    line_kws={\"color\": \"red\"},  \n",
+        "    scatter_kws={\"alpha\": 0.6} \n",
+        ")\n",
+        "plt.title(\"Figure 14: Linear Regression - Charging Cost vs Temperature (C)\\nregression equation: Charging Cost (USD) = 21.7858 + 0.0459* Temperature (C)\\nRegressor Coefficient P-value = 0.035\",fontsize=10)\n",
+        "plt.xlabel(\"Temperature (°C)\")\n",
+        "plt.ylabel(\"Charging Cost (USD)\")\n",
+        "plt.show()"
+      ],
+      "id": "Figure14",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Empirical Predictive Model Building\n",
+        "\n",
+        "An attempt was made to build a predictive model of charging cost as a function of the factors studied within the dataset using multivariable regression analysis. The multivariable regression analysis was completed in three iterations. The first iteration included all factors in the dataset, see Table 4a and 4b. The second iteration included only those terms that appear to be statistically significant, to improve the R-sq-adjusted value by removing non-significant parameters from the model, see Table 5. The third iteration was a refinement of the regression model, again reducing the number of terms to attempt a model with a high value for R-sq-adjusted, see Table 6. \n",
+        "\n",
+        "The initial regression model included all the terms within the EV charging dataset, see Table 4b. The categorical variables were transformed to numerical values using one-hot-encoding, see Table 4b. That first model provided an empirical model of charging cost as a function of all variables studied with an R-sq-adjusted of 0.017 meaning the model explained 1.7% of the variance within the dataset.\n",
+        "\n",
+        "To improve the R-sq-adjusted value a majority of the non-significant factors were removed from the model, see Table 5. This second model provided an R-sq-adjusted value of 0.021, that is the model explained 2.1% of the variance within the dataset. \n",
+        "\n",
+        "A third multivariance regression model was attempted, again removing non-significant (p-value > 0.05) terms from the model in an attempt to improve R-sq-adjusted by including only statistically significant terms in the model, see Table 6. The third model yielding an R-sq-adjusted = 0.018 - typically an R-sq-adj value greater than 0.7 or 70% is desired. \n",
+        "\n",
+        "The results of the multivariable regression analysis were disappointing, none of the model attempts yielded an R-sq-adjusted above 50%. As a result, the support vector machine (SVM) algorithm was attempted to predict charging cost as a function of the other variables or columns in the dataset, see Tables 7 and 8. The initial SVM model included only numerical factors and provided an R-sq-adjusted of -0.25, see Table 7. The second SVM attempt included all factors, numerical and categorical, one-hot-encoding was used to transform categorical factors to numerical. In both SVM's the data was scaled to ensure a uniform range for each variable studied. However, the second model, even with grid search, yielded a low value for R-sq-adjusted of -0.39 indicating the model was no better than a simple linear regression. \n",
+        "\n",
+        "The empirical modeling effort included multivariable regression and support vector machine analysis. The best performing model was a multivariable regression analysis that included only statistically significant terms and provided an R-sq = 0.041 and R-sq-adjusted = 0.021. The results of the predictive model building were disappointing and may need an expert review to ensure no technical errors in the code were made. \n"
+      ],
+      "id": "a37b3469"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from sklearn.model_selection import train_test_split\n",
+        "from sklearn.linear_model import LinearRegression\n",
+        "from sklearn.preprocessing import OneHotEncoder, StandardScaler\n",
+        "from sklearn.compose import ColumnTransformer\n",
+        "from sklearn.pipeline import Pipeline\n",
+        "from sklearn.metrics import mean_squared_error, r2_score\n",
+        "from sklearn.preprocessing import PolynomialFeatures"
+      ],
+      "id": "0f3fa59c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "ev_charging = ev_charging.dropna()"
+      ],
+      "id": "59f81a4a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "#### Table 4a - Initial Multivariable Regression Analysis: Charging Cost (USD) MSE and R-squared"
+      ],
+      "id": "36798044"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "X = ev_charging[['Vehicle Model','Battery Capacity (kWh)','Charging Station Location','Energy Consumed (kWh)','Charging Duration (hours)','Charging Rate (kW)','Time of Day','Day of Week','State of Charge (Start %)','State of Charge (End %)','Distance Driven (since last charge) (km)','Temperature (°C)','Vehicle Age (years)','Charger Type','User Type']]\n",
+        "\n",
+        "y = ev_charging['Charging Cost (USD)']\n",
+        "\n",
+        "\n",
+        "num_variables = ['Battery Capacity (kWh)','Energy Consumed (kWh)','Charging Duration (hours)','Charging Rate (kW)','State of Charge (Start %)','State of Charge (End %)','Distance Driven (since last charge) (km)','Temperature (°C)','Vehicle Age (years)']\n",
+        "\n",
+        "cat_variables = ['Vehicle Model','Charging Station Location','Time of Day','Day of Week','Charger Type','User Type']\n",
+        "\n",
+        "# Preprocessing for numerical and categorical features\n",
+        "preprocessor = ColumnTransformer(\n",
+        "    transformers=[\n",
+        "        ('num', StandardScaler(), num_variables),\n",
+        "        ('cat', OneHotEncoder(handle_unknown='ignore'), cat_variables)\n",
+        "    ]\n",
+        ")\n",
+        "\n",
+        "# defining the model architecture \n",
+        "model = Pipeline(steps=[\n",
+        "    ('preprocessor', preprocessor),\n",
+        "    ('regressor', LinearRegression())\n",
+        "])\n",
+        "\n",
+        "# Split the data into train and test sets\n",
+        "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n",
+        "\n",
+        "# Train the model\n",
+        "model.fit(X_train, y_train)\n",
+        "\n",
+        "# Predict on the test set\n",
+        "y_pred = model.predict(X_test)\n",
+        "\n",
+        "# Evaluate the model\n",
+        "mse = mean_squared_error(y_test, y_pred)\n",
+        "r2 = r2_score(y_test, y_pred)\n",
+        "print('Table 4a - Initial Multivariable Regression Analysis: Charging Cost (USD) MSE and R-squared')\n",
+        "print(f\"Mean Squared Error: {mse:.2f}\")\n",
+        "print(f\"R-squared: {r2:.2f}\")"
+      ],
+      "id": "dae3727b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "#### Table 4b - Initial Multivariable Regression Analysis: Charging Cost (USD) Model Summary"
+      ],
+      "id": "d44325ba"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "X = ev_charging[['Vehicle Model','Battery Capacity (kWh)','Charging Station Location','Energy Consumed (kWh)','Charging Duration (hours)','Charging Rate (kW)','Time of Day','Day of Week','State of Charge (Start %)','State of Charge (End %)','Distance Driven (since last charge) (km)','Temperature (°C)','Vehicle Age (years)','Charger Type','User Type']]\n",
+        "\n",
+        "y = ev_charging['Charging Cost (USD)']\n",
+        "\n",
+        "\n",
+        "# one-hot-encoding of categorical variables \n",
+        "X = pd.get_dummies(X, drop_first=True, dtype=float)\n",
+        "\n",
+        "# adding a constant to enable calc. of intercept \n",
+        "X = sm.add_constant(X)\n",
+        "\n",
+        "# fititng the model \n",
+        "model = sm.OLS(y,X).fit()\n",
+        "print('Table 4b - Initial Multivariable Regression Analysis: Charging Cost (USD) Model Summary')\n",
+        "print(model.summary())\n"
+      ],
+      "id": "2fa69fde",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "#### Table 5 - Second Iteration, Statistically Significant Factors, Multivariable Regression Analysis\n"
+      ],
+      "id": "f292ed36"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "## removing non-significant terms to improve R2_adj\n",
+        "\n",
+        "X = ev_charging[['Vehicle Model','Charging Station Location','Time of Day','Day of Week','State of Charge (End %)','Temperature (°C)','Charger Type','User Type']]\n",
+        "\n",
+        "y = ev_charging['Charging Cost (USD)']\n",
+        "\n",
+        "X = pd.get_dummies(X, drop_first=True, dtype=float)\n",
+        "X = sm.add_constant(X)\n",
+        "\n",
+        "model = sm.OLS(y,X).fit()\n",
+        "print('Table 5 - Second Iteration, Statistically Significant Factors, Multivariable Regression Analysis')\n",
+        "print(model.summary())"
+      ],
+      "id": "e3598d5c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "#### Table 6 - Third Iteration, Statistically Significant Factors, Multivariable Regression Analysis"
+      ],
+      "id": "082671dc"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "## removing additonal non-significant terms to improve R2_adj\n",
+        "\n",
+        "X = ev_charging[['Vehicle Model','Charging Station Location','State of Charge (End %)','Temperature (°C)','Charger Type','User Type']]\n",
+        "\n",
+        "y = ev_charging['Charging Cost (USD)']\n",
+        "\n",
+        "X = pd.get_dummies(X, drop_first=True, dtype=float)\n",
+        "X = sm.add_constant(X)\n",
+        "\n",
+        "model = sm.OLS(y,X).fit()\n",
+        "print('Table 6 - Third Iteration, Statistically Significant Factors, Multivariable Regression Analysis')\n",
+        "print(model.summary())"
+      ],
+      "id": "3cc5c3f8",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "#### Table 7 - Support Vector Machine Predictive Model, Numerical Factors \n"
+      ],
+      "id": "b3f5ff46"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# using SVM to try and develop an improved predictive model \n",
+        "# applying grid search to try and improve model performance\n",
+        "# using only numerical factors in the model to simplify things \n",
+        "\n",
+        "from sklearn.svm import SVR\n",
+        "\n",
+        "X = ev_charging[['Battery Capacity (kWh)','Energy Consumed (kWh)','Charging Duration (hours)','Charging Rate (kW)','State of Charge (Start %)','State of Charge (End %)','Distance Driven (since last charge) (km)','Temperature (°C)','Vehicle Age (years)']]\n",
+        "\n",
+        "y = ev_charging['Charging Cost (USD)']\n",
+        "\n",
+        "# splitting data in to training and test datasets \n",
+        "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n",
+        "\n",
+        "# scaling the data to have a common range over all variables \n",
+        "scaler_X = StandardScaler()\n",
+        "scaler_y = StandardScaler()\n",
+        "\n",
+        "X_train_scaled = scaler_X.fit_transform(X_train)\n",
+        "X_test_scaled = scaler_X.transform(X_test)\n",
+        "\n",
+        "y_train_scaled = scaler_y.fit_transform(y_train.values.reshape(-1, 1)).ravel()\n",
+        "\n",
+        "# training the SVM \n",
+        "svr_model = SVR(kernel='rbf', C=1.0, epsilon=0.1)  # 'rbf' is a common kernel for regression\n",
+        "svr_model.fit(X_train_scaled, y_train_scaled)\n",
+        "\n",
+        "# using the SVM model to predict values from the X test dataset \n",
+        "y_pred_scaled = svr_model.predict(X_test_scaled)\n",
+        "\n",
+        "# converting the y_predicted using the scaled data back to un-scaled values to enable MSE calc. \n",
+        "y_pred = scaler_y.inverse_transform(y_pred_scaled.reshape(-1, 1))\n",
+        "\n",
+        "# calculating model metrics \n",
+        "mse = mean_squared_error(y_test, y_pred)\n",
+        "r2 = r2_score(y_test, y_pred)\n",
+        "\n",
+        "# interested in calculating R-sq-adjusted \n",
+        "n = X_test.shape[0]  # Number of test samples\n",
+        "k = X_test.shape[1]  # Number of predictor variables\n",
+        "\n",
+        "r2_adjusted = 1 - ((1 - r2) * (n - 1) / (n - k - 1))\n",
+        "\n",
+        "# results \n",
+        "print(f\"Mean Squared Error (MSE): {mse:.2f}\")\n",
+        "print(f\"R^2 Score: {r2:.2f}\")\n",
+        "print(f\"R^2-adjusted Score: {r2_adjusted:.2f}\")\n"
+      ],
+      "id": "30e722f6",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "#### Table 8 - Support Vector Machine: All Factors with One-Hot-Encoding and Grid Search \n"
+      ],
+      "id": "8d9f4b50"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# above SVM did not perform well\n",
+        "# here completing a grid search to refine SVM model parameters \n",
+        "\n",
+        "from sklearn.model_selection import GridSearchCV\n",
+        "\n",
+        "X = ev_charging[['Vehicle Model','Battery Capacity (kWh)','Charging Station Location',\n",
+        "                 'Energy Consumed (kWh)','Charging Duration (hours)','Charging Rate (kW)',\n",
+        "                 'Time of Day','Day of Week','State of Charge (Start %)',\n",
+        "                 'State of Charge (End %)','Distance Driven (since last charge) (km)',\n",
+        "                 'Temperature (°C)','Vehicle Age (years)','Charger Type','User Type']]\n",
+        "\n",
+        "y = ev_charging['Charging Cost (USD)']\n",
+        "\n",
+        "# one-hot-encoding of categorical variables \n",
+        "X = pd.get_dummies(X, drop_first=True, dtype=float)\n",
+        "\n",
+        "# splitting data in to training and test datasets \n",
+        "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n",
+        "\n",
+        "# SVM grid search parameters \n",
+        "svr = SVR()\n",
+        "param_grid = {\n",
+        "    'kernel': ['linear', 'rbf', 'poly'],\n",
+        "    'C': [0.1, 1, 10],\n",
+        "    'epsilon': [0.01, 0.1, 1],\n",
+        "    'gamma': ['scale', 'auto']\n",
+        "}\n",
+        "\n",
+        "# Grid search\n",
+        "grid_search = GridSearchCV(svr, param_grid, cv=5, scoring='r2')\n",
+        "grid_search.fit(X_train_scaled, y_train_scaled)\n",
+        "\n",
+        "# Calculate Adjusted R-squared\n",
+        "n = X_test.shape[0]  # Number of test samples\n",
+        "k = X_test.shape[1]  # Number of predictor variables\n",
+        "\n",
+        "r2_adjusted = 1 - ((1 - r2) * (n - 1) / (n - k - 1))\n",
+        "\n",
+        "# Print Results\n",
+        "print(f\"Mean Squared Error (MSE): {mse:.2f}\")\n",
+        "print(f\"R^2 Score: {r2:.2f}\")\n",
+        "print(f\"R^2-adjusted Score: {r2_adjusted:.2f}\")"
+      ],
+      "id": "d3e73cfe",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Discussion\n",
+        "\n",
+        "The term project comprised an analysis of an electric vehicle charging dataset, see Tables 1 and 2. The analysis of the dataset, to understand what variables influenced charging cost was completed in stages. First, a graphical assessment of the data was completed, see Figures 1 to 10. Second, a statistical review leveraging analysis of variance (ANOVA) was completed to try and understand or isolated variables that might have an effect on charging cost, see Figures 11 to 14. Next empirical models were created and refined to predict charging cost as a function of the other variables in the dataset, see Tables 1 and 2. The modeling effort included both multivariable regression analysis and support vector machine algorithms. The results of the regression analysis is provided in Tables 4, 5 and 6. The results of the support vector machine algorithms are presented in Tables 7 and 8.\n",
+        "\n",
+        "The electric vehicle charging dataset comprised 1320 rows of data and 20 columns. Each row was a charging event with various data documented in the columns, see Tables 1 and 2. The graphical assessment of the dataset did not reveal any obvious trends with respect to charging cost, see Figures 1 to 10. \n",
+        "\n",
+        "The statistical analysis of the data was completed using analysis of variance to compare the means across multiple subgroups, see Figures 11, 12, and 13. That work indicated that vehicle type and charger type had an effect on charging cost, or at least one subgroup in each analysis had an unique mean, see Figures 11 and 13 respectively. Temperature was a continuous variable; as a result, simple linear regression was used to determine the relationship between temperature and charging cost, see Table 3. That work indicated temperature did influence charging cost, increasing temperature increased the cost of charging, see Table 3 and Figure 14. \n",
+        "\n",
+        "Multivariable regression analysis was used to create predictive models of charging cost as a function of the other variables in the dataset, see Tables 4, 6, and 6. The regression analysis included both continuous numerical variables and categorical variables, the categorical variables were transformed to numerical values using one-hot-encoding. The regression analysis approach was iterative. The first model included all the factors in the dataset and yielded an R-sq-adjusted of 0.017 indicating the model explained 1.7% of the variance in the dataset, see Tables 4a and 4b. Ideally, an R-sq-adjusted > 70% would be preferred for a well performing predictive model. The performance of regression model was improved by removing non-significant terms, see Tables 5 and 6. However, the best performing model had an R-sq-adjusted value of 0.021 or 2.1%.\n",
+        "\n",
+        "In an effort to create an improved predictive model the support vector machine (SVM) algorithm was attempted, see Tables 7 and 8. The initial SVM model included only numerical factors to create a predictive model of charging cost; however, that model also yielded a low R-sq-adjusted value of -0.25, see Table 7. To improve the SVM algorithm performance a second attempt was made. That second attempt included both numerical and categorical factors, one-hot-encoding was used to transform categorical factors to numerical. The data was scaled using the standard scaler to ensure a uniform range across all factors. To find optimum SVM parameters a grid search was included. Here too the model performed poorly providing an R-sq-adjusted of -0.39 indicating the SVM was no better than linear regression, see Table 8. \n",
+        "\n",
+        "\n",
+        "\n",
+        "## Conclusions\n",
+        "\n",
+        "The ChilePeppers team completed an assessment of an electric vehicle charging dataset. The dataset provided a record of 1320 charging events and recording 20 parameters for each event. The analysis was completed in stages. First a graphical review of the dataset was completed. Then a statistical review was leveraged to complete hypothesis testing using both ANOVA and regression analysis to understand or identify charging factors that influence the charging cost. Next predictive models were attempted to estimate the charging cost as a function of the other parameters in the dataset using both multivariable regression and support vector machine algorithms. The statistical analysis identified vehicle type and charger type as influencing charging cost. The predictive models while yielding empirical models or equations provided algorithms with very low values for R-sq and R-sq-adjusted. "
+      ],
+      "id": "691f6333"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python312\\share\\jupyter\\kernels\\python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}
