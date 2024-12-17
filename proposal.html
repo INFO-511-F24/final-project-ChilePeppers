@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="ChilePepper">
-<meta name="description" content="A review of all three datasets, in Python, is provided below with descriptions of the variables studied using .head() and .info(). The three datasets considered for the project were (i) electric vehicle (EV) Charging, (ii) an analysis of Spotify Data, and (iii) an assessment of Mobile User Data. The reason and justification for why the team would like to work with these three datasets is provided herein. The team has agreed to select the EV Charging Dataset for the project out of an interest to explore that evolving technical space and build predictive models for charging efficiency.">
+<meta name="description" content="The team has agreed to select the EV Charging Dataset for the project out of an interest to explore that evolving technical space and build predictive models for charging efficiency.">
 
 <title>INFO511 Fall 2024 Project Proposal – ChilePeppers INFO511 Term Project - EV Charging Trends and Predictions</title>
 <style>
@@ -4815,19 +4815,9 @@ vertical-align: -.125em;
    
   <ul>
   <li><a href="#introduction-to-the-data" id="toc-introduction-to-the-data" class="nav-link active" data-scroll-target="#introduction-to-the-data">Introduction to the Data</a></li>
-  <li><a href="#dataset-1---electric-vehicle-charging" id="toc-dataset-1---electric-vehicle-charging" class="nav-link" data-scroll-target="#dataset-1---electric-vehicle-charging">Dataset 1 - Electric Vehicle Charging</a></li>
+  <li><a href="#dataset---electric-vehicle-charging" id="toc-dataset---electric-vehicle-charging" class="nav-link" data-scroll-target="#dataset---electric-vehicle-charging">Dataset - Electric Vehicle Charging</a></li>
   <li><a href="#glimpse-of-the-data-dataset-1---ev-charging" id="toc-glimpse-of-the-data-dataset-1---ev-charging" class="nav-link" data-scroll-target="#glimpse-of-the-data-dataset-1---ev-charging">Glimpse of the Data: Dataset 1 - EV Charging</a></li>
   <li><a href="#analysis-plan-ev-charting-dataset" id="toc-analysis-plan-ev-charting-dataset" class="nav-link" data-scroll-target="#analysis-plan-ev-charting-dataset">Analysis Plan EV Charting Dataset</a></li>
-  <li><a href="#dataset-2---spotify-user-data" id="toc-dataset-2---spotify-user-data" class="nav-link" data-scroll-target="#dataset-2---spotify-user-data">Dataset 2 - Spotify User Data</a>
-  <ul class="collapse">
-  <li><a href="#glimpse-of-the-data-dataset-2-spotify-dataset" id="toc-glimpse-of-the-data-dataset-2-spotify-dataset" class="nav-link" data-scroll-target="#glimpse-of-the-data-dataset-2-spotify-dataset">Glimpse of the Data: Dataset 2: Spotify Dataset</a></li>
-  <li><a href="#analysis-plan-spotify-dataset" id="toc-analysis-plan-spotify-dataset" class="nav-link" data-scroll-target="#analysis-plan-spotify-dataset">Analysis Plan Spotify Dataset</a></li>
-  </ul></li>
-  <li><a href="#dataset-3---mobile-user-behavior" id="toc-dataset-3---mobile-user-behavior" class="nav-link" data-scroll-target="#dataset-3---mobile-user-behavior">Dataset 3 - Mobile user Behavior</a>
-  <ul class="collapse">
-  <li><a href="#glimpse-of-the-dataset-mobile-user-data" id="toc-glimpse-of-the-dataset-mobile-user-data" class="nav-link" data-scroll-target="#glimpse-of-the-dataset-mobile-user-data">Glimpse of the Dataset: Mobile User Data</a></li>
-  <li><a href="#data-analysis-approach-mobile-user-data" id="toc-data-analysis-approach-mobile-user-data" class="nav-link" data-scroll-target="#data-analysis-approach-mobile-user-data">Data Analysis Approach: Mobile User Data</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -4842,7 +4832,7 @@ vertical-align: -.125em;
 
 <div>
   <div class="description">
-    A review of all three datasets, in Python, is provided below with descriptions of the variables studied using .head() and .info(). The three datasets considered for the project were (i) electric vehicle (EV) Charging, (ii) an analysis of Spotify Data, and (iii) an assessment of Mobile User Data. The reason and justification for why the team would like to work with these three datasets is provided herein. The team has agreed to select the EV Charging Dataset for the project out of an interest to explore that evolving technical space and build predictive models for charging efficiency.
+    The team has agreed to select the EV Charging Dataset for the project out of an interest to explore that evolving technical space and build predictive models for charging efficiency.
   </div>
 </div>
 
@@ -4897,8 +4887,8 @@ vertical-align: -.125em;
 <span id="cb2-10"><a href="#cb2-10"></a>mobile_data <span class="op">=</span> pd.read_csv(url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="dataset-1---electric-vehicle-charging" class="level2">
-<h2 class="anchored" data-anchor-id="dataset-1---electric-vehicle-charging">Dataset 1 - Electric Vehicle Charging</h2>
+<section id="dataset---electric-vehicle-charging" class="level2">
+<h2 class="anchored" data-anchor-id="dataset---electric-vehicle-charging">Dataset - Electric Vehicle Charging</h2>
 <ul>
 <li><p><strong>Source of Data</strong>: https://www.kaggle.com/datasets/valakhorasani/electric-vehicle-charging-patterns</p></li>
 <li><p><strong>Description of Observations</strong>: This dataset provides a comprehensive analysis of electric vehicle (EV) charging patterns and user behavior. It contains 1,320 samples of charging session data, including metrics such as energy consumption, charging duration, and vehicle details. Each entry captures various aspects of EV usage, allowing for insightful analysis and predictive modeling.</p></li>
@@ -4925,7 +4915,7 @@ vertical-align: -.125em;
 </section>
 <section id="glimpse-of-the-data-dataset-1---ev-charging" class="level2">
 <h2 class="anchored" data-anchor-id="glimpse-of-the-data-dataset-1---ev-charging">Glimpse of the Data: Dataset 1 - EV Charging</h2>
-<div id="f0a3d1af" class="cell" data-execution_count="3">
+<div id="74634e12" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="bu">print</span>(<span class="ss">f&#39;Table 1: EV Charging Dataset, Summary of Column Headings:</span><span class="ch">\n\n</span><span class="ss">&#39;</span>)</span>
 <span id="cb3-2"><a href="#cb3-2"></a>ev_charging.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -5085,7 +5075,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<div id="8efbbe44" class="cell" data-execution_count="4">
+<div id="cfc9d91e" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="bu">print</span>(<span class="ss">f&#39;Table 2: EV Charging Dataset, Variables and their Type (Dtype)</span><span class="ch">\n\n</span><span class="ss">&#39;</span>)</span>
 <span id="cb5-2"><a href="#cb5-2"></a></span>
 <span id="cb5-3"><a href="#cb5-3"></a>ev_charging.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -5129,404 +5119,10 @@ memory usage: 206.4+ KB</code></pre>
 <p><strong>Step 1</strong>: A data wrangling effort to clean up the DataFrame and a graphical analysis of the dataset.</p>
 <p><strong>Step 2</strong>: A statistical analysis of the dataset using (i) analysis of variance and (ii) mullivariable regression to understand patterns within the data.</p>
 <p><strong>Step 3</strong>: Build a predictive model from the data to understand and predict user trends with respect to electric vehicle charging.</p>
-</section>
-<section id="dataset-2---spotify-user-data" class="level1">
-<h1>Dataset 2 - Spotify User Data</h1>
-<ul>
-<li>Source of the Data:</li>
-</ul>
-<p>https://www.kaggle.com/datasets/abdulszz/spotify-most-streamed-songs This dataset originates from Apple’s and Spotify’s public API. Each track’s streaming metrics and musical attributes could have been aggregated from streaming services’ API or charts, though specific documentation would be necessary to confirm.</p>
-<ul>
-<li><p>Description of Observations: Observations include details on each song’s title, artist(s), release date, and musical attributes (e.g., tempo, key, mode, acousticness, danceability). There are also metrics related to streaming, such as chart ranks and playlist placements on various platforms.</p></li>
-<li><p>Ethical Concerns: The primary ethical concern is the potential for data bias. Since popular songs are more likely to be Western or English-language songs, this could lead to cultural or genre bias in the analysis. Furthermore, if the data includes rankings or metrics derived from proprietary algorithms, care should be taken to avoid misuse or misinterpretation of these rankings.</p></li>
-<li><p>Question: How do musical attributes (such as tempo, energy, and valence) affect a song’s popularity on Spotify as measured by the number of streams and inclusion in playlists?</p></li>
-<li><p>Importance: Understanding the relationship between musical attributes and popularity can be valuable for artists, producers, and streaming platforms to optimize song characteristics for a wider audience reach.</p></li>
-<li><p>Hypothesis: Higher energy and danceability correlate with higher popularity metrics, as listeners may prefer upbeat and energetic tracks.</p></li>
-<li><p>Variable Types: Categorical: Key, mode, release date Quantitative: Streams, danceability, valence, energy, acousticness, instrumentalness</p></li>
-</ul>
-<section id="glimpse-of-the-data-dataset-2-spotify-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="glimpse-of-the-data-dataset-2-spotify-dataset">Glimpse of the Data: Dataset 2: Spotify Dataset</h2>
-<div id="db8b8648" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="ch">\n\n</span><span class="ss">Table 3: Spotify Dataset - Column Summary:</span><span class="ch">\n\n</span><span class="ss">&#39;</span>)</span>
-<span id="cb7-2"><a href="#cb7-2"></a>Spotify_db.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-
-Table 3: Spotify Dataset - Column Summary:
-
-</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">track_name</th>
-<th data-quarto-table-cell-role="th">artist(s)_name</th>
-<th data-quarto-table-cell-role="th">artist_count</th>
-<th data-quarto-table-cell-role="th">released_year</th>
-<th data-quarto-table-cell-role="th">released_month</th>
-<th data-quarto-table-cell-role="th">released_day</th>
-<th data-quarto-table-cell-role="th">in_spotify_playlists</th>
-<th data-quarto-table-cell-role="th">in_spotify_charts</th>
-<th data-quarto-table-cell-role="th">streams</th>
-<th data-quarto-table-cell-role="th">in_apple_playlists</th>
-<th data-quarto-table-cell-role="th">...</th>
-<th data-quarto-table-cell-role="th">key</th>
-<th data-quarto-table-cell-role="th">mode</th>
-<th data-quarto-table-cell-role="th">danceability_%</th>
-<th data-quarto-table-cell-role="th">valence_%</th>
-<th data-quarto-table-cell-role="th">energy_%</th>
-<th data-quarto-table-cell-role="th">acousticness_%</th>
-<th data-quarto-table-cell-role="th">instrumentalness_%</th>
-<th data-quarto-table-cell-role="th">liveness_%</th>
-<th data-quarto-table-cell-role="th">speechiness_%</th>
-<th data-quarto-table-cell-role="th">cover_url</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>Seven (feat. Latto) (Explicit Ver.)</td>
-<td>Latto, Jung Kook</td>
-<td>2</td>
-<td>2023</td>
-<td>7</td>
-<td>14</td>
-<td>553</td>
-<td>147</td>
-<td>141381703</td>
-<td>43</td>
-<td>...</td>
-<td>B</td>
-<td>Major</td>
-<td>80</td>
-<td>89</td>
-<td>83</td>
-<td>31</td>
-<td>0</td>
-<td>8</td>
-<td>4</td>
-<td>Not Found</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>LALA</td>
-<td>Myke Towers</td>
-<td>1</td>
-<td>2023</td>
-<td>3</td>
-<td>23</td>
-<td>1474</td>
-<td>48</td>
-<td>133716286</td>
-<td>48</td>
-<td>...</td>
-<td>C#</td>
-<td>Major</td>
-<td>71</td>
-<td>61</td>
-<td>74</td>
-<td>7</td>
-<td>0</td>
-<td>10</td>
-<td>4</td>
-<td>https://i.scdn.co/image/ab67616d0000b2730656d5...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>vampire</td>
-<td>Olivia Rodrigo</td>
-<td>1</td>
-<td>2023</td>
-<td>6</td>
-<td>30</td>
-<td>1397</td>
-<td>113</td>
-<td>140003974</td>
-<td>94</td>
-<td>...</td>
-<td>F</td>
-<td>Major</td>
-<td>51</td>
-<td>32</td>
-<td>53</td>
-<td>17</td>
-<td>0</td>
-<td>31</td>
-<td>6</td>
-<td>https://i.scdn.co/image/ab67616d0000b273e85259...</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>Cruel Summer</td>
-<td>Taylor Swift</td>
-<td>1</td>
-<td>2019</td>
-<td>8</td>
-<td>23</td>
-<td>7858</td>
-<td>100</td>
-<td>800840817</td>
-<td>116</td>
-<td>...</td>
-<td>A</td>
-<td>Major</td>
-<td>55</td>
-<td>58</td>
-<td>72</td>
-<td>11</td>
-<td>0</td>
-<td>11</td>
-<td>15</td>
-<td>https://i.scdn.co/image/ab67616d0000b273e787cf...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>WHERE SHE GOES</td>
-<td>Bad Bunny</td>
-<td>1</td>
-<td>2023</td>
-<td>5</td>
-<td>18</td>
-<td>3133</td>
-<td>50</td>
-<td>303236322</td>
-<td>84</td>
-<td>...</td>
-<td>A</td>
-<td>Minor</td>
-<td>65</td>
-<td>23</td>
-<td>80</td>
-<td>14</td>
-<td>63</td>
-<td>11</td>
-<td>6</td>
-<td>https://i.scdn.co/image/ab67616d0000b273ab5c9c...</td>
-</tr>
-</tbody>
-</table>
-
-<p>5 rows × 25 columns</p>
-</div>
-</div>
-</div>
-<div id="a9d982dc" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="ch">\n\n</span><span class="ss">Table 4: Spotify Dataset - Variables and Data Type (Dtype) Summary:</span><span class="ch">\n\n</span><span class="ss">&#39;</span>)</span>
-<span id="cb9-2"><a href="#cb9-2"></a></span>
-<span id="cb9-3"><a href="#cb9-3"></a>Spotify_db.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-
-Table 4: Spotify Dataset - Variables and Data Type (Dtype) Summary:
-
-
-&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-RangeIndex: 953 entries, 0 to 952
-Data columns (total 25 columns):
- #   Column                Non-Null Count  Dtype 
----  ------                --------------  ----- 
- 0   track_name            953 non-null    object
- 1   artist(s)_name        953 non-null    object
- 2   artist_count          953 non-null    int64 
- 3   released_year         953 non-null    int64 
- 4   released_month        953 non-null    int64 
- 5   released_day          953 non-null    int64 
- 6   in_spotify_playlists  953 non-null    int64 
- 7   in_spotify_charts     953 non-null    int64 
- 8   streams               953 non-null    object
- 9   in_apple_playlists    953 non-null    int64 
- 10  in_apple_charts       953 non-null    int64 
- 11  in_deezer_playlists   953 non-null    object
- 12  in_deezer_charts      953 non-null    int64 
- 13  in_shazam_charts      903 non-null    object
- 14  bpm                   953 non-null    int64 
- 15  key                   858 non-null    object
- 16  mode                  953 non-null    object
- 17  danceability_%        953 non-null    int64 
- 18  valence_%             953 non-null    int64 
- 19  energy_%              953 non-null    int64 
- 20  acousticness_%        953 non-null    int64 
- 21  instrumentalness_%    953 non-null    int64 
- 22  liveness_%            953 non-null    int64 
- 23  speechiness_%         953 non-null    int64 
- 24  cover_url             953 non-null    object
-dtypes: int64(17), object(8)
-memory usage: 186.3+ KB</code></pre>
-</div>
-</div>
-</section>
-<section id="analysis-plan-spotify-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="analysis-plan-spotify-dataset">Analysis Plan Spotify Dataset</h2>
-<p>The Spotify User dataset comprises 25 columns, 8 object variables and 17 into64 variables. The analysis plan will be completed in three steps to answer the questions and hypothesis stated above.</p>
-<p>Step 1: Dataset cleanup using Pandas data wranging tools and a graphical analysis of the dataset</p>
-<p>Step 2: A statistical analysis of the dataset using (i) analysis of variance and (ii) mullivariable regression to understand patterns within the data.</p>
-<p>Step 3: Build a predictive model from the data to understand and predict trends.</p>
-</section>
-</section>
-<section id="dataset-3---mobile-user-behavior" class="level1">
-<h1>Dataset 3 - Mobile user Behavior</h1>
-<ul>
-<li><p>source of Data: https://www.kaggle.com/datasets/valakhorasani/mobile-device-usage-and-user-behavior-dataset</p></li>
-<li><p>Description of Observation: This dataset provides a comprehensive analysis of mobile device usage patterns and user behavior classification. It contains 700 samples of user data, including metrics such as app usage time, screen-on time, battery drain, and data consumption. Each entry is categorized into one of five user behavior classes, ranging from light to extreme usage, allowing for insightful analysis and modeling.</p></li>
-<li><p>Ethical Concerns: The Mobile Device Usage and User Behavior dataset raises potential privacy concerns, as it includes detailed behavioral metrics that could reveal patterns of individual users if personally identifiable information were present. Ensuring that data is anonymized and securely stored is essential to protect user privacy. Additionally, responsible analysis is important to avoid misinterpreting or stereotyping user behavior, which could lead to biased conclusions or inappropriate applications of the findings.</p></li>
-<li><p>Question: Predicting Battery Drain in Mobile Devices</p></li>
-<li><p>Importance: Understanding and predicting battery usage is essential for improving device performance, enhancing user experience, and guiding power optimization strategies.</p></li>
-<li><p>Variable Types: Categorical: Device Model,Operating System, Number of Apps Installed, Age, Gender Quantitative: App Usage Time, Screen On Time, Data Usage.</p></li>
-</ul>
-<section id="glimpse-of-the-dataset-mobile-user-data" class="level2">
-<h2 class="anchored" data-anchor-id="glimpse-of-the-dataset-mobile-user-data">Glimpse of the Dataset: Mobile User Data</h2>
-<div id="a79074a4" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="ch">\n\n</span><span class="ss">Table 5: Mobile User Dataset, Column Summary:</span><span class="ch">\n\n</span><span class="ss">&#39;</span>)</span>
-<span id="cb11-2"><a href="#cb11-2"></a>mobile_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-
-Table 5: Mobile User Dataset, Column Summary:
-
-</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="7">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">User ID</th>
-<th data-quarto-table-cell-role="th">Device Model</th>
-<th data-quarto-table-cell-role="th">Operating System</th>
-<th data-quarto-table-cell-role="th">App Usage Time (min/day)</th>
-<th data-quarto-table-cell-role="th">Screen On Time (hours/day)</th>
-<th data-quarto-table-cell-role="th">Battery Drain (mAh/day)</th>
-<th data-quarto-table-cell-role="th">Number of Apps Installed</th>
-<th data-quarto-table-cell-role="th">Data Usage (MB/day)</th>
-<th data-quarto-table-cell-role="th">Age</th>
-<th data-quarto-table-cell-role="th">Gender</th>
-<th data-quarto-table-cell-role="th">User Behavior Class</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>1</td>
-<td>Google Pixel 5</td>
-<td>Android</td>
-<td>393</td>
-<td>6.4</td>
-<td>1872</td>
-<td>67</td>
-<td>1122</td>
-<td>40</td>
-<td>Male</td>
-<td>4</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>2</td>
-<td>OnePlus 9</td>
-<td>Android</td>
-<td>268</td>
-<td>4.7</td>
-<td>1331</td>
-<td>42</td>
-<td>944</td>
-<td>47</td>
-<td>Female</td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>3</td>
-<td>Xiaomi Mi 11</td>
-<td>Android</td>
-<td>154</td>
-<td>4.0</td>
-<td>761</td>
-<td>32</td>
-<td>322</td>
-<td>42</td>
-<td>Male</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>4</td>
-<td>Google Pixel 5</td>
-<td>Android</td>
-<td>239</td>
-<td>4.8</td>
-<td>1676</td>
-<td>56</td>
-<td>871</td>
-<td>20</td>
-<td>Male</td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>5</td>
-<td>iPhone 12</td>
-<td>iOS</td>
-<td>187</td>
-<td>4.3</td>
-<td>1367</td>
-<td>58</td>
-<td>988</td>
-<td>31</td>
-<td>Female</td>
-<td>3</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<div id="84dc8b5a" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="bu">print</span>(<span class="ss">f&#39;Table 6: Mobile User Dataset - Data Type (Dtype) Summary:</span><span class="ch">\n\n</span><span class="ss">&#39;</span>)</span>
-<span id="cb13-2"><a href="#cb13-2"></a></span>
-<span id="cb13-3"><a href="#cb13-3"></a>mobile_data.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Table 6: Mobile User Dataset - Data Type (Dtype) Summary:
-
-
-&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-RangeIndex: 700 entries, 0 to 699
-Data columns (total 11 columns):
- #   Column                      Non-Null Count  Dtype  
----  ------                      --------------  -----  
- 0   User ID                     700 non-null    int64  
- 1   Device Model                700 non-null    object 
- 2   Operating System            700 non-null    object 
- 3   App Usage Time (min/day)    700 non-null    int64  
- 4   Screen On Time (hours/day)  700 non-null    float64
- 5   Battery Drain (mAh/day)     700 non-null    int64  
- 6   Number of Apps Installed    700 non-null    int64  
- 7   Data Usage (MB/day)         700 non-null    int64  
- 8   Age                         700 non-null    int64  
- 9   Gender                      700 non-null    object 
- 10  User Behavior Class         700 non-null    int64  
-dtypes: float64(1), int64(7), object(3)
-memory usage: 60.3+ KB</code></pre>
-</div>
-</div>
-</section>
-<section id="data-analysis-approach-mobile-user-data" class="level2">
-<h2 class="anchored" data-anchor-id="data-analysis-approach-mobile-user-data">Data Analysis Approach: Mobile User Data</h2>
-<p>Step 1: Dataset cleanup and a graphical analysis of the dataset.</p>
-<p>Step 2: A statistical analysis of the dataset using (i) analysis of variance and (ii) mullivariable regression to understand patterns within the data.</p>
-<p>Step 3: Build a predictive model from the data to understand and predict trends.</p>
 
 
 <!-- -->
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -6181,188 +5777,110 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
-<div class="sourceCode" id="cb15" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">---</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="an">title:</span><span class="co"> &quot;INFO511 Fall 2024 Project Proposal&quot;</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="an">subtitle:</span><span class="co"> &quot;Exploring evoling electric vehicle charging efficiency&quot;</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a><span class="an">author:</span><span class="co"> </span></span>
-<span id="cb15-5"><a href="#cb15-5"></a><span class="co">  - name: &quot;ChilePepper&quot;</span></span>
-<span id="cb15-6"><a href="#cb15-6"></a><span class="co">    affiliations:</span></span>
-<span id="cb15-7"><a href="#cb15-7"></a><span class="co">      - name: &quot;School of Information, University of Arizona&quot;</span></span>
-<span id="cb15-8"><a href="#cb15-8"></a><span class="an">description:</span><span class="co"> &quot;A review of all three datasets, in Python, is provided below with descriptions of the variables studied using .head() and .info(). The three datasets considered for the project were (i) electric vehicle (EV) Charging, (ii) an analysis of Spotify Data, and (iii) an assessment of Mobile User Data. The reason and justification for why the team would like to work with these three datasets is provided herein. The team has agreed to select the EV Charging Dataset for the project out of an interest to explore that evolving technical space and build predictive models for charging efficiency.&quot;</span></span>
-<span id="cb15-9"><a href="#cb15-9"></a></span>
-<span id="cb15-10"><a href="#cb15-10"></a><span class="an">format:</span></span>
-<span id="cb15-11"><a href="#cb15-11"></a><span class="co">  html:</span></span>
-<span id="cb15-12"><a href="#cb15-12"></a><span class="co">    code-tools: true</span></span>
-<span id="cb15-13"><a href="#cb15-13"></a><span class="co">    code-overflow: wrap</span></span>
-<span id="cb15-14"><a href="#cb15-14"></a><span class="co">    code-line-numbers: true</span></span>
-<span id="cb15-15"><a href="#cb15-15"></a><span class="co">    embed-resources: true</span></span>
-<span id="cb15-16"><a href="#cb15-16"></a><span class="an">editor:</span><span class="co"> visual</span></span>
-<span id="cb15-17"><a href="#cb15-17"></a><span class="an">code-annotations:</span><span class="co"> hover</span></span>
-<span id="cb15-18"><a href="#cb15-18"></a><span class="an">execute:</span></span>
-<span id="cb15-19"><a href="#cb15-19"></a><span class="co">  warning: false</span></span>
-<span id="cb15-20"><a href="#cb15-20"></a><span class="an">jupyter:</span><span class="co"> python3</span></span>
-<span id="cb15-21"><a href="#cb15-21"></a><span class="co">---</span></span>
-<span id="cb15-22"><a href="#cb15-22"></a></span>
-<span id="cb15-25"><a href="#cb15-25"></a><span class="in">```{python}</span></span>
-<span id="cb15-26"><a href="#cb15-26"></a><span class="co">#| label: load-pkgs</span></span>
-<span id="cb15-27"><a href="#cb15-27"></a><span class="co">#| message: false</span></span>
-<span id="cb15-28"><a href="#cb15-28"></a><span class="im">import</span> warnings</span>
-<span id="cb15-29"><a href="#cb15-29"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb15-30"><a href="#cb15-30"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb15-31"><a href="#cb15-31"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb15-32"><a href="#cb15-32"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb15-33"><a href="#cb15-33"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb15-34"><a href="#cb15-34"></a></span>
-<span id="cb15-35"><a href="#cb15-35"></a>warnings.filterwarnings(<span class="st">&quot;ignore&quot;</span>)</span>
-<span id="cb15-36"><a href="#cb15-36"></a></span>
-<span id="cb15-37"><a href="#cb15-37"></a><span class="in">```</span></span>
-<span id="cb15-38"><a href="#cb15-38"></a></span>
-<span id="cb15-39"><a href="#cb15-39"></a><span class="fu">## Introduction to the Data</span></span>
-<span id="cb15-40"><a href="#cb15-40"></a></span>
-<span id="cb15-43"><a href="#cb15-43"></a><span class="in">```{python}</span></span>
-<span id="cb15-44"><a href="#cb15-44"></a><span class="co">#| label: load-dataset</span></span>
-<span id="cb15-45"><a href="#cb15-45"></a><span class="co">#| message: false</span></span>
-<span id="cb15-46"><a href="#cb15-46"></a></span>
-<span id="cb15-47"><a href="#cb15-47"></a>url <span class="op">=</span> <span class="st">&quot;https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/ev_charging_patterns.csv&quot;</span></span>
-<span id="cb15-48"><a href="#cb15-48"></a>ev_charging  <span class="op">=</span> pd.read_csv(url)</span>
-<span id="cb15-49"><a href="#cb15-49"></a></span>
-<span id="cb15-50"><a href="#cb15-50"></a>url <span class="op">=</span> <span class="st">&quot;https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/Spotify_Most_Streamed_Songs.csv&quot;</span></span>
-<span id="cb15-51"><a href="#cb15-51"></a></span>
-<span id="cb15-52"><a href="#cb15-52"></a>Spotify_db <span class="op">=</span> pd.read_csv(url)</span>
-<span id="cb15-53"><a href="#cb15-53"></a></span>
-<span id="cb15-54"><a href="#cb15-54"></a>url <span class="op">=</span> <span class="st">&quot;https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/Mobile_user_behavior_dataset.csv&quot;</span></span>
-<span id="cb15-55"><a href="#cb15-55"></a></span>
-<span id="cb15-56"><a href="#cb15-56"></a>mobile_data <span class="op">=</span> pd.read_csv(url)</span>
-<span id="cb15-57"><a href="#cb15-57"></a><span class="in">```</span></span>
-<span id="cb15-58"><a href="#cb15-58"></a></span>
-<span id="cb15-59"><a href="#cb15-59"></a><span class="fu">## Dataset 1 - Electric Vehicle Charging</span></span>
-<span id="cb15-60"><a href="#cb15-60"></a></span>
-<span id="cb15-61"><a href="#cb15-61"></a><span class="ss">-   </span>**Source of Data**: https://www.kaggle.com/datasets/valakhorasani/electric-vehicle-charging-patterns</span>
-<span id="cb15-62"><a href="#cb15-62"></a></span>
-<span id="cb15-63"><a href="#cb15-63"></a><span class="ss">-   </span>**Description of Observations**: This dataset provides a comprehensive analysis of electric vehicle (EV) charging patterns and user behavior. It contains 1,320 samples of charging session data, including metrics such as energy consumption, charging duration, and vehicle details. Each entry captures various aspects of EV usage, allowing for insightful analysis and predictive modeling.</span>
-<span id="cb15-64"><a href="#cb15-64"></a></span>
-<span id="cb15-65"><a href="#cb15-65"></a><span class="ss">-   </span>**Ethical Concerns**: The dataset has user IDs and specific charging station locations, which means there’s a chance it could reveal patterns in people’s movements and behaviors. To protect privacy, it’s important to keep user IDs anonymous and possibly generalize location data so individuals can’t be tracked. Researchers also need to handle this information carefully and follow data protection rules to use it responsibly.</span>
-<span id="cb15-66"><a href="#cb15-66"></a></span>
-<span id="cb15-67"><a href="#cb15-67"></a><span class="ss">-   </span>**Question**:</span>
-<span id="cb15-68"><a href="#cb15-68"></a></span>
-<span id="cb15-69"><a href="#cb15-69"></a><span class="ss">    1.  </span>How do vehicle model, user type, and starting state of charge influence the cost and duration of EV charging sessions at public stations?</span>
-<span id="cb15-70"><a href="#cb15-70"></a><span class="ss">    2.  </span>Exploring energy consumption and charging behaviors</span>
-<span id="cb15-71"><a href="#cb15-71"></a><span class="ss">    3.  </span>Building predictive models for charging efficiency</span>
-<span id="cb15-72"><a href="#cb15-72"></a></span>
-<span id="cb15-73"><a href="#cb15-73"></a><span class="ss">-   </span>Importance:Understanding the costs and durations associated with different EV types and user profiles can help:</span>
-<span id="cb15-74"><a href="#cb15-74"></a></span>
-<span id="cb15-75"><a href="#cb15-75"></a><span class="ss">    -   </span>Consumers make cost-effective charging decisions.</span>
-<span id="cb15-76"><a href="#cb15-76"></a><span class="ss">    -   </span>Charging service providers optimize station usage and pricing strategies by identifying patterns in energy demand and time usage.</span>
-<span id="cb15-77"><a href="#cb15-77"></a></span>
-<span id="cb15-78"><a href="#cb15-78"></a><span class="ss">-   </span>Hypothesis:</span>
-<span id="cb15-79"><a href="#cb15-79"></a></span>
-<span id="cb15-80"><a href="#cb15-80"></a><span class="ss">    -   </span>Vehicle Model: Larger battery capacity models will have longer charging times and higher costs.</span>
-<span id="cb15-81"><a href="#cb15-81"></a><span class="ss">    -   </span>User Type: Frequent users (like commuters) may incur lower costs per session due to shorter, more regular charging patterns.</span>
-<span id="cb15-82"><a href="#cb15-82"></a><span class="ss">    -   </span>Starting State of Charge: Lower starting charge levels are expected to lead to longer and more costly charging sessions.</span>
-<span id="cb15-83"><a href="#cb15-83"></a></span>
-<span id="cb15-84"><a href="#cb15-84"></a><span class="ss">-   </span>Variable Types: Categorical Variables: Vehicle Model, User Type Quantitative Variables: Charging Cost (USD), Charging Duration (hours), State of Charge (Start %)</span>
-<span id="cb15-85"><a href="#cb15-85"></a></span>
-<span id="cb15-86"><a href="#cb15-86"></a><span class="fu">## Glimpse of the Data: Dataset 1 - EV Charging</span></span>
-<span id="cb15-87"><a href="#cb15-87"></a></span>
-<span id="cb15-90"><a href="#cb15-90"></a><span class="in">```{python}</span></span>
-<span id="cb15-91"><a href="#cb15-91"></a><span class="bu">print</span>(<span class="ss">f&#39;Table 1: EV Charging Dataset, Summary of Column Headings:</span><span class="ch">\n\n</span><span class="ss">&#39;</span>)</span>
-<span id="cb15-92"><a href="#cb15-92"></a>ev_charging.head()</span>
-<span id="cb15-93"><a href="#cb15-93"></a></span>
-<span id="cb15-94"><a href="#cb15-94"></a><span class="in">```</span></span>
-<span id="cb15-95"><a href="#cb15-95"></a></span>
-<span id="cb15-98"><a href="#cb15-98"></a><span class="in">```{python}</span></span>
-<span id="cb15-99"><a href="#cb15-99"></a><span class="bu">print</span>(<span class="ss">f&#39;Table 2: EV Charging Dataset, Variables and their Type (Dtype)</span><span class="ch">\n\n</span><span class="ss">&#39;</span>)</span>
-<span id="cb15-100"><a href="#cb15-100"></a></span>
-<span id="cb15-101"><a href="#cb15-101"></a>ev_charging.info()</span>
-<span id="cb15-102"><a href="#cb15-102"></a><span class="in">```</span></span>
-<span id="cb15-103"><a href="#cb15-103"></a></span>
-<span id="cb15-104"><a href="#cb15-104"></a><span class="fu">## Analysis Plan EV Charting Dataset</span></span>
-<span id="cb15-105"><a href="#cb15-105"></a></span>
-<span id="cb15-106"><a href="#cb15-106"></a>The EV charging dataset comprises 20 columns, 10 object variables and 10 float64 variables. The analysis plan will be completed in three steps to answer the questions and hypothesis stated above.</span>
-<span id="cb15-107"><a href="#cb15-107"></a></span>
-<span id="cb15-108"><a href="#cb15-108"></a>**Step 1**: A data wrangling effort to clean up the DataFrame and a graphical analysis of the dataset.</span>
-<span id="cb15-109"><a href="#cb15-109"></a></span>
-<span id="cb15-110"><a href="#cb15-110"></a>**Step 2**: A statistical analysis of the dataset using (i) analysis of variance and (ii) mullivariable regression to understand patterns within the data.</span>
-<span id="cb15-111"><a href="#cb15-111"></a></span>
-<span id="cb15-112"><a href="#cb15-112"></a>**Step 3**: Build a predictive model from the data to understand and predict user trends with respect to electric vehicle charging.</span>
-<span id="cb15-113"><a href="#cb15-113"></a></span>
-<span id="cb15-114"><a href="#cb15-114"></a><span class="fu"># Dataset 2 - Spotify User Data</span></span>
-<span id="cb15-115"><a href="#cb15-115"></a></span>
-<span id="cb15-116"><a href="#cb15-116"></a><span class="ss">-   </span>Source of the Data:</span>
-<span id="cb15-117"><a href="#cb15-117"></a></span>
-<span id="cb15-118"><a href="#cb15-118"></a>https://www.kaggle.com/datasets/abdulszz/spotify-most-streamed-songs This dataset originates from Apple&#39;s and Spotify&#39;s public API. Each track’s streaming metrics and musical attributes could have been aggregated from streaming services&#39; API or charts, though specific documentation would be necessary to confirm.</span>
-<span id="cb15-119"><a href="#cb15-119"></a></span>
-<span id="cb15-120"><a href="#cb15-120"></a><span class="ss">-   </span>Description of Observations: Observations include details on each song’s title, artist(s), release date, and musical attributes (e.g., tempo, key, mode, acousticness, danceability). There are also metrics related to streaming, such as chart ranks and playlist placements on various platforms.</span>
-<span id="cb15-121"><a href="#cb15-121"></a></span>
-<span id="cb15-122"><a href="#cb15-122"></a><span class="ss">-   </span>Ethical Concerns: The primary ethical concern is the potential for data bias. Since popular songs are more likely to be Western or English-language songs, this could lead to cultural or genre bias in the analysis. Furthermore, if the data includes rankings or metrics derived from proprietary algorithms, care should be taken to avoid misuse or misinterpretation of these rankings.</span>
-<span id="cb15-123"><a href="#cb15-123"></a></span>
-<span id="cb15-124"><a href="#cb15-124"></a><span class="ss">-   </span>Question: How do musical attributes (such as tempo, energy, and valence) affect a song’s popularity on Spotify as measured by the number of streams and inclusion in playlists?</span>
-<span id="cb15-125"><a href="#cb15-125"></a></span>
-<span id="cb15-126"><a href="#cb15-126"></a><span class="ss">-   </span>Importance: Understanding the relationship between musical attributes and popularity can be valuable for artists, producers, and streaming platforms to optimize song characteristics for a wider audience reach.</span>
-<span id="cb15-127"><a href="#cb15-127"></a></span>
-<span id="cb15-128"><a href="#cb15-128"></a><span class="ss">-   </span>Hypothesis: Higher energy and danceability correlate with higher popularity metrics, as listeners may prefer upbeat and energetic tracks.</span>
-<span id="cb15-129"><a href="#cb15-129"></a></span>
-<span id="cb15-130"><a href="#cb15-130"></a><span class="ss">-   </span>Variable Types: Categorical: Key, mode, release date Quantitative: Streams, danceability, valence, energy, acousticness, instrumentalness</span>
-<span id="cb15-131"><a href="#cb15-131"></a></span>
-<span id="cb15-132"><a href="#cb15-132"></a><span class="fu">## Glimpse of the Data: Dataset 2: Spotify Dataset</span></span>
-<span id="cb15-133"><a href="#cb15-133"></a></span>
-<span id="cb15-136"><a href="#cb15-136"></a><span class="in">```{python}</span></span>
-<span id="cb15-137"><a href="#cb15-137"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="ch">\n\n</span><span class="ss">Table 3: Spotify Dataset - Column Summary:</span><span class="ch">\n\n</span><span class="ss">&#39;</span>)</span>
-<span id="cb15-138"><a href="#cb15-138"></a>Spotify_db.head()</span>
-<span id="cb15-139"><a href="#cb15-139"></a></span>
-<span id="cb15-140"><a href="#cb15-140"></a><span class="in">```</span></span>
-<span id="cb15-141"><a href="#cb15-141"></a></span>
-<span id="cb15-144"><a href="#cb15-144"></a><span class="in">```{python}</span></span>
-<span id="cb15-145"><a href="#cb15-145"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="ch">\n\n</span><span class="ss">Table 4: Spotify Dataset - Variables and Data Type (Dtype) Summary:</span><span class="ch">\n\n</span><span class="ss">&#39;</span>)</span>
-<span id="cb15-146"><a href="#cb15-146"></a></span>
-<span id="cb15-147"><a href="#cb15-147"></a>Spotify_db.info()</span>
-<span id="cb15-148"><a href="#cb15-148"></a></span>
-<span id="cb15-149"><a href="#cb15-149"></a><span class="in">```</span></span>
-<span id="cb15-150"><a href="#cb15-150"></a></span>
-<span id="cb15-151"><a href="#cb15-151"></a><span class="fu">## Analysis Plan Spotify Dataset</span></span>
-<span id="cb15-152"><a href="#cb15-152"></a></span>
-<span id="cb15-153"><a href="#cb15-153"></a>The Spotify User dataset comprises 25 columns, 8 object variables and 17 into64 variables. The analysis plan will be completed in three steps to answer the questions and hypothesis stated above.</span>
-<span id="cb15-154"><a href="#cb15-154"></a></span>
-<span id="cb15-155"><a href="#cb15-155"></a>Step 1: Dataset cleanup using Pandas data wranging tools and a graphical analysis of the dataset</span>
-<span id="cb15-156"><a href="#cb15-156"></a></span>
-<span id="cb15-157"><a href="#cb15-157"></a>Step 2: A statistical analysis of the dataset using (i) analysis of variance and (ii) mullivariable regression to understand patterns within the data.</span>
-<span id="cb15-158"><a href="#cb15-158"></a></span>
-<span id="cb15-159"><a href="#cb15-159"></a>Step 3: Build a predictive model from the data to understand and predict trends.</span>
-<span id="cb15-160"><a href="#cb15-160"></a></span>
-<span id="cb15-161"><a href="#cb15-161"></a><span class="fu"># Dataset 3 - Mobile user Behavior</span></span>
-<span id="cb15-162"><a href="#cb15-162"></a></span>
-<span id="cb15-163"><a href="#cb15-163"></a><span class="ss">-   </span>source of Data: https://www.kaggle.com/datasets/valakhorasani/mobile-device-usage-and-user-behavior-dataset</span>
-<span id="cb15-164"><a href="#cb15-164"></a></span>
-<span id="cb15-165"><a href="#cb15-165"></a><span class="ss">-   </span>Description of Observation: This dataset provides a comprehensive analysis of mobile device usage patterns and user behavior classification. It contains 700 samples of user data, including metrics such as app usage time, screen-on time, battery drain, and data consumption. Each entry is categorized into one of five user behavior classes, ranging from light to extreme usage, allowing for insightful analysis and modeling.</span>
-<span id="cb15-166"><a href="#cb15-166"></a></span>
-<span id="cb15-167"><a href="#cb15-167"></a><span class="ss">-   </span>Ethical Concerns: The Mobile Device Usage and User Behavior dataset raises potential privacy concerns, as it includes detailed behavioral metrics that could reveal patterns of individual users if personally identifiable information were present. Ensuring that data is anonymized and securely stored is essential to protect user privacy. Additionally, responsible analysis is important to avoid misinterpreting or stereotyping user behavior, which could lead to biased conclusions or inappropriate applications of the findings.</span>
-<span id="cb15-168"><a href="#cb15-168"></a></span>
-<span id="cb15-169"><a href="#cb15-169"></a><span class="ss">-   </span>Question: Predicting Battery Drain in Mobile Devices</span>
-<span id="cb15-170"><a href="#cb15-170"></a></span>
-<span id="cb15-171"><a href="#cb15-171"></a><span class="ss">-   </span>Importance: Understanding and predicting battery usage is essential for improving device performance, enhancing user experience, and guiding power optimization strategies.</span>
-<span id="cb15-172"><a href="#cb15-172"></a></span>
-<span id="cb15-173"><a href="#cb15-173"></a><span class="ss">-   </span>Variable Types: Categorical: Device Model,Operating System, Number of Apps Installed, Age, Gender Quantitative: App Usage Time, Screen On Time, Data Usage.</span>
-<span id="cb15-174"><a href="#cb15-174"></a></span>
-<span id="cb15-175"><a href="#cb15-175"></a><span class="fu">## Glimpse of the Dataset: Mobile User Data</span></span>
-<span id="cb15-176"><a href="#cb15-176"></a></span>
-<span id="cb15-179"><a href="#cb15-179"></a><span class="in">```{python}</span></span>
-<span id="cb15-180"><a href="#cb15-180"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="ch">\n\n</span><span class="ss">Table 5: Mobile User Dataset, Column Summary:</span><span class="ch">\n\n</span><span class="ss">&#39;</span>)</span>
-<span id="cb15-181"><a href="#cb15-181"></a>mobile_data.head()</span>
-<span id="cb15-182"><a href="#cb15-182"></a><span class="in">```</span></span>
-<span id="cb15-183"><a href="#cb15-183"></a></span>
-<span id="cb15-186"><a href="#cb15-186"></a><span class="in">```{python}</span></span>
-<span id="cb15-187"><a href="#cb15-187"></a><span class="bu">print</span>(<span class="ss">f&#39;Table 6: Mobile User Dataset - Data Type (Dtype) Summary:</span><span class="ch">\n\n</span><span class="ss">&#39;</span>)</span>
-<span id="cb15-188"><a href="#cb15-188"></a></span>
-<span id="cb15-189"><a href="#cb15-189"></a>mobile_data.info()</span>
-<span id="cb15-190"><a href="#cb15-190"></a><span class="in">```</span></span>
-<span id="cb15-191"><a href="#cb15-191"></a></span>
-<span id="cb15-192"><a href="#cb15-192"></a><span class="fu">## Data Analysis Approach: Mobile User Data</span></span>
-<span id="cb15-193"><a href="#cb15-193"></a></span>
-<span id="cb15-194"><a href="#cb15-194"></a>Step 1: Dataset cleanup and a graphical analysis of the dataset.</span>
-<span id="cb15-195"><a href="#cb15-195"></a></span>
-<span id="cb15-196"><a href="#cb15-196"></a>Step 2: A statistical analysis of the dataset using (i) analysis of variance and (ii) mullivariable regression to understand patterns within the data.</span>
-<span id="cb15-197"><a href="#cb15-197"></a></span>
-<span id="cb15-198"><a href="#cb15-198"></a>Step 3: Build a predictive model from the data to understand and predict trends.</span>
+<div class="sourceCode" id="cb7" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">---</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="an">title:</span><span class="co"> &quot;INFO511 Fall 2024 Project Proposal&quot;</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="an">subtitle:</span><span class="co"> &quot;Exploring evoling electric vehicle charging efficiency&quot;</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="an">author:</span><span class="co"> </span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co">  - name: &quot;ChilePepper&quot;</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="co">    affiliations:</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co">      - name: &quot;School of Information, University of Arizona&quot;</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="an">description:</span><span class="co"> &quot; The team has agreed to select the EV Charging Dataset for the project out of an interest to explore that evolving technical space and build predictive models for charging efficiency.&quot;</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="an">format:</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="co">  html:</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="co">    code-tools: true</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="co">    code-overflow: wrap</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="co">    code-line-numbers: true</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a><span class="co">    embed-resources: true</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a><span class="an">editor:</span><span class="co"> visual</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a><span class="an">code-annotations:</span><span class="co"> hover</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a><span class="an">execute:</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a><span class="co">  warning: false</span></span>
+<span id="cb7-20"><a href="#cb7-20"></a><span class="an">jupyter:</span><span class="co"> python3</span></span>
+<span id="cb7-21"><a href="#cb7-21"></a><span class="co">---</span></span>
+<span id="cb7-22"><a href="#cb7-22"></a></span>
+<span id="cb7-25"><a href="#cb7-25"></a><span class="in">```{python}</span></span>
+<span id="cb7-26"><a href="#cb7-26"></a><span class="co">#| label: load-pkgs</span></span>
+<span id="cb7-27"><a href="#cb7-27"></a><span class="co">#| message: false</span></span>
+<span id="cb7-28"><a href="#cb7-28"></a><span class="im">import</span> warnings</span>
+<span id="cb7-29"><a href="#cb7-29"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb7-30"><a href="#cb7-30"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb7-31"><a href="#cb7-31"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-32"><a href="#cb7-32"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-33"><a href="#cb7-33"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb7-34"><a href="#cb7-34"></a></span>
+<span id="cb7-35"><a href="#cb7-35"></a>warnings.filterwarnings(<span class="st">&quot;ignore&quot;</span>)</span>
+<span id="cb7-36"><a href="#cb7-36"></a></span>
+<span id="cb7-37"><a href="#cb7-37"></a><span class="in">```</span></span>
+<span id="cb7-38"><a href="#cb7-38"></a></span>
+<span id="cb7-39"><a href="#cb7-39"></a><span class="fu">## Introduction to the Data</span></span>
+<span id="cb7-40"><a href="#cb7-40"></a></span>
+<span id="cb7-43"><a href="#cb7-43"></a><span class="in">```{python}</span></span>
+<span id="cb7-44"><a href="#cb7-44"></a><span class="co">#| label: load-dataset</span></span>
+<span id="cb7-45"><a href="#cb7-45"></a><span class="co">#| message: false</span></span>
+<span id="cb7-46"><a href="#cb7-46"></a></span>
+<span id="cb7-47"><a href="#cb7-47"></a>url <span class="op">=</span> <span class="st">&quot;https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/ev_charging_patterns.csv&quot;</span></span>
+<span id="cb7-48"><a href="#cb7-48"></a>ev_charging  <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb7-49"><a href="#cb7-49"></a></span>
+<span id="cb7-50"><a href="#cb7-50"></a>url <span class="op">=</span> <span class="st">&quot;https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/Spotify_Most_Streamed_Songs.csv&quot;</span></span>
+<span id="cb7-51"><a href="#cb7-51"></a></span>
+<span id="cb7-52"><a href="#cb7-52"></a>Spotify_db <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb7-53"><a href="#cb7-53"></a></span>
+<span id="cb7-54"><a href="#cb7-54"></a>url <span class="op">=</span> <span class="st">&quot;https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/Mobile_user_behavior_dataset.csv&quot;</span></span>
+<span id="cb7-55"><a href="#cb7-55"></a></span>
+<span id="cb7-56"><a href="#cb7-56"></a>mobile_data <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb7-57"><a href="#cb7-57"></a><span class="in">```</span></span>
+<span id="cb7-58"><a href="#cb7-58"></a></span>
+<span id="cb7-59"><a href="#cb7-59"></a><span class="fu">## Dataset - Electric Vehicle Charging</span></span>
+<span id="cb7-60"><a href="#cb7-60"></a></span>
+<span id="cb7-61"><a href="#cb7-61"></a><span class="ss">-   </span>**Source of Data**: https://www.kaggle.com/datasets/valakhorasani/electric-vehicle-charging-patterns</span>
+<span id="cb7-62"><a href="#cb7-62"></a></span>
+<span id="cb7-63"><a href="#cb7-63"></a><span class="ss">-   </span>**Description of Observations**: This dataset provides a comprehensive analysis of electric vehicle (EV) charging patterns and user behavior. It contains 1,320 samples of charging session data, including metrics such as energy consumption, charging duration, and vehicle details. Each entry captures various aspects of EV usage, allowing for insightful analysis and predictive modeling.</span>
+<span id="cb7-64"><a href="#cb7-64"></a></span>
+<span id="cb7-65"><a href="#cb7-65"></a><span class="ss">-   </span>**Ethical Concerns**: The dataset has user IDs and specific charging station locations, which means there’s a chance it could reveal patterns in people’s movements and behaviors. To protect privacy, it’s important to keep user IDs anonymous and possibly generalize location data so individuals can’t be tracked. Researchers also need to handle this information carefully and follow data protection rules to use it responsibly.</span>
+<span id="cb7-66"><a href="#cb7-66"></a></span>
+<span id="cb7-67"><a href="#cb7-67"></a><span class="ss">-   </span>**Question**:</span>
+<span id="cb7-68"><a href="#cb7-68"></a></span>
+<span id="cb7-69"><a href="#cb7-69"></a><span class="ss">    1.  </span>How do vehicle model, user type, and starting state of charge influence the cost and duration of EV charging sessions at public stations?</span>
+<span id="cb7-70"><a href="#cb7-70"></a><span class="ss">    2.  </span>Exploring energy consumption and charging behaviors</span>
+<span id="cb7-71"><a href="#cb7-71"></a><span class="ss">    3.  </span>Building predictive models for charging efficiency</span>
+<span id="cb7-72"><a href="#cb7-72"></a></span>
+<span id="cb7-73"><a href="#cb7-73"></a><span class="ss">-   </span>Importance:Understanding the costs and durations associated with different EV types and user profiles can help:</span>
+<span id="cb7-74"><a href="#cb7-74"></a></span>
+<span id="cb7-75"><a href="#cb7-75"></a><span class="ss">    -   </span>Consumers make cost-effective charging decisions.</span>
+<span id="cb7-76"><a href="#cb7-76"></a><span class="ss">    -   </span>Charging service providers optimize station usage and pricing strategies by identifying patterns in energy demand and time usage.</span>
+<span id="cb7-77"><a href="#cb7-77"></a></span>
+<span id="cb7-78"><a href="#cb7-78"></a><span class="ss">-   </span>Hypothesis:</span>
+<span id="cb7-79"><a href="#cb7-79"></a></span>
+<span id="cb7-80"><a href="#cb7-80"></a><span class="ss">    -   </span>Vehicle Model: Larger battery capacity models will have longer charging times and higher costs.</span>
+<span id="cb7-81"><a href="#cb7-81"></a><span class="ss">    -   </span>User Type: Frequent users (like commuters) may incur lower costs per session due to shorter, more regular charging patterns.</span>
+<span id="cb7-82"><a href="#cb7-82"></a><span class="ss">    -   </span>Starting State of Charge: Lower starting charge levels are expected to lead to longer and more costly charging sessions.</span>
+<span id="cb7-83"><a href="#cb7-83"></a></span>
+<span id="cb7-84"><a href="#cb7-84"></a><span class="ss">-   </span>Variable Types: Categorical Variables: Vehicle Model, User Type Quantitative Variables: Charging Cost (USD), Charging Duration (hours), State of Charge (Start %)</span>
+<span id="cb7-85"><a href="#cb7-85"></a></span>
+<span id="cb7-86"><a href="#cb7-86"></a><span class="fu">## Glimpse of the Data: Dataset 1 - EV Charging</span></span>
+<span id="cb7-87"><a href="#cb7-87"></a></span>
+<span id="cb7-90"><a href="#cb7-90"></a><span class="in">```{python}</span></span>
+<span id="cb7-91"><a href="#cb7-91"></a><span class="bu">print</span>(<span class="ss">f&#39;Table 1: EV Charging Dataset, Summary of Column Headings:</span><span class="ch">\n\n</span><span class="ss">&#39;</span>)</span>
+<span id="cb7-92"><a href="#cb7-92"></a>ev_charging.head()</span>
+<span id="cb7-93"><a href="#cb7-93"></a></span>
+<span id="cb7-94"><a href="#cb7-94"></a><span class="in">```</span></span>
+<span id="cb7-95"><a href="#cb7-95"></a></span>
+<span id="cb7-98"><a href="#cb7-98"></a><span class="in">```{python}</span></span>
+<span id="cb7-99"><a href="#cb7-99"></a><span class="bu">print</span>(<span class="ss">f&#39;Table 2: EV Charging Dataset, Variables and their Type (Dtype)</span><span class="ch">\n\n</span><span class="ss">&#39;</span>)</span>
+<span id="cb7-100"><a href="#cb7-100"></a></span>
+<span id="cb7-101"><a href="#cb7-101"></a>ev_charging.info()</span>
+<span id="cb7-102"><a href="#cb7-102"></a><span class="in">```</span></span>
+<span id="cb7-103"><a href="#cb7-103"></a></span>
+<span id="cb7-104"><a href="#cb7-104"></a><span class="fu">## Analysis Plan EV Charting Dataset</span></span>
+<span id="cb7-105"><a href="#cb7-105"></a></span>
+<span id="cb7-106"><a href="#cb7-106"></a>The EV charging dataset comprises 20 columns, 10 object variables and 10 float64 variables. The analysis plan will be completed in three steps to answer the questions and hypothesis stated above.</span>
+<span id="cb7-107"><a href="#cb7-107"></a></span>
+<span id="cb7-108"><a href="#cb7-108"></a>**Step 1**: A data wrangling effort to clean up the DataFrame and a graphical analysis of the dataset.</span>
+<span id="cb7-109"><a href="#cb7-109"></a></span>
+<span id="cb7-110"><a href="#cb7-110"></a>**Step 2**: A statistical analysis of the dataset using (i) analysis of variance and (ii) mullivariable regression to understand patterns within the data.</span>
+<span id="cb7-111"><a href="#cb7-111"></a></span>
+<span id="cb7-112"><a href="#cb7-112"></a>**Step 3**: Build a predictive model from the data to understand and predict user trends with respect to electric vehicle charging.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
