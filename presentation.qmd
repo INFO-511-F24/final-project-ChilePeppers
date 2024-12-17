@@ -11,5 +11,5 @@ editor: visual
 Welcome to our final project presentation for INFO 511.
 
 <iframe src="Info%20511%20Project-ChilePeppers.pdf" width="100%" height="800px" style="border: none;">
-</iframe>
 
+</iframe>
