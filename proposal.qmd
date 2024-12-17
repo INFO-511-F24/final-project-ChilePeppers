@@ -40,16 +40,16 @@ warnings.filterwarnings("ignore")
 #| label: load-dataset
 #| message: false
 
-#url = "https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/ev_charging_patterns.csv"
-#ev_charging  = pd.read_csv(url)
+url = "https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/ev_charging_patterns.csv"
+ev_charging  = pd.read_csv(url)
 
-#url = "https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/Spotify_Most_Streamed_Songs.csv"
+url = "https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/Spotify_Most_Streamed_Songs.csv"
 
-#Spotify_db = pd.read_csv(url)
+Spotify_db = pd.read_csv(url)
 
-#url = "https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/Mobile_user_behavior_dataset.csv"
+url = "https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/Mobile_user_behavior_dataset.csv"
 
-#mobile_data = pd.read_csv(url)
+mobile_data = pd.read_csv(url)
 ```
 
 ## Dataset - Electric Vehicle Charging

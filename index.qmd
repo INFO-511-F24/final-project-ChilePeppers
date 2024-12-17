@@ -22,11 +22,10 @@ execute:
 jupyter: python3
 ---
 
-```{python}
+```{python, echo=false}
 #| label: load-pkgs
 #| message: false
 import warnings
-import pandas as pd
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -48,21 +47,21 @@ The ChilePeppers team completed an assessment of the electric vehicle (EV) charg
 
 ### Table 1 - Electric Vehicle (EV) Charging Dataset: Column Headings
 
-```{python}
+```{python, echo=false}
 
 url = "https://raw.githubusercontent.com/INFO-511-F24/final-project-ChilePeppers/main/data/ev_charging_patterns.csv"
-ev_charging  = pd.read_csv(url)
+ev_charging = pd.read_csv(url)
 
 ev_charging.head()
 ```
 
 ### Table 2 - EV Charging Dataset: Column Data Types
 
-```{python}
+```{python, echo=false}
 ev_charging.info()
 ```
 
-```{python}
+```{python, echo=false}
 pd.set_option('display.max_columns', None) 
 pd.set_option('display.width', 1000)    
 pd.set_option('display.float_format', '{:.2f}'.format) 
@@ -88,7 +87,7 @@ A scatterplot of charging temperature, the outside temperature during charge, an
 
 A seaborn pairwise plot is presented in Figure 10. The pairwise plot provides a graphical summary of the entire dataset for ease of attempting to visually determine if there is a relationship or correlation between factors studied. Within the pairwise plot the hue was defined as the vehicle type, see Figure 10. Visually the pairwise plot did not identify any obvious correlations within the dataset, see Figure 10.
 
-```{python}
+```{python, echo=false}
 #| label: Figure1
 #| fig-cap: "Battery Capacity (KWh) for Five Models of EV Studied"
 plt.figure(figsize=(8,6))
@@ -99,7 +98,7 @@ plt.ylabel('Battery Capacity (kWh)')
 plt.show()
 ```
 
-```{python}
+```{python, echo=false}
 #| label: Figure2
 #| fig-cap: "Charging Station Location vs. Charging Duration (hours)"
 plt.figure(figsize=(8,6))
@@ -109,8 +108,7 @@ plt.xlabel('Charging Station Location')
 plt.ylabel('Charge Duration (hours)')
 plt.show()
 ```
-
-```{python}
+```{python, echo=false}
 #| label: Figure3
 #| fig-cap: "Charging Rate (kW) vs Charging Cost (USD)"
 plt.figure(figsize=(8,6))
@@ -122,7 +120,7 @@ plt.show()
 
 ```
 
-```{python}
+```{python, echo=false}
 #| label: Figure4
 #| fig-cap: "Charging Station Location vs. Charging Duration (hours)"
 plt.figure(figsize=(8,6))
@@ -134,7 +132,7 @@ plt.show()
 
 ```
 
-```{python}
+```{python, echo=false}
 #| label: Figure5
 #| fig-cap: "Histogram of Battery Capacity (kWh)"
 plt.figure()
@@ -145,7 +143,7 @@ plt.ylabel('Count')
 plt.show()
 ```
 
-```{python}
+```{python, echo=false}
 #| label: Figure6
 #| fig-cap: "Histogram of Energy Consumed during Charging (kWh)"
 plt.figure()
@@ -156,7 +154,7 @@ plt.ylabel('Count')
 plt.show()
 ```
 
-```{python}
+```{python, echo=false}
 #| label: Figure7
 #| fig-cap: "Figure 7 - Histogram of Charging Rate (kw)"
 plt.figure()
@@ -165,7 +163,7 @@ plt.title('\nFigure 7 - Histogram of Charging Rate (kw)\n')
 plt.show()
 ```
 
-```{python}
+```{python, echo=false}
 #| label: Figure8
 #| fig-cap: "Charging Station Location vs. Charging Duration (hours)"
 plt.figure(figsize=(8,6))
@@ -175,7 +173,7 @@ plt.show()
 
 ```
 
-```{python}
+```{python, echo=false}
 #| label: Figure9
 #| fig-cap: "Charging Station Location vs. Charging Duration (hours)"
 plt.figure(figsize=(8,6))
@@ -187,7 +185,7 @@ plt.show()
 
 #### Figure 10 - Seaborn Pair Plot for EV Charging Dataset Variables
 
-```{python}
+```{python, echo=false}
 #| label: Figure10
 #| fig-cap: "Seaborn Pair Plot for EV Charging Dataset Variables"
 plt.figure()
@@ -215,7 +213,7 @@ To understand the relationship between charging temperature and charging cost a 
 
 ANOVA was used to understand how (i) vehicle model, (ii) charging station locations, and (iii) charger type had an effect on charging cost. Charging cost appears to be influenced by vehicle model and charger type, see Figures 11 and 13 respectively. The simple linear regression highlighted the relationship between temperature and charging cost. The results of the statistical analysis helped inform the multivariate regression predictive model building efforts.
 
-```{python}
+```{python, echo=false}
 # ANOVA - does vehicle model influence charging cost? 
 # Ho: model does not effect charing cost
 # Ha: at least one model has a different charging cost 
@@ -235,7 +233,7 @@ f_statistic, p_value = stats.f_oneway(BMW, Hyundai, Chevy, Nissan, Tesla)
 
 ```
 
-```{python}
+```{python, echo=false}
 #| label: Figure11
 #| fig-cap: "ANOVA vehicle model vs charging cost"
 plt.figure()
@@ -245,7 +243,7 @@ plt.show()
 
 ```
 
-```{python}
+```{python, echo=false}
 # ANOVA - does charging location influence charging cost? 
 # Ho: charging location does not effect charing cost
 # Ha: at least one location  has a different charging cost 
@@ -267,7 +265,7 @@ print('P-value:',p_value)
 
 ```
 
-```{python}
+```{python, echo=false}
 #| label: Figure12
 #| fig-cap: "ANOVA: Charging Location vs Charging Cost"
 plt.figure()
@@ -277,7 +275,7 @@ plt.show()
 
 ```
 
-```{python}
+```{python, echo=false}
 # ANOVA - does the type of charger influence charging cost? 
 # Ho: type of charger does not effect charing cost
 # Ha: at least one charger type has a uniqeu or different mean charging cost 
@@ -298,7 +296,7 @@ print('P-value:',p_value)
 
 ```
 
-```{python}
+```{python, echo=false}
 #| label: Figure13
 #| fig-cap: "ANOVA: Charger Type vs Charging Cost"
 plt.figure()
@@ -309,7 +307,7 @@ plt.show()
 
 #### Table 3 - Linear Regression: Charging Cost (USD) as a function of Temperature (C)
 
-```{python}
+```{python, echo=false}
 # linear regression - does charging temperature have an effect on charging cost? 
 # Ho: linear regression coefficient = 0
 # Ha: linear regression coefficient is not equal to 0
@@ -329,7 +327,7 @@ print(f"\nP-value for Temperature (°C): {p_value_temp:.5f}")
 
 ```
 
-```{python}
+```{python, echo=false}
 #| label: Figure14
 #| fig-cap: "Linear Regression: Temperature vs Charging Cost"
 plt.figure(figsize=(10,6))
@@ -361,7 +359,7 @@ The results of the multivariate regression analysis were disappointing, none of 
 
 The empirical modeling effort included multivariate regression and support vector regression analysis. Other machine learning algorithms were not attempted because the response, charging cost, was a continues variable and not binary or categorical; as a result, logistic regression nor nearest neighbors were applied. The best performing model was a multivariate regression analysis that included only statistically significant terms and provided an R-sq = 0.041 and R-sq-adjusted = 0.021. The results of the predictive model building were disappointing and may need an expert review to ensure no technical errors in the code were made.
 
-```{python}
+```{python, echo=false}
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
@@ -372,13 +370,13 @@ from sklearn.preprocessing import PolynomialFeatures
 
 ```
 
-```{python}
+```{python, echo=false}
 ev_charging = ev_charging.dropna()
 ```
 
 #### Table 4a - Initial Multivariable Regression Analysis: Charging Cost (USD) MSE and R-squared
 
-```{python}
+```{python, echo=false}
 
 X = ev_charging[['Vehicle Model','Battery Capacity (kWh)','Charging Station Location','Energy Consumed (kWh)','Charging Duration (hours)','Charging Rate (kW)','Time of Day','Day of Week','State of Charge (Start %)','State of Charge (End %)','Distance Driven (since last charge) (km)','Temperature (°C)','Vehicle Age (years)','Charger Type','User Type']]
 
@@ -423,7 +421,7 @@ print(f"R-squared: {r2:.2f}")
 
 #### Table 4b - Initial Multivariable Regression Analysis: Charging Cost (USD) Model Summary
 
-```{python}
+```{python, echo=false}
 
 X = ev_charging[['Vehicle Model','Battery Capacity (kWh)','Charging Station Location','Energy Consumed (kWh)','Charging Duration (hours)','Charging Rate (kW)','Time of Day','Day of Week','State of Charge (Start %)','State of Charge (End %)','Distance Driven (since last charge) (km)','Temperature (°C)','Vehicle Age (years)','Charger Type','User Type']]
 
@@ -446,7 +444,7 @@ print(model.summary())
 
 #### Table 5 - Second Iteration, Statistically Significant Factors, Multivariable Regression Analysis
 
-```{python}
+```{python, echo=false}
 ## removing non-significant terms to improve R2_adj
 
 X = ev_charging[['Vehicle Model','Charging Station Location','Time of Day','Day of Week','State of Charge (End %)','Temperature (°C)','Charger Type','User Type']]
@@ -464,7 +462,7 @@ print(model.summary())
 
 #### Table 6 - Third Iteration, Statistically Significant Factors, Multivariable Regression Analysis
 
-```{python}
+```{python, echo=false}
 ## removing additonal non-significant terms to improve R2_adj
 
 X = ev_charging[['Vehicle Model','Charging Station Location','State of Charge (End %)','Temperature (°C)','Charger Type','User Type']]
@@ -482,7 +480,7 @@ print(model.summary())
 
 #### Table 7 - Support Vector Machine: All Factors with One-Hot-Encoding and Grid Search Linear, RBF, and Polynomial Kernels
 
-```{python}
+```{python, echo=false}
 # initial attempt at a SVM model to improve the model performance vs. multivariable regression 
 # using Support Vector Regression (SVR)
 
@@ -562,7 +560,7 @@ print(best_model)
 
 #### Table 8 - Support Vector Machine: All Factors with One-Hot-Encoding and Grid Search RBF Kernel Hyperparameters
 
-```{python}
+```{python, echo=false}
 # trying to optimize the SVM RBF kernal to achieve a half decent model 
 
 from sklearn.model_selection import GridSearchCV
@@ -635,7 +633,7 @@ print(best_model)
 
 #### Table 9 - Support Vector Machine: All Factors with One-Hot-Encoding and Grid Search Polynomial Kernel Hyperparameters
 
-```{python}
+```{python, echo=false}
 # trying to optimize the SVM poly kernal to improve model performance
 
 from sklearn.model_selection import GridSearchCV
