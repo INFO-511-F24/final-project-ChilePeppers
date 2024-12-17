@@ -23,7 +23,7 @@
         "jupyter: python3\n",
         "---"
       ],
-      "id": "6cb11fe2"
+      "id": "6b915e9b"
     },
     {
       "cell_type": "code",
@@ -109,7 +109,7 @@
         "\n",
         "## Code\n"
       ],
-      "id": "cf588b7c"
+      "id": "7128f0e7"
     },
     {
       "cell_type": "code",
@@ -130,7 +130,7 @@
         "est2 = est.fit()\n",
         "print(est2.summary())"
       ],
-      "id": "27cc00c5",
+      "id": "9aeff29d",
       "execution_count": null,
       "outputs": []
     },
@@ -140,7 +140,7 @@
       "source": [
         "## Plots\n"
       ],
-      "id": "ddf00c81"
+      "id": "1a80ae11"
     },
     {
       "cell_type": "code",
@@ -150,7 +150,7 @@
         "sns.scatterplot(data=penguins, x='flipper_length_mm', y='body_mass_g', hue='species')\n",
         "plt.show()"
       ],
-      "id": "b63f7dae",
+      "id": "59acc720",
       "execution_count": null,
       "outputs": []
     },
@@ -169,7 +169,7 @@
         "\n",
         "::: {.column width=\"50%\"}"
       ],
-      "id": "c26635b7"
+      "id": "21167072"
     },
     {
       "cell_type": "code",
@@ -182,7 +182,7 @@
         "sns.boxplot(data=penguins, x='bill_length_mm', y='species', hue='species', ax=ax)\n",
         "plt.show()"
       ],
-      "id": "705d2aa1",
+      "id": "ea338a36",
       "execution_count": null,
       "outputs": []
     },
@@ -199,7 +199,7 @@
         "\n",
         "If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,\n"
       ],
-      "id": "3752c17b"
+      "id": "f0156f79"
     },
     {
       "cell_type": "code",
@@ -207,7 +207,7 @@
       "source": [
         "penguins.head().to_html()"
       ],
-      "id": "4f618039",
+      "id": "59b4a4e2",
       "execution_count": null,
       "outputs": []
     },
@@ -245,15 +245,14 @@
         "\n",
         "-   But some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs."
       ],
-      "id": "1e4100fb"
+      "id": "aefd2168"
     }
   ],
   "metadata": {
     "kernelspec": {
-      "name": "python3",
+      "display_name": "Python 3",
       "language": "python",
-      "display_name": "Python 3 (ipykernel)",
-      "path": "C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python312\\share\\jupyter\\kernels\\python3"
+      "name": "python3"
     }
   },
   "nbformat": 4,

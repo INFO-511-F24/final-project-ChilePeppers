@@ -26,7 +26,7 @@
         "jupyter: python3\n",
         "---"
       ],
-      "id": "3a89ca03"
+      "id": "90fca82c"
     },
     {
       "cell_type": "code",
@@ -54,7 +54,7 @@
       "source": [
         "## Introduction to the Data\n"
       ],
-      "id": "5143f90a"
+      "id": "57cd813e"
     },
     {
       "cell_type": "code",
@@ -112,7 +112,7 @@
         "\n",
         "## Glimpse of the Data: Dataset 1 - EV Charging\n"
       ],
-      "id": "d1360133"
+      "id": "8400ca96"
     },
     {
       "cell_type": "code",
@@ -121,7 +121,7 @@
         "print(f'Table 1: EV Charging Dataset, Summary of Column Headings:\\n\\n')\n",
         "ev_charging.head()"
       ],
-      "id": "dd76f4b8",
+      "id": "9ae6208f",
       "execution_count": null,
       "outputs": []
     },
@@ -133,7 +133,7 @@
         "\n",
         "ev_charging.info()"
       ],
-      "id": "c2fe33ab",
+      "id": "bc494d8e",
       "execution_count": null,
       "outputs": []
     },
@@ -151,15 +151,14 @@
         "\n",
         "**Step 3**: Build a predictive model from the data to understand and predict user trends with respect to electric vehicle charging."
       ],
-      "id": "bb67f372"
+      "id": "0268c5a0"
     }
   ],
   "metadata": {
     "kernelspec": {
-      "name": "python3",
+      "display_name": "Python 3",
       "language": "python",
-      "display_name": "Python 3 (ipykernel)",
-      "path": "C:\\Users\\derek\\anaconda3\\share\\jupyter\\kernels\\python3"
+      "name": "python3"
     }
   },
   "nbformat": 4,
