@@ -7,67 +7,11 @@
     "text": "Team Project Contract\nProject Title: (Working Title) “Assessment of Electric Vehicle Charging Trends”\nTeam Members: Derek Rice, slack and/or derekrice@arizona.edu Shreya Kolte, slack and/or shreyakolte@arizona.edu Pouya Jalali Khalilabadi, slack and/or pouyaj@arizona.edu Issaiah Johnson, Slack and/or Issaiahj@arizona.edu\nProject Overview:\nProject Description: Complete data analysis of a TBD dataset. The analysis includes data clearning and wrangling, data analysis, visualization, and documentation of results.\nExpected Deliverables: A project report with (i) description of the dataset, (ii) objectives of the project and a Problem Statement, (iii) data cleaning summary, (iv) data analysis summary, and (v) a written report and supporting python code.\nTeam Goals\nProject Goals: Learn how to collaborate as a team on the data analysis and report writng via github.\nLearning Objectives: (i) data clearning and wrangling, (ii) data analsyis, (iii) creating visualizations to summarize results and insights, and (iv) report writing.\nTeam Roles and Responsibilities\nRoles (change as needed):\nProject Manager: [Shreya Vikas Kolte] – Ensures timelines are met, organizes meetings, and manages communications.\nData Analyst: [Issaiah Johnson and Kyle Aswege] – Responsible for data cleaning, analysis, and exploratory visualizations.\nVisualization Specialist: [Pouya Jalali Khalilabadi] – Designs the final visualizations and makes aesthetic choices.\nDocumentation Lead: [Derek Rice] – Keeps detailed notes, ensures all project decisions are documented, and handles the final report.\nResponsibilities:\nGeneral Responsibilities: Each team member is responsible for: 1. Participating actively in all meetings. 2. Completing their assigned tasks on time. 3. Communicating openly and promptly if issues arise.\nCommunication Plan * Meeting Schedule: Weekly on [Friday] at [7pm] via [Slack]. * Primary Communication Platform: [Slack].\nDecision-Making Process: Decisions will be made by consensus; if a consensus cannot be reached, a vote will be taken.\nWork Plan and Timeline\nMilestones:\nData Collection and Cleaning: Completed by [1-NOV-2024].\nExploratory Data Analysis: Completed by [15-NOV-2024].\nDesign of Visualizations: Completed by [30-NOV-2024].\nFinal Presentation and Report: Completed by [9th Dec. 2024].\nTask Assignments: [Use a table to assign tasks to team members with due dates.]\nAccountability and Expectations\nAttendance Policy: All team members are expected to attend scheduled meetings unless previously discussed.\nQuality of Work: All deliverables should be completed to a professional standard.\nDeadlines: All members are responsible for meeting deadlines. If someone cannot meet a deadline, they must notify the team in advance.\nConflict Resolution Plan\nConflict Management: If a conflict arises, team members will:\nDiscuss the issue openly during a team meeting.\nAttempt to resolve the issue through compromise.\nIf the conflict persists, consult the project supervisor for guidance.\nSignatures By signing below, each team member agrees to the terms of this contract and commits to working together effectively and respectfully. [Name]: Issaiah Johnson Date: 10/12/2024 [Name]: Shreya Kolte Date: 11/08/2024 [Name]: Derek Rice____________ Date: 16-NOV-2024______ [Name]: ________________________ Date: ___________\nThis template ensures that everyone understands their roles, responsibilities, and the expectations for the project. It can help prevent misunderstandings and promote effective teamwork throughout the project."
   },
   {
-    "objectID": "presentation.html#quarto",
-    "href": "presentation.html#quarto",
+    "objectID": "presentation.html",
+    "href": "presentation.html",
     "title": "EV Charging Trends and Predictions",
-    "section": "Quarto",
-    "text": "Quarto\n\nThe presentation is created using the Quarto CLI\n## sets the start of a new slide"
-  },
-  {
-    "objectID": "presentation.html#layouts",
-    "href": "presentation.html#layouts",
-    "title": "EV Charging Trends and Predictions",
-    "section": "Layouts",
-    "text": "Layouts\nYou can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\nlike\nthis\n\nAnd add footnotes"
-  },
-  {
-    "objectID": "presentation.html#code",
-    "href": "presentation.html#code",
-    "title": "EV Charging Trends and Predictions",
-    "section": "Code",
-    "text": "Code\n\n\n                            OLS Regression Results                            \n==============================================================================\nDep. Variable:                    mpg   R-squared:                       0.073\nModel:                            OLS   Adj. R-squared:                  0.070\nMethod:                 Least Squares   F-statistic:                     30.59\nDate:                Sat, 16 Nov 2024   Prob (F-statistic):           5.84e-08\nTime:                        13:58:08   Log-Likelihood:                -1346.4\nNo. Observations:                 392   AIC:                             2697.\nDf Residuals:                     390   BIC:                             2705.\nDf Model:                           1                                         \nCovariance Type:            nonrobust                                         \n==============================================================================\n                 coef    std err          t      P&gt;|t|      [0.025      0.975]\n------------------------------------------------------------------------------\nconst         35.8015      2.266     15.800      0.000      31.347      40.257\nspeed       -354.7055     64.129     -5.531      0.000    -480.788    -228.623\n==============================================================================\nOmnibus:                       27.687   Durbin-Watson:                   0.589\nProb(Omnibus):                  0.000   Jarque-Bera (JB):               18.976\nSkew:                           0.420   Prob(JB):                     7.57e-05\nKurtosis:                       2.323   Cond. No.                         169.\n==============================================================================\n\nNotes:\n[1] Standard Errors assume that the covariance matrix of the errors is correctly specified."
-  },
-  {
-    "objectID": "presentation.html#plots",
-    "href": "presentation.html#plots",
-    "title": "EV Charging Trends and Predictions",
-    "section": "Plots",
-    "text": "Plots"
-  },
-  {
-    "objectID": "presentation.html#plot-and-text",
-    "href": "presentation.html#plot-and-text",
-    "title": "EV Charging Trends and Predictions",
-    "section": "Plot and text",
-    "text": "Plot and text\n\n\n\nSome text\ngoes here"
-  },
-  {
-    "objectID": "presentation.html#tables",
-    "href": "presentation.html#tables",
-    "title": "EV Charging Trends and Predictions",
-    "section": "Tables",
-    "text": "Tables\nIf you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,\n\n\n\n\n\n\n\n\n\n\n\n\nspecies\n\n\n\nisland\n\n\n\nbill_length_mm\n\n\n\nbill_depth_mm\n\n\n\nflipper_length_mm\n\n\n\nbody_mass_g\n\n\n\nsex\n\n\n\n\n\n\n\n\n\n\n\n0\n\n\n\nAdelie\n\n\n\nTorgersen\n\n\n\n39.1\n\n\n\n18.7\n\n\n\n181.0\n\n\n\n3750.0\n\n\n\nMale\n\n\n\n\n\n\n\n1\n\n\n\nAdelie\n\n\n\nTorgersen\n\n\n\n39.5\n\n\n\n17.4\n\n\n\n186.0\n\n\n\n3800.0\n\n\n\nFemale\n\n\n\n\n\n\n\n2\n\n\n\nAdelie\n\n\n\nTorgersen\n\n\n\n40.3\n\n\n\n18.0\n\n\n\n195.0\n\n\n\n3250.0\n\n\n\nFemale\n\n\n\n\n\n\n\n4\n\n\n\nAdelie\n\n\n\nTorgersen\n\n\n\n36.7\n\n\n\n19.3\n\n\n\n193.0\n\n\n\n3450.0\n\n\n\nFemale\n\n\n\n\n\n\n\n5\n\n\n\nAdelie\n\n\n\nTorgersen\n\n\n\n39.3\n\n\n\n20.6\n\n\n\n190.0\n\n\n\n3650.0\n\n\n\nMale"
-  },
-  {
-    "objectID": "presentation.html#images",
-    "href": "presentation.html#images",
-    "title": "EV Charging Trends and Predictions",
-    "section": "Images",
-    "text": "Images\n\nImage credit: Danielle Navarro, Percolate."
-  },
-  {
-    "objectID": "presentation.html#math-expressions",
-    "href": "presentation.html#math-expressions",
-    "title": "EV Charging Trends and Predictions",
-    "section": "Math Expressions",
-    "text": "Math Expressions\nYou can write LaTeX math expressions inside a pair of dollar signs, e.g. $\\alpha+\\beta$ renders \\(\\alpha + \\beta\\). You can use the display style with double dollar signs:\n$$\\bar{X}=\\frac{1}{n}\\sum_{i=1}^nX_i$$\n\\[\n\\bar{X}=\\frac{1}{n}\\sum_{i=1}^nX_i\n\\]\nLimitations:\n\nThe source code of a LaTeX math expression must be in one line, unless it is inside a pair of double dollar signs, in which case the starting $$ must appear in the very beginning of a line, followed immediately by a non-space character, and the ending $$ must be at the end of a line, led by a non-space character;\nThere should not be spaces after the opening $ or before the closing $."
-  },
-  {
-    "objectID": "presentation.html#feeling-adventurous",
-    "href": "presentation.html#feeling-adventurous",
-    "title": "EV Charging Trends and Predictions",
-    "section": "Feeling adventurous?",
-    "text": "Feeling adventurous?\n\nYou are welcomed to use the default styling of the slides. In fact, that’s what I expect majority of you will do. You will differentiate yourself with the content of your presentation.\nBut some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs."
+    "section": "",
+    "text": "Welcome to our final project presentation for INFO 511."
   },
   {
     "objectID": "notebooks/Project Milestone 2.html",
