@@ -28,7 +28,7 @@
         "jupyter: python3\n",
         "---"
       ],
-      "id": "54ff899d"
+      "id": "b841c59c"
     },
     {
       "cell_type": "code",
@@ -66,7 +66,7 @@
         "\n",
         "### Table 1 - Electric Vehicle (EV) Charging Dataset: Column Headings\n"
       ],
-      "id": "0236c158"
+      "id": "74099ce5"
     },
     {
       "cell_type": "code",
@@ -77,7 +77,7 @@
         "\n",
         "ev_charging.head()"
       ],
-      "id": "a30d3c59",
+      "id": "32089e93",
       "execution_count": null,
       "outputs": []
     },
@@ -87,7 +87,7 @@
       "source": [
         "### Table 2 - EV Charging Dataset: Column Data Types\n"
       ],
-      "id": "7daf68db"
+      "id": "b05ab434"
     },
     {
       "cell_type": "code",
@@ -95,7 +95,7 @@
       "source": [
         "ev_charging.info()"
       ],
-      "id": "df7a4308",
+      "id": "89e39944",
       "execution_count": null,
       "outputs": []
     },
@@ -109,7 +109,7 @@
         "summary_stats = ev_charging.describe()\n",
         "print(summary_stats)"
       ],
-      "id": "165ae15e",
+      "id": "53ccc532",
       "execution_count": null,
       "outputs": []
     },
@@ -119,7 +119,7 @@
       "source": [
         "## Methodology\n",
         "\n",
-        "The methodology employed to access the ev charging dataset comprised three steps. First, a graphical review of the dataset was completed, see Figure 1 to 10. Second, a statistical analysis of the data was completed using analysis of variance (ANOVA) to complete hypothesis testing to help understanding any relationships between the factors studied, see Figure 11 to 14. Third, regression analysis was completed to build a predictive model of charging cost (USD) as a function of the factors studied and reported within the dataset, see Tables 1 to 9.\n",
+        "The methodology employed to access the ev charging dataset comprised three steps. First, a graphical review of the dataset was completed, see Figure 1 to 10. Second, a statistical analysis of the data was completed using analysis of variance (ANOVA) to complete hypothesis testing to help understanding any relationships between the factors studied, see Figure 11 to 14. Third, regression analysis was completed to build a predictive model of charging cost (USD) as a function of the factors studied and reported within the dataset, see Tables 1 to 6. In an effort to improve the predictive capabilities of the model support vector regression (SVR) was attempted on the dataset, see Tables 7, 8, and 9.\n",
         "\n",
         "### Graphical Review of the Data\n",
         "\n",
@@ -135,7 +135,7 @@
         "\n",
         "A seaborn pairwise plot is presented in Figure 10. The pairwise plot provides a graphical summary of the entire dataset for ease of attempting to visually determine if there is a relationship or correlation between factors studied. Within the pairwise plot the hue was defined as the vehicle type, see Figure 10. Visually the pairwise plot did not identify any obvious correlations within the dataset, see Figure 10.\n"
       ],
-      "id": "3f85beed"
+      "id": "7c23832a"
     },
     {
       "cell_type": "code",
@@ -290,7 +290,7 @@
       "source": [
         "#### Figure 10 - Seaborn Pair Plot for EV Charging Dataset Variables\n"
       ],
-      "id": "0482162b"
+      "id": "6ea38085"
     },
     {
       "cell_type": "code",
@@ -329,7 +329,7 @@
         "\n",
         "ANOVA was used to understand how (i) vehicle model, (ii) charging station locations, and (iii) charger type had an effect on charging cost. Charging cost appears to be influenced by vehicle model and charger type, see Figures 11 and 13 respectively. The simple linear regression highlighted the relationship between temperature and charging cost. The results of the statistical analysis helped inform the multivariate regression predictive model building efforts.\n"
       ],
-      "id": "b2b668e2"
+      "id": "46afb245"
     },
     {
       "cell_type": "code",
@@ -352,7 +352,7 @@
         "\n",
         "f_statistic, p_value = stats.f_oneway(BMW, Hyundai, Chevy, Nissan, Tesla)"
       ],
-      "id": "6280de10",
+      "id": "9eab5257",
       "execution_count": null,
       "outputs": []
     },
@@ -394,7 +394,7 @@
         "\n",
         "print('P-value:',p_value)"
       ],
-      "id": "916ad136",
+      "id": "9bb23272",
       "execution_count": null,
       "outputs": []
     },
@@ -435,7 +435,7 @@
         "\n",
         "print('P-value:',p_value)"
       ],
-      "id": "962691c6",
+      "id": "45bc3fc9",
       "execution_count": null,
       "outputs": []
     },
@@ -460,7 +460,7 @@
       "source": [
         "#### Table 3 - Linear Regression: Charging Cost (USD) as a function of Temperature (C)\n"
       ],
-      "id": "49eacf26"
+      "id": "03568b5a"
     },
     {
       "cell_type": "code",
@@ -483,7 +483,7 @@
         "p_value_temp = model.pvalues['Temperature (°C)']\n",
         "print(f\"\\nP-value for Temperature (°C): {p_value_temp:.5f}\")"
       ],
-      "id": "f7fc4966",
+      "id": "2ca635b6",
       "execution_count": null,
       "outputs": []
     },
@@ -525,11 +525,11 @@
         "\n",
         "A third multivariate regression model was attempted, again removing non-significant (p-value \\> 0.05) terms from the model in an attempt to improve R-sq-adjusted by including only statistically significant terms in the model, see Table 6. The third model yielding an R-sq-adjusted = 0.018 - typically an R-sq-adj value greater than 0.7 or 70% is desired.\n",
         "\n",
-        "The results of the multivariate regression analysis were disappointing, none of the model attempts yielded an R-sq-adjusted above 50%. As a result, the support vector machine (SVM) algorithm was attempted to predict charging cost as a function of the other variables or columns in the dataset, see Tables 7, 8 and 9.The initial SVM model included only numerical factors and provided an R-sq-adjusted of -0.25, see Table 7. The second SVM attempt included all factors, numerical and categorical, one-hot-encoding was used to transform categorical factors to numerical, and grid search employed to optimize the RBF kernel hyper-parameters, see Table 8. A third SVM attempt also included all factors and grid search employed to optimize the polynomial kernel, see Table 9. In both SVM's the data was scaled to ensure a uniform range for each variable studied. However, the second model, even with grid search, yielded a low value for R-sq-adjusted of -0.39 indicating the model was no better than a simple linear regression.\n",
+        "The results of the multivariate regression analysis were disappointing, none of the model attempts yielded an R-sq-adjusted above 50%. As a result, the support vector regression (SVR) algorithm was attempted to predict charging cost as a function of the other variables or columns in the dataset, see Tables 7, 8 and 9.The initial SVR model included only numerical factors and provided an R-sq-adjusted of -0.25, see Table 7. The second SVM attempt included all factors, numerical and categorical, one-hot-encoding was used to transform categorical factors to numerical, and grid search employed to optimize the RBF kernel hyper-parameters, see Table 8. A third SVM attempt also included all factors and grid search employed to optimize the polynomial kernel, see Table 9. In both SVR's the data was scaled to ensure a uniform range for each variable studied. However, the second model, even with grid search, yielded a low value for R-sq-adjusted of -0.39 indicating the model was no better than a simple linear regression.\n",
         "\n",
-        "The empirical modeling effort included multivariate regression and support vector machine analysis. The best performing model was a multivariate regression analysis that included only statistically significant terms and provided an R-sq = 0.041 and R-sq-adjusted = 0.021. The results of the predictive model building were disappointing and may need an expert review to ensure no technical errors in the code were made.\n"
+        "The empirical modeling effort included multivariate regression and support vector regression analysis. Other machine learning algorithms were not attempted because the response, charging cost, was a continues variable and not binary or categorical; as a result, logistic regression nor nearest neighbors were applied. The best performing model was a multivariate regression analysis that included only statistically significant terms and provided an R-sq = 0.041 and R-sq-adjusted = 0.021. The results of the predictive model building were disappointing and may need an expert review to ensure no technical errors in the code were made.\n"
       ],
-      "id": "2b87d781"
+      "id": "4ce73acf"
     },
     {
       "cell_type": "code",
@@ -543,7 +543,7 @@
         "from sklearn.metrics import mean_squared_error, r2_score\n",
         "from sklearn.preprocessing import PolynomialFeatures"
       ],
-      "id": "a8d27bf8",
+      "id": "3ac21283",
       "execution_count": null,
       "outputs": []
     },
@@ -553,7 +553,7 @@
       "source": [
         "ev_charging = ev_charging.dropna()"
       ],
-      "id": "59ba1ca6",
+      "id": "fcdba835",
       "execution_count": null,
       "outputs": []
     },
@@ -563,7 +563,7 @@
       "source": [
         "#### Table 4a - Initial Multivariable Regression Analysis: Charging Cost (USD) MSE and R-squared\n"
       ],
-      "id": "6be6ba9c"
+      "id": "ae769de2"
     },
     {
       "cell_type": "code",
@@ -609,7 +609,7 @@
         "print(f\"Mean Squared Error: {mse:.2f}\")\n",
         "print(f\"R-squared: {r2:.2f}\")"
       ],
-      "id": "63ce0f5b",
+      "id": "dc8433d7",
       "execution_count": null,
       "outputs": []
     },
@@ -619,7 +619,7 @@
       "source": [
         "#### Table 4b - Initial Multivariable Regression Analysis: Charging Cost (USD) Model Summary\n"
       ],
-      "id": "8335ddb8"
+      "id": "a6db654f"
     },
     {
       "cell_type": "code",
@@ -641,7 +641,7 @@
         "print('Table 4b - Initial Multivariable Regression Analysis: Charging Cost (USD) Model Summary')\n",
         "print(model.summary())\n"
       ],
-      "id": "3050bca1",
+      "id": "c92d0e28",
       "execution_count": null,
       "outputs": []
     },
@@ -651,7 +651,7 @@
       "source": [
         "#### Table 5 - Second Iteration, Statistically Significant Factors, Multivariable Regression Analysis\n"
       ],
-      "id": "c480b9ec"
+      "id": "b7787d96"
     },
     {
       "cell_type": "code",
@@ -670,7 +670,7 @@
         "print('Table 5 - Second Iteration, Statistically Significant Factors, Multivariable Regression Analysis')\n",
         "print(model.summary())"
       ],
-      "id": "0db83a55",
+      "id": "6d4d6d84",
       "execution_count": null,
       "outputs": []
     },
@@ -680,7 +680,7 @@
       "source": [
         "#### Table 6 - Third Iteration, Statistically Significant Factors, Multivariable Regression Analysis\n"
       ],
-      "id": "ac652127"
+      "id": "ba684f53"
     },
     {
       "cell_type": "code",
@@ -699,7 +699,7 @@
         "print('Table 6 - Third Iteration, Statistically Significant Factors, Multivariable Regression Analysis')\n",
         "print(model.summary())"
       ],
-      "id": "d41c06ee",
+      "id": "66bf3f6f",
       "execution_count": null,
       "outputs": []
     },
@@ -709,7 +709,7 @@
       "source": [
         "#### Table 7 - Support Vector Machine: All Factors with One-Hot-Encoding and Grid Search Linear, RBF, and Polynomial Kernels\n"
       ],
-      "id": "7ec8b37a"
+      "id": "7de4b2fd"
     },
     {
       "cell_type": "code",
@@ -790,7 +790,7 @@
         "print(\"\\nBest Estimator:\")\n",
         "print(best_model)"
       ],
-      "id": "15c3f3e6",
+      "id": "3c1a7510",
       "execution_count": null,
       "outputs": []
     },
@@ -800,7 +800,7 @@
       "source": [
         "#### Table 8 - Support Vector Machine: All Factors with One-Hot-Encoding and Grid Search RBF Kernel Hyperparameters\n"
       ],
-      "id": "384bd266"
+      "id": "048ca198"
     },
     {
       "cell_type": "code",
@@ -874,7 +874,7 @@
         "print(\"\\nBest Estimator:\")\n",
         "print(best_model)"
       ],
-      "id": "cf79a96d",
+      "id": "41eee03e",
       "execution_count": null,
       "outputs": []
     },
@@ -884,7 +884,7 @@
       "source": [
         "#### Table 9 - Support Vector Machine: All Factors with One-Hot-Encoding and Grid Search Polynomial Kernel Hyperparameters\n"
       ],
-      "id": "5f846d7d"
+      "id": "e9240cd9"
     },
     {
       "cell_type": "code",
@@ -959,7 +959,7 @@
         "print(\"\\nBest Estimator:\")\n",
         "print(best_model)"
       ],
-      "id": "3869aa75",
+      "id": "38c1e1dc",
       "execution_count": null,
       "outputs": []
     },
@@ -981,16 +981,17 @@
         "\n",
         "## Conclusions\n",
         "\n",
-        "The ChilePeppers team completed an assessment of an electric vehicle charging dataset. The dataset provided a record of 1320 charging events and recording 20 parameters for each event. The analysis was completed in stages. First a graphical review of the dataset was completed. Then a statistical review was leveraged to complete hypothesis testing using both ANOVA and regression analysis to understand or identify charging factors that influence the charging cost. Next predictive models were attempted to estimate the charging cost as a function of the other parameters in the dataset using both multivariate regression and support vector machine algorithms. The statistical analysis identified vehicle type and charger type as influencing charging cost. The predictive models while yielding empirical models or equations provided algorithms with very low values for R-sq and R-sq-adjusted. The multi-variable regression analysis provided a model with R-squared-adusted = 2.1% and the support vector machine regression algorithm provided a negative value for R-squared-adjusted. Ideally an empirical model would be characterized by an R-squared adjusted greater than 70% indicating the model explains more than 70% of the variance in the dataset. In this example the models are not capable of predicting charging cost as a function of the variables studied. "
+        "The ChilePeppers team completed an assessment of an electric vehicle charging dataset. The dataset provided a record of 1320 charging events and recording 20 parameters for each event. The analysis was completed in stages. First a graphical review of the dataset was completed. Then a statistical review was leveraged to complete hypothesis testing using both ANOVA and regression analysis to understand or identify charging factors that influence the charging cost. Next predictive models were attempted to estimate the charging cost as a function of the other parameters in the dataset using both multivariate regression and support vector machine algorithms. The statistical analysis identified vehicle type and charger type as influencing charging cost. The predictive models while yielding empirical models or equations provided algorithms with very low values for R-sq and R-sq-adjusted. The multi-variable regression analysis provided a model with R-squared-adusted = 2.1% and the support vector machine regression algorithm provided a negative value for R-squared-adjusted. Ideally an empirical model would be characterized by an R-squared adjusted greater than 70% indicating the model explains more than 70% of the variance in the dataset. In this example the models are not capable of predicting charging cost as a function of the variables studied."
       ],
-      "id": "c94f7f84"
+      "id": "64072c4d"
     }
   ],
   "metadata": {
     "kernelspec": {
-      "display_name": "Python 3",
+      "name": "python3",
       "language": "python",
-      "name": "python3"
+      "display_name": "Python 3 (ipykernel)",
+      "path": "C:\\Users\\derek\\anaconda3\\share\\jupyter\\kernels\\python3"
     }
   },
   "nbformat": 4,
